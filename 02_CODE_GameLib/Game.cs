@@ -1,13 +1,14 @@
 ﻿using System;
+using CODE_GameLib.Interfaces;
 
 namespace CODE_GameLib
 {
-    public class Game
+    public class Game : IGame
     {
         public event EventHandler<Game> Updated;
 
         public ConsoleKey KeyPressed { get; private set; }
-        public bool Quit { get; private set; } = false;
+        public bool Quit { get; private set; }
 
         public void Run()
         {
