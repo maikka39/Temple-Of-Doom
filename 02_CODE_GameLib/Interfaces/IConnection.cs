@@ -1,4 +1,4 @@
-using CODE_GameLib.Interfaces.Items;
+using CODE_GameLib.Interfaces.Items.Doors;
 
 namespace CODE_GameLib.Interfaces
 {
@@ -6,6 +6,6 @@ namespace CODE_GameLib.Interfaces
     {
         public Room Destination { get; }
         public Location Location { get; } 
-        public IItem Item { get; }
+        public IDoor Item { get; }
     }
 }
