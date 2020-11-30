@@ -9,6 +9,8 @@ namespace CODE_GameLib
 
         public ConsoleKey KeyPressed { get; private set; }
         public bool Quit { get; private set; }
+        
+        public PlayerLocation PlayerLocation { get; private set; }
 
         public void Run()
         {
