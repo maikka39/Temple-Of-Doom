@@ -67,46 +67,7 @@ namespace CODE_PersistenceLib
                 var roomId = roomJToken["id"].Value<int>();
                 connections.Add(roomId, new List<IConnection>());
 
-                var items = new List<IItem>();
-
-                if (roomJToken.Contains("items"))
-                {
-                    foreach (var itemJToken in roomJToken["items"])
-                    {
-                        var x = itemJToken["x"].Value<int>();
-                        var y = itemJToken["y"].Value<int>();
-
-                        switch (itemJToken["type"].Value<string>())
-                        {
-                            case "boobietrap":
-                            case "disappearing boobietrap":
-                            {
-                                items.Add(new BoobyTrap(x, y,
-                                    itemJToken["demage"].Value<int>(),
-                                    itemJToken["type"].Value<string>().Contains("disappearing")
-                                ));
-                                break;
-                            }
-                            case "sankara stone":
-                            {
-                                items.Add(new SankaraStone(x, y));
-                                break;
-                            }
-                            case "key":
-                            {
-                                items.Add(new Key(x, y,
-                                    Color.FromName(itemJToken["color"].Value<string>())
-                                ));
-                                break;
-                            }
-                            case "pressure plate":
-                            {
-                                items.Add(new PressurePlate(x, y));
-                                break;
-                            }
-                        }
-                    }
-                }
+                var items = GetItemsForRoom(roomJToken);
 
                 rooms.Add(roomId, new Room(
                     roomJToken["width"].Value<int>(),
@@ -115,6 +76,51 @@ namespace CODE_PersistenceLib
                     connections[roomId]
                 ));
             }
+        }
+
+        private static IEnumerable<IItem> GetItemsForRoom(JToken roomJToken)
+        {
+            var items = new List<IItem>();
+            
+            if (!roomJToken.Contains("items")) return items;
+            
+            foreach (var itemJToken in roomJToken["items"])
+            {
+                var x = itemJToken["x"].Value<int>();
+                var y = itemJToken["y"].Value<int>();
+
+                switch (itemJToken["type"].Value<string>())
+                {
+                    case "boobietrap":
+                    case "disappearing boobietrap":
+                    {
+                        items.Add(new BoobyTrap(x, y,
+                            itemJToken["demage"].Value<int>(),
+                            itemJToken["type"].Value<string>().Contains("disappearing")
+                        ));
+                        break;
+                    }
+                    case "sankara stone":
+                    {
+                        items.Add(new SankaraStone(x, y));
+                        break;
+                    }
+                    case "key":
+                    {
+                        items.Add(new Key(x, y,
+                            Color.FromName(itemJToken["color"].Value<string>())
+                        ));
+                        break;
+                    }
+                    case "pressure plate":
+                    {
+                        items.Add(new PressurePlate(x, y));
+                        break;
+                    }
+                }
+            }
+
+            return items;
         }
 
         private static void SetConnections(JObject json, IReadOnlyDictionary<int, List<IConnection>> connections, IReadOnlyDictionary<int, IRoom> rooms)
