@@ -5,12 +5,12 @@ namespace CODE_GameLib
 {
     public class Connection : IConnection
     {
-        public Room Destination { get; }
+        public IRoom Destination { get; }
         public Location Location { get; }
         
         public IDoor Item { get; }
 
-        public Connection(Room destination, Location location, IDoor item = null)
+        public Connection(IRoom destination, Location location, IDoor item = null)
         {
             Destination = destination;
             Location = location;
