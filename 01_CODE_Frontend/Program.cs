@@ -1,13 +1,12 @@
-﻿using CODE_FileSystem;
-using CODE_GameLib;
-using System;
+﻿using System;
 using System.Text;
+using CODE_PersistenceLib;
 
 namespace CODE_Frontend
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
 
@@ -15,10 +14,9 @@ namespace CODE_Frontend
             Console.WindowHeight = 50;
             Console.CursorVisible = false;
 
-            GameReader reader = new GameReader();
-            Game game = reader.Read(@"./Levels/TempleOfDoom.json");
+            var game = GameReader.Read(@"./Levels/TempleOfDoom.json");
 
-            GameView gameView = new GameView();
+            var gameView = new GameView();
             game.Updated += (sender, game) => gameView.Draw(game);
             game.Run();
         }

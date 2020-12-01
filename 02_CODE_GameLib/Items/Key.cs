@@ -1,4 +1,4 @@
-using System;
+using System.Drawing;
 using CODE_GameLib.Interfaces.Items;
 
 namespace CODE_GameLib.Items
@@ -7,13 +7,13 @@ namespace CODE_GameLib.Items
     {
         public int X { get; }
         public int Y { get; }
-        public ConsoleColor KeyColor { get; }
+        public Color Color { get; }
 
-        public Key(int x, int y, ConsoleColor key)
+        public Key(int x, int y, Color color)
         {
             X = x;
             Y = y;
-            KeyColor = key;
+            Color = color;
         }
     }
 }
