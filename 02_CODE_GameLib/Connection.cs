@@ -1,4 +1,5 @@
 ﻿using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Doors;
 using CODE_GameLib.Interfaces.Items.Doors;
 
 namespace CODE_GameLib
@@ -6,15 +7,16 @@ namespace CODE_GameLib
     public class Connection : IConnection
     {
         public IRoom Destination { get; }
-        public Location Location { get; }
         
-        public IDoor Item { get; }
+        public Direction Direction { get; }
+        
+        public IDoor Door { get; }
 
-        public Connection(IRoom destination, Location location, IDoor item = null)
+        public Connection(IRoom destination, Direction direction, IDoor door = null)
         {
             Destination = destination;
-            Location = location;
-            Item = item;
+            Direction = direction;
+            Door = door;
         }
     }
 }

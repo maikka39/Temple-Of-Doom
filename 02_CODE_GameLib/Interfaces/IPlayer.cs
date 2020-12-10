@@ -6,11 +6,7 @@ namespace CODE_GameLib.Interfaces
 {
     public interface IPlayer
     {
-        public int X { get; }
-        
-        public int Y { get; }
-        
-        public Room Room { get; set; }
+        public IPlayerLocation Location { get; }
         
         public int Lives { get; set; }
         

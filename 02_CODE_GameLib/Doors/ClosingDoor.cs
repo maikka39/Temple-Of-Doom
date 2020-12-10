@@ -1,4 +1,5 @@
-using CODE_GameLib.Interfaces.Items.Doors;
+using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Doors;
 
 namespace CODE_GameLib.Items.Doors
 {
@@ -9,6 +10,11 @@ namespace CODE_GameLib.Items.Doors
         public ClosingDoor()
         {
             Opened = true;
+        }
+        
+        public bool PassThru(IPlayer player)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace CODE_GameLib.Interfaces
+namespace CODE_GameLib.Interfaces
 {
     public interface IPlayerLocation
     {

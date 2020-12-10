@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using CODE_GameLib;
+using CODE_GameLib.Doors;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Items.Doors;
@@ -31,23 +32,24 @@ namespace CODE_PersistenceLib
                 SetConnections(json, connections, rooms);
                 
                 var playerJToken = json["player"];
-                player = GetPlayer(playerJToken);
                 playerStartLocation = GetPlayerStartLocation(rooms, playerJToken);
+                player = GetPlayer(playerJToken, playerStartLocation);
             }
             catch (Exception e)
             {
                 throw new JsonException("The provided JSON level file is not valid.", e);
             }
 
-            return new Game(player, playerStartLocation, rooms.Values);
+            return new Game(player, rooms.Values);
         }
 
-        private static IPlayer GetPlayer(JToken playerJToken)
+        private static IPlayer GetPlayer(JToken playerJToken, IPlayerLocation playerLocation)
         {
             return new Player(
                 playerJToken["lives"].Value<int>(),
                 new List<IKey>(),
-                new List<ISankaraStone>()
+                new List<ISankaraStone>(),
+                playerLocation
             );
         }
 
@@ -129,12 +131,12 @@ namespace CODE_PersistenceLib
             
             foreach (var jConnection in json["connections"].Children<JObject>())
             {
-                var convertLocation = new Dictionary<string, Location>
+                var convertLocation = new Dictionary<string, Direction>
                 {
-                    {"NORTH", Location.Top},
-                    {"EAST", Location.Right},
-                    {"SOUTH", Location.Bottom},
-                    {"WEST", Location.Left},
+                    {"NORTH", Direction.Top},
+                    {"EAST", Direction.Right},
+                    {"SOUTH", Direction.Bottom},
+                    {"WEST", Direction.Left},
                 };
 
                 var actualConnections = jConnection.Properties()
