@@ -9,7 +9,11 @@ namespace CODE_GameLib.Doors
 
         public bool PassThru(IPlayer player)
         {
-            return Opened;
+            if (Opened)
+                Opened = false;
+            else
+                return false;
+            return true;
         }
     }
 }
