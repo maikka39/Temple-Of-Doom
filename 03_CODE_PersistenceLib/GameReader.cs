@@ -30,7 +30,7 @@ namespace CODE_PersistenceLib
 
                 SetRooms(json, connections, rooms);
                 SetConnections(json, connections, rooms);
-                
+
                 var playerJToken = json["player"];
                 playerStartLocation = GetPlayerStartLocation(rooms, playerJToken);
                 player = GetPlayer(playerJToken, playerStartLocation);
@@ -53,16 +53,18 @@ namespace CODE_PersistenceLib
             );
         }
 
-        private static IPlayerLocation GetPlayerStartLocation(IReadOnlyDictionary<int, IRoom> rooms, JToken playerJToken)
+        private static IPlayerLocation GetPlayerStartLocation(IReadOnlyDictionary<int, IRoom> rooms,
+            JToken playerJToken)
         {
             return new PlayerLocation(
                 rooms[playerJToken["startRoomId"].Value<int>()],
                 playerJToken["startX"].Value<int>(),
-                playerJToken["startY"].Value<int>()
-            );
+                playerJToken["startY"].Value<int>(),
+                new List<IObserver<IPlayerLocation>>());
         }
 
-        private static void SetRooms(JObject json, IDictionary<int, List<IConnection>> connections, IDictionary<int, IRoom> rooms)
+        private static void SetRooms(JObject json, IDictionary<int, List<IConnection>> connections,
+            IDictionary<int, IRoom> rooms)
         {
             foreach (var roomJToken in json["rooms"])
             {
@@ -83,9 +85,9 @@ namespace CODE_PersistenceLib
         private static IEnumerable<IItem> GetItemsForRoom(JToken roomJToken)
         {
             var items = new List<IItem>();
-            
+
             if (!roomJToken.Contains("items")) return items;
-            
+
             foreach (var itemJToken in roomJToken["items"])
             {
                 var x = itemJToken["x"].Value<int>();
@@ -125,10 +127,11 @@ namespace CODE_PersistenceLib
             return items;
         }
 
-        private static void SetConnections(JObject json, IReadOnlyDictionary<int, List<IConnection>> connections, IReadOnlyDictionary<int, IRoom> rooms)
+        private static void SetConnections(JObject json, IReadOnlyDictionary<int, List<IConnection>> connections,
+            IReadOnlyDictionary<int, IRoom> rooms)
         {
             if (!json.ContainsKey("connections")) return;
-            
+
             foreach (var jConnection in json["connections"].Children<JObject>())
             {
                 var convertLocation = new Dictionary<string, Direction>
