@@ -20,7 +20,6 @@ namespace CODE_PersistenceLib
         {
             var rooms = new Dictionary<int, IRoom>();
             IPlayer player;
-            IPlayerLocation playerStartLocation;
 
             try
             {
@@ -32,7 +31,7 @@ namespace CODE_PersistenceLib
                 SetConnections(json, connections, rooms);
                 
                 var playerJToken = json["player"];
-                playerStartLocation = GetPlayerStartLocation(rooms, playerJToken);
+                var playerStartLocation = GetPlayerStartLocation(rooms, playerJToken);
                 player = GetPlayer(playerJToken, playerStartLocation);
             }
             catch (Exception e)
