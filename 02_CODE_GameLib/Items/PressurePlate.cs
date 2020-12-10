@@ -8,11 +8,10 @@ namespace CODE_GameLib.Items
         public int Y { get; }
         public bool Pressed { get; set; }
 
-        public PressurePlate(int x, int y, bool pressed)
+        public PressurePlate(int x, int y)
         {
             X = x;
             Y = y;
-            Pressed = pressed;
         }
     }
 }

@@ -6,6 +6,7 @@ namespace CODE_GameLib.Doors
     public class ToggleDoor : IToggleDoor
     {
         public bool Opened { get; set; }
+
         public bool PassThru(IPlayer player)
         {
             return Opened;

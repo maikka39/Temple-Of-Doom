@@ -9,7 +9,7 @@ namespace CODE_GameLib.Doors
     {
         public bool Opened { get; set; }
         public Color Color { get; }
-        
+
         public ColoredDoor(Color color)
         {
             Color = color;
