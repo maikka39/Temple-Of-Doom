@@ -1,6 +1,6 @@
 namespace CODE_GameLib
 {
-    public enum Location
+    public enum Direction
     {
         Top = 0,
         Right = 1,

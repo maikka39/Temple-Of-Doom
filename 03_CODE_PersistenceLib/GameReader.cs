@@ -114,7 +114,7 @@ namespace CODE_PersistenceLib
                     }
                     case "pressure plate":
                     {
-                        items.Add(new PressurePlate(x, y, false));
+                        items.Add(new PressurePlate(x, y));
                         break;
                     }
                 }
