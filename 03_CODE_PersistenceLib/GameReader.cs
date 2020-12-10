@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using CODE_GameLib;
+using CODE_GameLib.Doors;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Items.Doors;
