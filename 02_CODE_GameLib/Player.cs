@@ -8,68 +8,64 @@ namespace CODE_GameLib
 {
     public class Player : IPlayer
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-        public IRoom Room { get; set; }
+        public IPlayerLocation Location { get; private set; }
         public int Lives { get; set; }
         public IEnumerable<IKey> Keys { get; set; }
         public IEnumerable<ISankaraStone> SankaraStones { get; set; }
 
-        public Player(int lives, IEnumerable<IKey> keys, IEnumerable<ISankaraStone> sankaraStones)
+        public Player(int lives, IEnumerable<IKey> keys, IEnumerable<ISankaraStone> sankaraStones, IPlayerLocation location)
         {
             Lives = lives;
             Keys = keys;
             SankaraStones = sankaraStones;
+            Location = location;
         }
 
         public void MovePlayer(Direction direction)
         {
-            var targetX = X;
-            var targetY = Y;
+            var target = Location;
 
             switch (direction)
             {
                 case Direction.Top:
-                    targetY++;
+                    target.X++;
                     break;
                 case Direction.Right:
-                    targetX++;
+                    target.X++;
                     break;
                 case Direction.Bottom:
-                    targetY--;
+                    target.Y--;
                     break;
                 case Direction.Left:
-                    targetX--;
+                    target.X--;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(direction), direction,
                         "There are only four directions");
             }
 
-            if (targetX < 0 || targetY < 0 || targetX > Room.Width || targetY > Room.Height)
+            if (target.X < 0 || target.Y < 0 || target.X > Location.Room.Width || target.Y > Location.Room.Height)
             {
-                if (targetY != (Room.Height + 1) / 2 || targetX != (Room.Width + 1) / 2) return;
+                if (target.Y != (Location.Room.Height + 1) / 2 || target.X != (Location.Room.Width + 1) / 2) return;
                 
-                var connection = Room.Connections.FirstOrDefault(connections => connections.Direction == direction);
+                var connection = Location.Room.Connections.FirstOrDefault(connections => connections.Direction == direction);
                 if (connection == null) return;
                 if (!connection.Door.PassThru(this)) return;
 
-                Room = connection.Destination;
+                Location.Room = connection.Destination;
                 
                 if (connection.Direction == Direction.Top || connection.Direction == Direction.Bottom)
                 {
-                    Y = (Room.Width + 1) / 2;
-                    X = connection.Direction == Direction.Top ? Room.Height : 0;
+                    Location.Y = (Location.Room.Width + 1) / 2;
+                    Location.X = connection.Direction == Direction.Top ? Location.Room.Height : 0;
                 }
                 else
                 {
-                    X = (Room.Height + 1) / 2;
-                    Y = connection.Direction == Direction.Left ? Room.Width : 0;
+                    Location.X = (Location.Room.Height + 1) / 2;
+                    Location.Y = connection.Direction == Direction.Left ? Location.Room.Width : 0;
                 }
             }
-
-            X = targetX;
-            Y = targetY;
+            Location = target;
         }
     }
 }

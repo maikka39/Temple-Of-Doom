@@ -12,13 +12,11 @@ namespace CODE_GameLib
         public bool Quit { get; private set; }
         
         public IPlayer Player { get; }
-        public IPlayerLocation PlayerLocation { get; private set; }
         public IEnumerable<IRoom> Rooms { get; }
 
-        public Game(IPlayer player, IPlayerLocation playerLocation, IEnumerable<IRoom> rooms)
+        public Game(IPlayer player, IEnumerable<IRoom> rooms)
         {
             Player = player;
-            PlayerLocation = playerLocation;
             Rooms = rooms;
         }
 

@@ -32,23 +32,24 @@ namespace CODE_PersistenceLib
                 SetConnections(json, connections, rooms);
                 
                 var playerJToken = json["player"];
-                player = GetPlayer(playerJToken);
                 playerStartLocation = GetPlayerStartLocation(rooms, playerJToken);
+                player = GetPlayer(playerJToken, playerStartLocation);
             }
             catch (Exception e)
             {
                 throw new JsonException("The provided JSON level file is not valid.", e);
             }
 
-            return new Game(player, playerStartLocation, rooms.Values);
+            return new Game(player, rooms.Values);
         }
 
-        private static IPlayer GetPlayer(JToken playerJToken)
+        private static IPlayer GetPlayer(JToken playerJToken, IPlayerLocation playerLocation)
         {
             return new Player(
                 playerJToken["lives"].Value<int>(),
                 new List<IKey>(),
-                new List<ISankaraStone>()
+                new List<ISankaraStone>(),
+                playerLocation
             );
         }
 
