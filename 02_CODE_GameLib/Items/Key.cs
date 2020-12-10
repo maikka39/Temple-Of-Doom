@@ -10,11 +10,11 @@ namespace CODE_GameLib.Items
         public int Y { get; }
         public Color Color { get; }
 
-        public Key(int x, int y, Color key)
+        public Key(int x, int y, Color color)
         {
             X = x;
             Y = y;
-            Color = key;
+            Color = color;
         }
     }
 }
