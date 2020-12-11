@@ -133,7 +133,13 @@ namespace CODE_Frontend
             if (item.GetType() == typeof(BoobyTrap))
                 return 'B';
 
-            return '#';
+            if (item.GetType() == typeof(Key))
+                return 'K';
+
+            if (item.GetType() == typeof(PressurePlate))
+                return 'P';
+
+            return '?';
         }
     }
 }
