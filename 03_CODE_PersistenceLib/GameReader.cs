@@ -145,7 +145,7 @@ namespace CODE_PersistenceLib
                 var location1 = convertLocation[actualConnections[0].Name];
 
                 var roomId2 = actualConnections[1].Value.Value<int>();
-                var location2 = convertLocation[actualConnections[0].Name];
+                var location2 = convertLocation[actualConnections[1].Name];
 
                 IDoor connectionDoor = null;
 
