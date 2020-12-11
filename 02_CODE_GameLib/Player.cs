@@ -13,7 +13,8 @@ namespace CODE_GameLib
         public IEnumerable<IKey> Keys { get; set; }
         public IEnumerable<ISankaraStone> SankaraStones { get; set; }
 
-        public Player(int lives, IEnumerable<IKey> keys, IEnumerable<ISankaraStone> sankaraStones, IPlayerLocation location)
+        public Player(int lives, IEnumerable<IKey> keys, IEnumerable<ISankaraStone> sankaraStones,
+            IPlayerLocation location)
         {
             Lives = lives;
             Keys = keys;
@@ -44,16 +45,24 @@ namespace CODE_GameLib
                         "There are only four directions");
             }
 
-            if (target.X < 0 || target.Y < 0 || target.X > target.Room.Width-1 || target.Y > target.Room.Height-1)
+            if (target.X < 0 || target.Y < 0 || target.X > target.Room.Width - 1 || target.Y > target.Room.Height - 1)
             {
-                if (target.Y != (target.Room.Height + 1) / 2 || target.X != (target.Room.Width + 1) / 2) return false;
-                
-                var connection = target.Room.Connections.FirstOrDefault(connections => connections.Direction == direction);
+                var isCenterX = target.X == (target.Room.Width + 1) / 2 - 1;
+                var isCenterY = target.Y == (target.Room.Height + 1) / 2 - 1;
+
+                if (!isCenterX && !isCenterY)
+                    return false;
+
+                var connection = target.Room.Connections.FirstOrDefault(
+                    connections => connections.Direction == direction);
+
                 if (connection == null) return false;
-                if (!connection.Door.PassThru(this)) return false;
+
+                if (connection.Door != null && !connection.Door.PassThru(this))
+                    return false;
 
                 target.Room = connection.Destination;
-                
+
                 if (connection.Direction == Direction.Top || connection.Direction == Direction.Bottom)
                 {
                     target.Y = (target.Room.Width + 1) / 2 - 1;
@@ -64,9 +73,8 @@ namespace CODE_GameLib
                     target.X = (Location.Room.Height + 1) / 2 - 1;
                     target.Y = connection.Direction == Direction.Left ? target.Room.Width : 0;
                 }
-
             }
-            
+
             Location = target;
             return true;
         }
