@@ -28,7 +28,7 @@ namespace CODE_GameLib
 
             if (tickData.MovePlayer != null)
             {
-                // TODO: Move player
+                Player.Move((Direction) tickData.MovePlayer);
                 
                 didUpdate = true;
             }

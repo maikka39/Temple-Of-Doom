@@ -1,6 +1,5 @@
 ﻿using CODE_GameLib;
 using System;
-using System.Linq;
 using System.Text;
 using CODE_Frontend.Modules;
 using CODE_GameLib.Interfaces;
@@ -26,7 +25,7 @@ namespace CODE_Frontend
                 Console.WriteLine("Quitting game, goodbye!");
 
             var stringBuilder = new StringBuilder("");
-            
+
             stringBuilder.AppendLine(_headerModule.Render(game));
             stringBuilder.AppendLine(GenericModule.HorizontalLine(Console.WindowWidth));
             stringBuilder.AppendLine();
@@ -44,6 +43,32 @@ namespace CODE_Frontend
 
             var grid = new char[room.Width + 2, room.Height + 2];
 
+            InitializeGrid(grid);
+
+            SetConnections(grid, room);
+
+            SetItems(grid, room);
+
+            SetPlayer(grid, player);
+
+            return GridToString(grid);
+        }
+
+        private static string GridToString(char[,] grid)
+        {
+            var stringBuilder = new StringBuilder($"");
+            for (var row = grid.GetLength(1)-1; row >= 0; row--)
+            {
+                for (var col = 0; col < grid.GetLength(0); col++)
+                    stringBuilder.Append(grid[col, row] + " ");
+                stringBuilder.AppendLine();
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        private static void InitializeGrid(char[,] grid)
+        {
             for (var col = 0; col < grid.GetLength(0); col++)
             {
                 var character = ' ';
@@ -57,43 +82,42 @@ namespace CODE_Frontend
                 for (var row = 1; row < grid.GetLength(1) - 1; row++)
                     grid[col, row] = character;
             }
+        }
 
-            foreach (var item in room.Items)
-                grid[item.X + 1, item.Y + 1] = GetCharForItem(item);
-
+        private static void SetConnections(char[,] grid, IRoom room)
+        {
             foreach (var connection in room.Connections)
             {
                 var connChar = GetConnectionChar(connection);
                 switch (connection.Direction)
                 {
                     case Direction.Top:
-                        grid[0, (grid.GetLength(1) + 1) / 2 - 1] = connChar;
+                        grid[(grid.GetLength(0) + 1) / 2 - 1, 0] = connChar;
                         break;
                     case Direction.Right:
-                        grid[(grid.GetLength(0) + 1) / 2 - 1, grid.GetLength(1) - 1] = connChar;
-                        break;
-                    case Direction.Bottom:
                         grid[grid.GetLength(0) - 1, (grid.GetLength(1) + 1) / 2 - 1] = connChar;
                         break;
+                    case Direction.Bottom:
+                        grid[(grid.GetLength(0) + 1) / 2 - 1, grid.GetLength(1) - 1] = connChar;
+                        break;
                     case Direction.Left:
-                        grid[(grid.GetLength(0) + 1) / 2 - 1, 0] = connChar;
+                        grid[0, (grid.GetLength(1) + 1) / 2 - 1] = connChar;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
             }
+        }
 
-            grid[player.Location.X, player.Location.Y] = 'P';
+        private static void SetItems(char[,] grid, IRoom room)
+        {
+            foreach (var item in room.Items)
+                grid[item.X + 1, item.Y + 1] = GetCharForItem(item);
+        }
 
-            var stringBuilder = new StringBuilder($"");
-            for (var col = 0; col < grid.GetLength(0); col++)
-            {
-                for (var row = 0; row < grid.GetLength(1); row++)
-                    stringBuilder.Append(grid[col, row] + " ");
-                stringBuilder.AppendLine();
-            }
-
-            return stringBuilder.ToString();
+        private static void SetPlayer(char[,] grid, IPlayer player)
+        {
+            grid[player.Location.X + 1, player.Location.Y + 1] = 'P';
         }
 
         private static char GetConnectionChar(IConnection connection)
