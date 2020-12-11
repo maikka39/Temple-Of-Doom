@@ -23,6 +23,7 @@ namespace CODE_Frontend
             while (!game.Quit)
             {
                 var keyPressed = Console.ReadKey().Key;
+                Console.Write("\b");
                 
                 var tickData = new TickData();
                 
