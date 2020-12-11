@@ -11,8 +11,6 @@ namespace CODE_Frontend
         {
             Console.OutputEncoding = Encoding.UTF8;
 
-            Console.WindowWidth = 200;
-            Console.WindowHeight = 50;
             Console.CursorVisible = false;
 
             var game = GameReader.Read(@"./Levels/TempleOfDoom.json");

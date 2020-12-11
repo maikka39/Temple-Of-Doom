@@ -26,9 +26,10 @@ namespace CODE_Frontend
                 Console.WriteLine("Quitting game, goodbye!");
 
             var stringBuilder = new StringBuilder("");
-
+            
             stringBuilder.AppendLine(_headerModule.Render(game));
-
+            stringBuilder.AppendLine(GenericModule.HorizontalLine(Console.WindowWidth));
+            stringBuilder.AppendLine();
             stringBuilder.AppendLine(GetGrid(game));
 
             Console.Clear();
@@ -38,7 +39,8 @@ namespace CODE_Frontend
 
         private static string GetGrid(IGame game)
         {
-            var room = game.Player.Location.Room;
+            var player = game.Player;
+            var room = player.Location.Room;
 
             var grid = new char[room.Width + 2, room.Height + 2];
 
@@ -61,24 +63,27 @@ namespace CODE_Frontend
 
             foreach (var connection in room.Connections)
             {
+                var connChar = GetConnectionChar(connection);
                 switch (connection.Direction)
                 {
                     case Direction.Top:
-                        grid[0, (grid.GetLength(1) + 1) / 2 - 1] = GetConnectionChar(connection);
+                        grid[0, (grid.GetLength(1) + 1) / 2 - 1] = connChar;
                         break;
                     case Direction.Right:
-                        grid[(grid.GetLength(0) + 1) / 2 - 1, grid.GetLength(1) - 1] = GetConnectionChar(connection);
+                        grid[(grid.GetLength(0) + 1) / 2 - 1, grid.GetLength(1) - 1] = connChar;
                         break;
                     case Direction.Bottom:
-                        grid[grid.GetLength(0) - 1, (grid.GetLength(1) + 1) / 2 - 1] = GetConnectionChar(connection);
+                        grid[grid.GetLength(0) - 1, (grid.GetLength(1) + 1) / 2 - 1] = connChar;
                         break;
                     case Direction.Left:
-                        grid[(grid.GetLength(0) + 1) / 2 - 1, 0] = GetConnectionChar(connection);
+                        grid[(grid.GetLength(0) + 1) / 2 - 1, 0] = connChar;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
             }
+
+            grid[player.Location.X, player.Location.Y] = 'P';
 
             var stringBuilder = new StringBuilder($"");
             for (var col = 0; col < grid.GetLength(0); col++)
