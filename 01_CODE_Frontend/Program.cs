@@ -7,7 +7,7 @@ namespace CODE_Frontend
 {
     internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             Console.OutputEncoding = Encoding.UTF8;
 
@@ -31,18 +31,26 @@ namespace CODE_Frontend
                 switch (keyPressed)
                 {
                     case ConsoleKey.K:
+                    case ConsoleKey.W:
+                    case ConsoleKey.UpArrow:
                         tickData.MovePlayer = Direction.Top;
                         break;
                     
                     case ConsoleKey.J:
+                    case ConsoleKey.S:
+                    case ConsoleKey.DownArrow:
                         tickData.MovePlayer = Direction.Bottom;
                         break;
                     
                     case ConsoleKey.H:
+                    case ConsoleKey.A:
+                    case ConsoleKey.LeftArrow:
                         tickData.MovePlayer = Direction.Left;
                         break;
                     
                     case ConsoleKey.L:
+                    case ConsoleKey.D:
+                    case ConsoleKey.RightArrow:
                         tickData.MovePlayer = Direction.Right;
                         break;
                     
