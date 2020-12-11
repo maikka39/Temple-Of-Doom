@@ -8,7 +8,6 @@ namespace CODE_GameLib
     {
         public event EventHandler<Game> Updated;
 
-        public ConsoleKey KeyPressed { get; private set; }
         public bool Quit { get; private set; }
         
         public IPlayer Player { get; }
@@ -20,20 +19,27 @@ namespace CODE_GameLib
             Rooms = rooms;
         }
 
-        public void Run()
+        public void Tick(TickData tickData)
         {
-            KeyPressed = Console.ReadKey().Key;
-            Quit = KeyPressed == ConsoleKey.Escape;
+            var didUpdate = false;
+            
+            if (tickData.Quit)
+                Destroy();
 
-            while (!Quit)
+            if (tickData.MovePlayer != null)
             {
-                Updated?.Invoke(this, this);
-
-                KeyPressed = Console.ReadKey().Key;
-                Quit = KeyPressed == ConsoleKey.Escape;
+                // TODO: Move player
+                
+                didUpdate = true;
             }
 
-            Updated?.Invoke(this, this);
+            if (didUpdate)
+                Updated?.Invoke(this, this);
+        }
+
+        public void Destroy()
+        {
+            Quit = true;
         }
     }
 }
