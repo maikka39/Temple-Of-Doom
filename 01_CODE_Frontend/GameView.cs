@@ -92,13 +92,13 @@ namespace CODE_Frontend
                 switch (connection.Direction)
                 {
                     case Direction.Top:
-                        grid[(grid.GetLength(0) + 1) / 2 - 1, 0] = connChar;
+                        grid[(grid.GetLength(0) + 1) / 2 - 1, grid.GetLength(1) - 1] = connChar;
                         break;
                     case Direction.Right:
                         grid[grid.GetLength(0) - 1, (grid.GetLength(1) + 1) / 2 - 1] = connChar;
                         break;
                     case Direction.Bottom:
-                        grid[(grid.GetLength(0) + 1) / 2 - 1, grid.GetLength(1) - 1] = connChar;
+                        grid[(grid.GetLength(0) + 1) / 2 - 1, 0] = connChar;
                         break;
                     case Direction.Left:
                         grid[0, (grid.GetLength(1) + 1) / 2 - 1] = connChar;
