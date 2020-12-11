@@ -63,29 +63,29 @@ namespace CODE_PersistenceLib
 
         private static void SetRooms(JObject json, IDictionary<int, List<IConnection>> connections, IDictionary<int, IRoom> rooms)
         {
-            foreach (var roomJToken in json["rooms"])
+            foreach (JObject roomJObject in json["rooms"])
             {
-                var roomId = roomJToken["id"].Value<int>();
+                var roomId = roomJObject["id"].Value<int>();
                 connections.Add(roomId, new List<IConnection>());
 
-                var items = GetItemsForRoom(roomJToken);
+                var items = GetItemsForRoom(roomJObject);
 
                 rooms.Add(roomId, new Room(
-                    roomJToken["width"].Value<int>(),
-                    roomJToken["height"].Value<int>(),
+                    roomJObject["width"].Value<int>(),
+                    roomJObject["height"].Value<int>(),
                     items,
                     connections[roomId]
                 ));
             }
         }
 
-        private static IEnumerable<IItem> GetItemsForRoom(JToken roomJToken)
+        private static IEnumerable<IItem> GetItemsForRoom(JObject roomJObject)
         {
             var items = new List<IItem>();
             
-            if (!roomJToken.Contains("items")) return items;
+            if (!roomJObject.ContainsKey("items")) return items;
             
-            foreach (var itemJToken in roomJToken["items"])
+            foreach (var itemJToken in roomJObject["items"])
             {
                 var x = itemJToken["x"].Value<int>();
                 var y = itemJToken["y"].Value<int>();
@@ -96,7 +96,7 @@ namespace CODE_PersistenceLib
                     case "disappearing boobietrap":
                     {
                         items.Add(new BoobyTrap(x, y,
-                            itemJToken["demage"].Value<int>(),
+                            itemJToken["damage"].Value<int>(),
                             itemJToken["type"].Value<string>().Contains("disappearing")
                         ));
                         break;
