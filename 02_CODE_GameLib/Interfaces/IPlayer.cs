@@ -3,13 +3,17 @@ using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib.Interfaces
 {
-    public interface IPlayer
+    public interface IPlayer : IBaseObservable<IPlayer>
     {
         public IPlayerLocation Location { get; }
         
-        public int Lives { get; set; }
+        public int Lives { get; }
         
-        public List<IWearable> Inventory { get; set; }
+        public bool Died { get; }
+        
+        public List<IWearable> Inventory { get; }
+
+        public bool RecieveDamage(int damage);
 
         public bool Move(Direction direction);
     }
