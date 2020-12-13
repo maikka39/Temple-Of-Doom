@@ -20,21 +20,19 @@ namespace CODE_Frontend
         {
             Console.OutputEncoding = Encoding.UTF8;
             Console.CursorVisible = false;
-            
+
             _headerModule = new HeaderModule();
         }
 
         public void Update(IGame game)
         {
-            var headingStringBuilder = new StringBuilder("");
-
-            headingStringBuilder.AppendLine(_headerModule.Render(game));
-            headingStringBuilder.AppendLine(GenericModule.HorizontalLine(Console.WindowWidth));
-            headingStringBuilder.AppendLine();
-
             Console.Clear();
             Console.SetCursorPosition(0, 1);
-            Console.WriteLine(headingStringBuilder.ToString());
+            
+            foreach (var line in _headerModule.Render(game))
+                Print(line);
+            
+            Console.WriteLine();
 
             var grid = new RoomViewModel(game.Player.Location.Room, game.Player).GetGrid();
            
@@ -50,6 +48,7 @@ namespace CODE_Frontend
 
                 Console.WriteLine();
             }
+            Console.WriteLine();
 
             if (game.Player.Died)
                 Console.WriteLine("Oh no Indiana, you have lost!");
@@ -57,7 +56,7 @@ namespace CODE_Frontend
                 Console.WriteLine("Congrats you have escaped the Temple of Doom!");
 
             if (game.Quit)
-                Console.WriteLine("Quitting game, goodbye!");
+                Console.WriteLine("Stopping...");
         }
 
         public static void Print(ConsoleText consoleText)

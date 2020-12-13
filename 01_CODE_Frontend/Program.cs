@@ -7,19 +7,27 @@ namespace CODE_Frontend
     {
         private static void Main()
         {
-            var game = GameReader.Read(@"./Levels/TempleOfDoom.json");
-
-            var gameView = new GameView();
-            game.Updated += (sender, game) => gameView.Update(game);
-
-            gameView.Update(game);
-
-            while (!game.Quit)
+            while (true)
             {
-                var keyPressed = Console.ReadKey().Key;
-                Console.Write("\b");
+                var game = GameReader.Read(@"./Levels/TempleOfDoom.json");
 
-                game.Tick(Input.HandleKey(keyPressed));
+                var gameView = new GameView();
+                game.Updated += (sender, game) => gameView.Update(game);
+
+                gameView.Update(game);
+
+                while (!game.Quit)
+                {
+                    var key = Console.ReadKey().Key;
+                    Console.Write("\b");
+                    game.Tick(Input.HandleKey(key));
+                }
+
+                Console.WriteLine("Please hit any key to restart or escape to quit...");
+                var closeKey = Console.ReadKey().Key;
+                if (closeKey != ConsoleKey.Escape) continue;
+                Console.WriteLine("QQuitting game, goodbye!");
+                break;
             }
         }
     }
