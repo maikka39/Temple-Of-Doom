@@ -1,10 +1,12 @@
-﻿using CODE_GameLib;
-using System;
+﻿using System;
 using System.Text;
 using CODE_Frontend.Modules;
+using CODE_GameLib;
 using CODE_GameLib.Doors;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items;
+using CODE_GameLib.Interfaces.Items.BoobyTraps;
+using CODE_GameLib.Interfaces.Items.Wearable;
 using CODE_GameLib.Items;
 using CODE_GameLib.Items.Doors;
 
@@ -51,16 +53,17 @@ namespace CODE_Frontend
             SetItems(grid, room);
 
             SetPlayer(grid, player);
-            
+
             var spacing = new ConsoleText(" ");
 
-            for (var row = grid.GetLength(1)-1; row >= 0; row--)
+            for (var row = grid.GetLength(1) - 1; row >= 0; row--)
             {
                 for (var col = 0; col < grid.GetLength(0); col++)
                 {
                     Print(grid[col, row]);
                     Print(spacing);
                 }
+
                 Console.WriteLine();
             }
         }
@@ -68,7 +71,7 @@ namespace CODE_Frontend
         private static void InitializeGrid(ConsoleText[,] grid)
         {
             var wallConsoleText = new ConsoleText("#", ConsoleColor.Yellow);
-            
+
             for (var col = 0; col < grid.GetLength(0); col++)
             {
                 grid[col, 0] = wallConsoleText;
@@ -122,55 +125,40 @@ namespace CODE_Frontend
 
         private static ConsoleText GetConnectionConsoleText(IConnection connection)
         {
-            var doorType = connection.Door?.GetType();
+            var doorType = connection.Door;
 
-            if (doorType == typeof(ClosingDoor))
+            switch (doorType)
             {
-                return new ConsoleText("⋂");
+                case ClosingDoor _:
+                    return new ConsoleText("⋂");
+                case ToggleDoor _:
+                    return new ConsoleText("⊥");
+                case ColoredDoor _:
+                {
+                    var coloredDoor = (ColoredDoor) connection.Door;
+
+                    var consoleText = new ConsoleText("|", Util.ColorToConsoleColor(coloredDoor.Color));
+                    if (connection.Direction == Direction.Top || connection.Direction == Direction.Bottom)
+                        consoleText.Text = "−";
+
+                    return consoleText;
+                }
+                default:
+                    return new ConsoleText(" ");
             }
-
-            if (doorType == typeof(ToggleDoor))
-            {
-                return new ConsoleText("⊥");
-            }
-
-            if (doorType == typeof(ColoredDoor))
-            {
-                var coloredDoor = (ColoredDoor) connection.Door;
-                
-                var consoleText = new ConsoleText("|", Util.ColorToConsoleColor(coloredDoor.Color));
-                if (connection.Direction == Direction.Top || connection.Direction == Direction.Bottom)
-                    consoleText.Text = "−";
-
-                return consoleText;
-            }
-
-            return new ConsoleText(" ");
         }
 
         private static ConsoleText GetItemConsoleText(IItem item)
         {
-            if (item.GetType() == typeof(SankaraStone))
-                return new ConsoleText("S", ConsoleColor.DarkYellow);
-
-            if (item.GetType() == typeof(BoobyTrap))
+            return item switch
             {
-                var character = "Ο";
-                
-                if (((BoobyTrap) item).Disappearing)
-                    character = "@";
-                
-                return new ConsoleText(character, ConsoleColor.White);
-            }
-                
-
-            if (item.GetType() == typeof(Key))
-                return new ConsoleText("K", Util.ColorToConsoleColor(((IKey) item).Color));
-
-            if (item.GetType() == typeof(PressurePlate))
-                return new ConsoleText("T", ConsoleColor.White);
-
-            return new ConsoleText("?");
+                ISankaraStone _ => new ConsoleText("S", ConsoleColor.DarkYellow),
+                IDisapearingTrap _ => new ConsoleText("Ο", ConsoleColor.White),
+                IBoobyTrap _ => new ConsoleText("Ο", ConsoleColor.White),
+                IKey key => new ConsoleText("K", Util.ColorToConsoleColor(key.Color)),
+                IPressurePlate _ => new ConsoleText("T", ConsoleColor.White),
+                _ => new ConsoleText("?")
+            };
         }
 
         public static void Print(ConsoleText consoleText)
