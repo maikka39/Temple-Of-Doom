@@ -18,6 +18,7 @@ namespace CODE_Frontend
         {
             _headerModule = new HeaderModule();
 
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Welcome to Temple of Doom!");
         }
 
@@ -26,24 +27,25 @@ namespace CODE_Frontend
             if (game.Quit)
                 Console.WriteLine("Quitting game, goodbye!");
 
-            var stringBuilder = new StringBuilder("");
+            var headingStringBuilder = new StringBuilder("");
 
-            stringBuilder.AppendLine(_headerModule.Render(game));
-            stringBuilder.AppendLine(GenericModule.HorizontalLine(Console.WindowWidth));
-            stringBuilder.AppendLine();
-            stringBuilder.AppendLine(GetGrid(game));
+            headingStringBuilder.AppendLine(_headerModule.Render(game));
+            headingStringBuilder.AppendLine(GenericModule.HorizontalLine(Console.WindowWidth));
+            headingStringBuilder.AppendLine();
 
             Console.Clear();
             Console.SetCursorPosition(0, 1);
-            Console.WriteLine(stringBuilder.ToString());
+            Console.WriteLine(headingStringBuilder.ToString());
+
+            PrintGrid(game);
         }
 
-        private static string GetGrid(IGame game)
+        private static void PrintGrid(IGame game)
         {
             var player = game.Player;
             var room = player.Location.Room;
 
-            var grid = new char[room.Width + 2, room.Height + 2];
+            var grid = new ConsoleText[room.Width + 2, room.Height + 2];
 
             InitializeGrid(grid);
 
@@ -52,58 +54,57 @@ namespace CODE_Frontend
             SetItems(grid, room);
 
             SetPlayer(grid, player);
+            
+            var spacing = new ConsoleText(" ");
 
-            return GridToString(grid);
-        }
-
-        private static string GridToString(char[,] grid)
-        {
-            var stringBuilder = new StringBuilder($"");
             for (var row = grid.GetLength(1)-1; row >= 0; row--)
             {
                 for (var col = 0; col < grid.GetLength(0); col++)
-                    stringBuilder.Append(grid[col, row] + " ");
-                stringBuilder.AppendLine();
+                {
+                    Print(grid[col, row]);
+                    Print(spacing);
+                }
+                Console.WriteLine();
             }
-
-            return stringBuilder.ToString();
         }
 
-        private static void InitializeGrid(char[,] grid)
+        private static void InitializeGrid(ConsoleText[,] grid)
         {
+            var wallConsoleText = new ConsoleText("#", ConsoleColor.Yellow);
+            
             for (var col = 0; col < grid.GetLength(0); col++)
             {
-                var character = ' ';
+                grid[col, 0] = wallConsoleText;
+                grid[col, grid.GetLength(1) - 1] = wallConsoleText;
+
+                var consoleText = new ConsoleText(" ");
 
                 if (col == 0 || col == grid.GetLength(0) - 1)
-                    character = '#';
-
-                grid[col, 0] = '#';
-                grid[col, grid.GetLength(1) - 1] = '#';
+                    consoleText = wallConsoleText;
 
                 for (var row = 1; row < grid.GetLength(1) - 1; row++)
-                    grid[col, row] = character;
+                    grid[col, row] = consoleText;
             }
         }
 
-        private static void SetConnections(char[,] grid, IRoom room)
+        private static void SetConnections(ConsoleText[,] grid, IRoom room)
         {
             foreach (var connection in room.Connections)
             {
-                var connChar = GetConnectionChar(connection);
+                var connectionConsoleText = GetConnectionConsoleText(connection);
                 switch (connection.Direction)
                 {
                     case Direction.Top:
-                        grid[(grid.GetLength(0) + 1) / 2 - 1, grid.GetLength(1) - 1] = connChar;
+                        grid[(grid.GetLength(0) + 1) / 2 - 1, grid.GetLength(1) - 1] = connectionConsoleText;
                         break;
                     case Direction.Right:
-                        grid[grid.GetLength(0) - 1, (grid.GetLength(1) + 1) / 2 - 1] = connChar;
+                        grid[grid.GetLength(0) - 1, (grid.GetLength(1) + 1) / 2 - 1] = connectionConsoleText;
                         break;
                     case Direction.Bottom:
-                        grid[(grid.GetLength(0) + 1) / 2 - 1, 0] = connChar;
+                        grid[(grid.GetLength(0) + 1) / 2 - 1, 0] = connectionConsoleText;
                         break;
                     case Direction.Left:
-                        grid[0, (grid.GetLength(1) + 1) / 2 - 1] = connChar;
+                        grid[0, (grid.GetLength(1) + 1) / 2 - 1] = connectionConsoleText;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -111,64 +112,81 @@ namespace CODE_Frontend
             }
         }
 
-        private static void SetItems(char[,] grid, IRoom room)
+        private static void SetItems(ConsoleText[,] grid, IRoom room)
         {
             foreach (var item in room.Items)
-                grid[item.X + 1, item.Y + 1] = GetCharForItem(item);
+                grid[item.X + 1, item.Y + 1] = GetItemConsoleText(item);
         }
 
-        private static void SetPlayer(char[,] grid, IPlayer player)
+        private static void SetPlayer(ConsoleText[,] grid, IPlayer player)
         {
-            grid[player.Location.X + 1, player.Location.Y + 1] = 'P';
+            grid[player.Location.X + 1, player.Location.Y + 1] = new ConsoleText("P");
         }
 
-        private static char GetConnectionChar(IConnection connection)
+        private static ConsoleText GetConnectionConsoleText(IConnection connection)
         {
             var doorType = connection.Door?.GetType();
 
             if (doorType == typeof(ClosingDoor))
             {
-                return '⋂';
+                return new ConsoleText("⋂");
             }
 
             if (doorType == typeof(ToggleDoor))
             {
-                return '⊥';
+                return new ConsoleText("⊥");
             }
 
             if (doorType == typeof(ColoredDoor))
             {
-                switch (connection.Direction)
-                {
-                    case Direction.Top:
-                    case Direction.Bottom:
-                        return '−';
-                    case Direction.Left:
-                    case Direction.Right:
-                        return '|';
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                var coloredDoor = (ColoredDoor) connection.Door;
+                
+                var consoleText = new ConsoleText("−", Util.ColorToConsoleColor(coloredDoor.Color));
+                if (connection.Direction == Direction.Top || connection.Direction == Direction.Bottom)
+                    consoleText.Text = "|";
+
+                return consoleText;
             }
 
-            return ' ';
+            return new ConsoleText(" ");
         }
 
-        private static char GetCharForItem(IItem item)
+        private static ConsoleText GetItemConsoleText(IItem item)
         {
             if (item.GetType() == typeof(SankaraStone))
-                return 'S';
+                return new ConsoleText("S", ConsoleColor.DarkYellow);
 
             if (item.GetType() == typeof(BoobyTrap))
-                return 'B';
+            {
+                var character = "Ο";
+                
+                if (((BoobyTrap) item).Disappearing)
+                    character = "@";
+                
+                return new ConsoleText(character, ConsoleColor.White);
+            }
+                
 
             if (item.GetType() == typeof(Key))
-                return 'K';
+                return new ConsoleText("K", Util.ColorToConsoleColor(((IKey) item).Color));
 
             if (item.GetType() == typeof(PressurePlate))
-                return 'P';
+                return new ConsoleText("T", ConsoleColor.White);
 
-            return '?';
+            return new ConsoleText("?");
+        }
+
+        public static void Print(ConsoleText consoleText)
+        {
+            Console.ForegroundColor = consoleText.ForegroundColor;
+            Console.BackgroundColor = consoleText.BackgroundColor;
+            Console.Write(consoleText.Text);
+        }
+
+        public static void PrintLn(ConsoleText consoleText)
+        {
+            Print(consoleText);
+            Console.WriteLine();
         }
     }
 }
