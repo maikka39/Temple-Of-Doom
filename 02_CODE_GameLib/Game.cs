@@ -9,7 +9,7 @@ namespace CODE_GameLib
         public event EventHandler<Game> Updated;
 
         public bool Quit { get; private set; }
-        
+
         public IPlayer Player { get; }
         public IEnumerable<IRoom> Rooms { get; }
 
@@ -17,29 +17,26 @@ namespace CODE_GameLib
         {
             Player = player;
             Rooms = rooms;
+            var obs = new PlayerLocationObserver(this, player.Location);
         }
 
         public void Tick(TickData tickData)
         {
-            var didUpdate = false;
-            
             if (tickData.Quit)
                 Destroy();
 
             if (tickData.MovePlayer != null)
-            {
                 Player.Move((Direction) tickData.MovePlayer);
-                
-                didUpdate = true;
-            }
-
-            if (didUpdate)
-                Updated?.Invoke(this, this);
         }
 
         public void Destroy()
         {
             Quit = true;
+        }
+
+        public void Update()
+        {
+            Updated?.Invoke(this, this);
         }
     }
 }

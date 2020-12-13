@@ -8,7 +8,7 @@ namespace CODE_GameLib
 {
     public class Player : IPlayer
     {
-        public IPlayerLocation Location { get; private set; }
+        public IPlayerLocation Location { get; }
         public int Lives { get; set; }
         public IEnumerable<IKey> Keys { get; set; }
         public IEnumerable<ISankaraStone> SankaraStones { get; set; }
@@ -24,36 +24,38 @@ namespace CODE_GameLib
 
         public bool Move(Direction direction)
         {
-            var target = new PlayerLocation(Location.Room, Location.X, Location.Y);
+            var targetX = Location.X;
+            var targetY = Location.Y;
+            var targetRoom = Location.Room;
 
             switch (direction)
             {
                 case Direction.Top:
-                    target.Y++;
+                    targetY++;
                     break;
                 case Direction.Right:
-                    target.X++;
+                    targetX++;
                     break;
                 case Direction.Bottom:
-                    target.Y--;
+                    targetY--;
                     break;
                 case Direction.Left:
-                    target.X--;
+                    targetX--;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(direction), direction,
                         "There are only four directions");
             }
 
-            if (target.X < 0 || target.Y < 0 || target.X > target.Room.Width - 1 || target.Y > target.Room.Height - 1)
+            if (targetX < 0 || targetY < 0 || targetX > targetRoom.Width - 1 || targetY > targetRoom.Height - 1)
             {
-                var isCenterX = target.X == (target.Room.Width + 1) / 2 - 1;
-                var isCenterY = target.Y == (target.Room.Height + 1) / 2 - 1;
+                var isCenterX = targetX == (targetRoom.Width + 1) / 2 - 1;
+                var isCenterY = targetY == (targetRoom.Height + 1) / 2 - 1;
 
                 if (!isCenterX && !isCenterY)
                     return false;
 
-                var connection = target.Room.Connections.FirstOrDefault(
+                var connection = targetRoom.Connections.FirstOrDefault(
                     connections => connections.Direction == direction);
 
                 if (connection == null) return false;
@@ -62,21 +64,21 @@ namespace CODE_GameLib
                     return false;
 
                 var destination = connection.Destination;
-                target.Room = destination.Room;
+                targetRoom = destination.Room;
 
                 if (destination.Direction == Direction.Top || destination.Direction == Direction.Bottom)
                 {
-                    target.X = (target.Room.Width + 1) / 2 - 1;
-                    target.Y = destination.Direction == Direction.Top ? target.Room.Height - 1 : 0;
+                    targetX = (targetRoom.Width + 1) / 2 - 1;
+                    targetY = destination.Direction == Direction.Top ? targetRoom.Height - 1 : 0;
                 }
                 else
                 {
-                    target.X = destination.Direction == Direction.Left ? 0 : target.Room.Width - 1;
-                    target.Y = (target.Room.Height + 1) / 2 - 1;
+                    targetX = destination.Direction == Direction.Left ? 0 : targetRoom.Width - 1;
+                    targetY = (targetRoom.Height + 1) / 2 - 1;
                 }
             }
 
-            Location = target;
+            Location.Update(targetRoom, targetX, targetY);
             return true;
         }
     }
