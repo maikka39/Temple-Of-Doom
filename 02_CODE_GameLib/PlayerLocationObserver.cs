@@ -1,7 +1,10 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
 using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Doors;
 using CODE_GameLib.Interfaces.Items;
+using CODE_GameLib.Interfaces.Items.BoobyTraps;
 using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib
@@ -30,11 +33,22 @@ namespace CODE_GameLib
         {
             var roomItem = playerLocation.Room.Items.FirstOrDefault(item =>
                 item.X == playerLocation.X && item.Y == playerLocation.Y);
-            if (roomItem is IWearable wearable)
+            switch (roomItem)
             {
-                _game.Player.Inventory.Add(wearable);
-                playerLocation.Room.Items.Remove(wearable);
+                case IWearable wearable:
+                    _game.Player.Inventory.Add(wearable);
+                    break;
+                case IBoobyTrap boobyTrap:
+                    _game.Player.Lives -= boobyTrap.Damage;
+                    break;
+                case IPressurePlate _:
+                    foreach (var connection in playerLocation.Room.Connections.Where(conn => conn.Door is IToggleDoor))
+                        connection.Door.Opened = !connection.Door.Opened;
+                    break;
             }
+
+            if (roomItem is IWearable || roomItem is IDisapearingTrap)
+                playerLocation.Room.Items.Remove(roomItem);
 
             _game.Update();
         }
