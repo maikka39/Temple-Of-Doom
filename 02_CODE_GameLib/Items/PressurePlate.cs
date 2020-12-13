@@ -1,4 +1,5 @@
 using CODE_GameLib.Interfaces.Items;
+using CODE_GameLib.Interfaces.Items.Doors;
 
 namespace CODE_GameLib.Items
 {
@@ -6,7 +7,7 @@ namespace CODE_GameLib.Items
     {
         public int X { get; }
         public int Y { get; }
-        public bool Pressed { get; set; }
+        public IDoor Door { get; set; }
 
         public PressurePlate(int x, int y)
         {
