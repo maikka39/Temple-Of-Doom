@@ -17,9 +17,6 @@ namespace CODE_Frontend
         public GameView()
         {
             _headerModule = new HeaderModule();
-
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Welcome to Temple of Doom!");
         }
 
         public void Update(Game game)
@@ -141,9 +138,9 @@ namespace CODE_Frontend
             {
                 var coloredDoor = (ColoredDoor) connection.Door;
                 
-                var consoleText = new ConsoleText("−", Util.ColorToConsoleColor(coloredDoor.Color));
+                var consoleText = new ConsoleText("|", Util.ColorToConsoleColor(coloredDoor.Color));
                 if (connection.Direction == Direction.Top || connection.Direction == Direction.Bottom)
-                    consoleText.Text = "|";
+                    consoleText.Text = "−";
 
                 return consoleText;
             }
