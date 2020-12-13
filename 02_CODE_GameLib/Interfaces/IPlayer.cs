@@ -13,5 +13,7 @@ namespace CODE_GameLib.Interfaces
         public IEnumerable<IKey> Keys { get; set; }
         
         public IEnumerable<ISankaraStone> SankaraStones { get; set; }
+
+        public bool Move(Direction direction);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
 
@@ -14,7 +15,11 @@ namespace CODE_GameLib.Items.Doors
         
         public bool PassThru(IPlayer player)
         {
-            throw new System.NotImplementedException();
+            if (!Opened) return false;
+
+            Opened = false;
+            
+            return true;
         }
     }
 }
