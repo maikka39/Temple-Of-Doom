@@ -1,27 +1,43 @@
 ﻿using System;
+using System.Collections.Generic;
+using CODE_GameLib.Interfaces;
 
 namespace CODE_GameLib
 {
-    public class Game
+    public class Game : IGame
     {
         public event EventHandler<Game> Updated;
 
-        public ConsoleKey KeyPressed { get; private set; }
-        public bool Quit { get; private set; } = false;
+        public bool Quit { get; private set; }
 
-        public void Run()
+        public IPlayer Player { get; }
+        public IEnumerable<IRoom> Rooms { get; }
+
+        public Game(IPlayer player, IEnumerable<IRoom> rooms)
         {
-            KeyPressed = Console.ReadKey().Key;
-            Quit = KeyPressed == ConsoleKey.Escape;
+            Player = player;
+            Rooms = rooms;
+            var playerLocationObserver = new PlayerLocationObserver(this, player.Location);
+            var playerObserver = new PlayerObserver(this, player);
+        }
 
-            while (!Quit)
-            {
-                Updated?.Invoke(this, this);
+        public void Tick(TickData tickData)
+        {
+            if (tickData.Quit)
+                Destroy();
 
-                KeyPressed = Console.ReadKey().Key;
-                Quit = KeyPressed == ConsoleKey.Escape;
-            }
+            if (tickData.MovePlayer != null)
+                Player.Move((Direction) tickData.MovePlayer);
+        }
 
+        public void Destroy()
+        {
+            Quit = true;
+            Update();
+        }
+
+        public void Update()
+        {
             Updated?.Invoke(this, this);
         }
     }
