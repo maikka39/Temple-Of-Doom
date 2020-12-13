@@ -175,8 +175,14 @@ namespace CODE_PersistenceLib
                     }
                 }
 
-                connections[roomId1].Add(new Connection(rooms[roomId2], location1, connectionDoor));
-                connections[roomId2].Add(new Connection(rooms[roomId1], location2, connectionDoor));
+                var conn1 = new Connection(rooms[roomId1], location1, connectionDoor);
+                var conn2 = new Connection(rooms[roomId2], location2, connectionDoor);
+
+                conn1.Destination = conn2;
+                conn2.Destination = conn1;
+
+                connections[roomId1].Add(conn1);
+                connections[roomId2].Add(conn2);
             }
         }
     }

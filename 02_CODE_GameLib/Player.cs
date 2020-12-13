@@ -61,17 +61,18 @@ namespace CODE_GameLib
                 if (connection.Door != null && !connection.Door.PassThru(this))
                     return false;
 
-                target.Room = connection.Destination;
+                var destination = connection.Destination;
+                target.Room = destination.Room;
 
-                if (connection.Direction == Direction.Top || connection.Direction == Direction.Bottom)
+                if (destination.Direction == Direction.Top || destination.Direction == Direction.Bottom)
                 {
                     target.X = (target.Room.Width + 1) / 2 - 1;
-                    target.Y = connection.Direction == Direction.Top ? 0 : target.Room.Height;
+                    target.Y = destination.Direction == Direction.Top ? target.Room.Height - 1 : 0;
                 }
                 else
                 {
-                    target.X = connection.Direction == Direction.Left ? target.Room.Width : 0;
-                    target.Y = (Location.Room.Height + 1) / 2 - 1;
+                    target.X = destination.Direction == Direction.Left ? 0 : target.Room.Width - 1;
+                    target.Y = (target.Room.Height + 1) / 2 - 1;
                 }
             }
 

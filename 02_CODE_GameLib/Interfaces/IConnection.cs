@@ -5,7 +5,8 @@ namespace CODE_GameLib.Interfaces
 {
     public interface IConnection
     {
-        public IRoom Destination { get; }
+        public IRoom Room { get; }
+        public IConnection Destination { get; set; }
         public Direction Direction { get; } 
         public IDoor Door { get; }
     }
