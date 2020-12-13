@@ -65,13 +65,13 @@ namespace CODE_GameLib
 
                 if (connection.Direction == Direction.Top || connection.Direction == Direction.Bottom)
                 {
-                    target.Y = (target.Room.Width + 1) / 2 - 1;
-                    target.X = connection.Direction == Direction.Top ? target.Room.Height : 0;
+                    target.X = (target.Room.Width + 1) / 2 - 1;
+                    target.Y = connection.Direction == Direction.Top ? 0 : target.Room.Height;
                 }
                 else
                 {
-                    target.X = (Location.Room.Height + 1) / 2 - 1;
-                    target.Y = connection.Direction == Direction.Left ? target.Room.Width : 0;
+                    target.X = connection.Direction == Direction.Left ? target.Room.Width : 0;
+                    target.Y = (Location.Room.Height + 1) / 2 - 1;
                 }
             }
 

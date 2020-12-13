@@ -2,9 +2,11 @@
 using System;
 using System.Text;
 using CODE_Frontend.Modules;
+using CODE_GameLib.Doors;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Items;
+using CODE_GameLib.Items.Doors;
 
 namespace CODE_Frontend
 {
@@ -122,7 +124,34 @@ namespace CODE_Frontend
 
         private static char GetConnectionChar(IConnection connection)
         {
-            return '|';
+            var doorType = connection.Door?.GetType();
+
+            if (doorType == typeof(ClosingDoor))
+            {
+                return '⋂';
+            }
+
+            if (doorType == typeof(ToggleDoor))
+            {
+                return '⊥';
+            }
+
+            if (doorType == typeof(ColoredDoor))
+            {
+                switch (connection.Direction)
+                {
+                    case Direction.Top:
+                    case Direction.Bottom:
+                        return '−';
+                    case Direction.Left:
+                    case Direction.Right:
+                        return '|';
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+
+            return ' ';
         }
 
         private static char GetCharForItem(IItem item)
