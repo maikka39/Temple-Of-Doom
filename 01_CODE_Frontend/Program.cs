@@ -1,26 +1,34 @@
-﻿using CODE_FileSystem;
-using CODE_GameLib;
+﻿using CODE_PersistenceLib;
 using System;
-using System.Text;
 
 namespace CODE_Frontend
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            Console.OutputEncoding = Encoding.UTF8;
+            while (true)
+            {
+                var game = GameReader.Read(@"./Levels/TempleOfDoom.json");
 
-            Console.WindowWidth = 200;
-            Console.WindowHeight = 50;
-            Console.CursorVisible = false;
+                var gameView = new GameView();
+                game.Updated += (uSender, uGame) => gameView.Update(uGame);
 
-            GameReader reader = new GameReader();
-            Game game = reader.Read(@"./Levels/TempleOfDoom.json");
+                gameView.Update(game);
 
-            GameView gameView = new GameView();
-            game.Updated += (sender, game) => gameView.Draw(game);
-            game.Run();
+                while (!game.Quit)
+                {
+                    var key = Console.ReadKey().Key;
+                    Console.Write("\b");
+                    game.Tick(Input.HandleKey(key));
+                }
+
+                Console.WriteLine("Please hit any key to restart or escape to quit...");
+                var closeKey = Console.ReadKey().Key;
+                if (closeKey != ConsoleKey.Escape) continue;
+                Console.WriteLine("QQuitting game, goodbye!");
+                break;
+            }
         }
     }
 }

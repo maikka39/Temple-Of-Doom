@@ -5,10 +5,10 @@ namespace CODE_GameLib.Interfaces
     public interface IGame
     {
         public event EventHandler<Game> Updated;
-
-        public ConsoleKey KeyPressed { get; }
+        public void Update();
         public bool Quit { get; }
-
-        public void Run();
+        public IPlayer Player { get; }
+        public void Tick(TickData tickData);
+        public void Destroy();
     }
 }

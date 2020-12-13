@@ -1,15 +1,24 @@
-using System.Collections;
+using CODE_GameLib.Interfaces.Items.Wearable;
 using System.Collections.Generic;
-using CODE_GameLib.Interfaces.Items;
 
 namespace CODE_GameLib.Interfaces
 {
-    public interface IPlayer
+    public interface IPlayer : IBaseObservable<IPlayer>
     {
-        public int Lives { get; set; }
-        
-        public IEnumerable<IKey> Keys { get; set; }
-        
-        public IEnumerable<ISankaraStone> SankaraStones { get; set; }
+        public IPlayerLocation Location { get; }
+
+        public int Lives { get; }
+
+        public bool Won { get; }
+
+        public bool Died { get; }
+
+        public IEnumerable<IWearable> Inventory { get; }
+
+        public bool ReceiveDamage(int damage);
+
+        public bool AddToInventory(IWearable wearable);
+
+        public bool Move(Direction direction);
     }
 }
