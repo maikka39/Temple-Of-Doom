@@ -17,7 +17,8 @@ namespace CODE_GameLib
         {
             Player = player;
             Rooms = rooms;
-            var obs = new PlayerLocationObserver(this, player.Location);
+            var playerLocationObserver = new PlayerLocationObserver(this, player.Location);
+            var playerObserver = new PlayerObserver(this, player);
         }
 
         public void Tick(TickData tickData)
@@ -32,6 +33,7 @@ namespace CODE_GameLib
         public void Destroy()
         {
             Quit = true;
+            Update();
         }
 
         public void Update()
