@@ -21,7 +21,7 @@ namespace CODE_Frontend
             _headerModule = new HeaderModule();
         }
 
-        public void Update(Game game)
+        public void Update(IGame game)
         {
             if (game.Quit)
                 Console.WriteLine("Quitting game, goodbye!");

@@ -20,7 +20,7 @@ namespace CODE_Frontend.Modules
         
         public static string GetLives (IPlayer player) => $"Lives: {player.Lives}";
         
-        public string Render(Game game)
+        public string Render(IGame game)
         {
             return $"{Title}{Environment.NewLine}{GetLives(game.Player)} - {PlayTime}";
         }
