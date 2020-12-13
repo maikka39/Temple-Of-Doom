@@ -67,7 +67,7 @@ namespace CODE_GameLib
                         "There are only four directions");
             }
 
-            if (targetX < 0 || targetY < 0 || targetX > targetRoom.Width - 1 || targetY > targetRoom.Height - 1)
+            if (targetX < 1 || targetY < 1 || targetX > targetRoom.Width - 2 || targetY > targetRoom.Height - 2)
             {
                 var isCenterX = targetX == (targetRoom.Width + 1) / 2 - 1;
                 var isCenterY = targetY == (targetRoom.Height + 1) / 2 - 1;
@@ -89,7 +89,7 @@ namespace CODE_GameLib
                 if (destination.Direction == Direction.Top || destination.Direction == Direction.Bottom)
                 {
                     targetX = (targetRoom.Width + 1) / 2 - 1;
-                    targetY = destination.Direction == Direction.Top ? targetRoom.Height - 1 : 0;
+                    targetY = destination.Direction == Direction.Bottom ? 0 : targetRoom.Height - 1;
                 }
                 else
                 {
