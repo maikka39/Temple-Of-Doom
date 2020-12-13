@@ -13,7 +13,8 @@ namespace CODE_GameLib
         public IEnumerable<IKey> Keys { get; set; }
         public IEnumerable<ISankaraStone> SankaraStones { get; set; }
 
-        public Player(int lives, IEnumerable<IKey> keys, IEnumerable<ISankaraStone> sankaraStones, IPlayerLocation location)
+        public Player(int lives, IEnumerable<IKey> keys, IEnumerable<ISankaraStone> sankaraStones,
+            IPlayerLocation location)
         {
             Lives = lives;
             Keys = keys;
@@ -21,14 +22,14 @@ namespace CODE_GameLib
             Location = location;
         }
 
-        public void MovePlayer(Direction direction)
+        public bool Move(Direction direction)
         {
-            var target = Location;
+            var target = new PlayerLocation(Location.Room, Location.X, Location.Y);
 
             switch (direction)
             {
                 case Direction.Top:
-                    target.X++;
+                    target.Y++;
                     break;
                 case Direction.Right:
                     target.X++;
@@ -44,28 +45,39 @@ namespace CODE_GameLib
                         "There are only four directions");
             }
 
-            if (target.X < 0 || target.Y < 0 || target.X > Location.Room.Width || target.Y > Location.Room.Height)
+            if (target.X < 0 || target.Y < 0 || target.X > target.Room.Width - 1 || target.Y > target.Room.Height - 1)
             {
-                if (target.Y != (Location.Room.Height + 1) / 2 || target.X != (Location.Room.Width + 1) / 2) return;
-                
-                var connection = Location.Room.Connections.FirstOrDefault(connections => connections.Direction == direction);
-                if (connection == null) return;
-                if (!connection.Door.PassThru(this)) return;
+                var isCenterX = target.X == (target.Room.Width + 1) / 2 - 1;
+                var isCenterY = target.Y == (target.Room.Height + 1) / 2 - 1;
 
-                Location.Room = connection.Destination;
-                
-                if (connection.Direction == Direction.Top || connection.Direction == Direction.Bottom)
+                if (!isCenterX && !isCenterY)
+                    return false;
+
+                var connection = target.Room.Connections.FirstOrDefault(
+                    connections => connections.Direction == direction);
+
+                if (connection == null) return false;
+
+                if (connection.Door != null && !connection.Door.PassThru(this))
+                    return false;
+
+                var destination = connection.Destination;
+                target.Room = destination.Room;
+
+                if (destination.Direction == Direction.Top || destination.Direction == Direction.Bottom)
                 {
-                    Location.Y = (Location.Room.Width + 1) / 2;
-                    Location.X = connection.Direction == Direction.Top ? Location.Room.Height : 0;
+                    target.X = (target.Room.Width + 1) / 2 - 1;
+                    target.Y = destination.Direction == Direction.Top ? target.Room.Height - 1 : 0;
                 }
                 else
                 {
-                    Location.X = (Location.Room.Height + 1) / 2;
-                    Location.Y = connection.Direction == Direction.Left ? Location.Room.Width : 0;
+                    target.X = destination.Direction == Direction.Left ? 0 : target.Room.Width - 1;
+                    target.Y = (target.Room.Height + 1) / 2 - 1;
                 }
             }
+
             Location = target;
+            return true;
         }
     }
 }
