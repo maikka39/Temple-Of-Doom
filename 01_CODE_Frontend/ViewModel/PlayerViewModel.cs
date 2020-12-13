@@ -8,7 +8,7 @@ namespace CODE_Frontend.ViewModel
         
         public int X => _player.Location.X;
         public int Y => _player.Location.Y;
-        public ConsoleText View => new ConsoleText("P");
+        public static ConsoleText View => new ConsoleText("P");
 
         public PlayerViewModel(IPlayer player)
         {

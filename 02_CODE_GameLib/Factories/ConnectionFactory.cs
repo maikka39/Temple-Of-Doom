@@ -1,8 +1,8 @@
 ﻿using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Items.Doors;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
+using CODE_GameLib.Interfaces.Doors;
 
 namespace CODE_GameLib.Factories
 {
@@ -15,7 +15,7 @@ namespace CODE_GameLib.Factories
                 {"NORTH", Direction.Top},
                 {"EAST", Direction.Right},
                 {"SOUTH", Direction.Bottom},
-                {"WEST", Direction.Left},
+                {"WEST", Direction.Left}
             };
 
             var actualConnections = jConnection.Properties()

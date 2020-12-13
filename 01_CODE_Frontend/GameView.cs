@@ -1,11 +1,5 @@
 ﻿using CODE_Frontend.Modules;
-using CODE_GameLib;
-using CODE_GameLib.Doors;
 using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Items;
-using CODE_GameLib.Interfaces.Items.BoobyTraps;
-using CODE_GameLib.Interfaces.Items.Wearable;
-using CODE_GameLib.Items.Doors;
 using System;
 using System.Text;
 using CODE_Frontend.ViewModel;

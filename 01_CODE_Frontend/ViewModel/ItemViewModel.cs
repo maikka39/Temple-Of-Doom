@@ -23,7 +23,7 @@ namespace CODE_Frontend.ViewModel
             return item switch
             {
                 ISankaraStone _ => new ConsoleText("S", ConsoleColor.DarkYellow),
-                IDisapearingTrap _ => new ConsoleText("@", ConsoleColor.White),
+                IDisappearingTrap _ => new ConsoleText("@", ConsoleColor.White),
                 IBoobyTrap _ => new ConsoleText("Ο", ConsoleColor.White),
                 IKey key => new ConsoleText("K", Util.ColorToConsoleColor(key.Color)),
                 IPressurePlate _ => new ConsoleText("T", ConsoleColor.White),

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace CODE_GameLib.Factories
 {
-    public class GameFactory
+    public static class GameFactory
     {
-        public static IGame CreateGame(IPlayer player, IEnumerable<IRoom> rooms)
+        public static IGame CreateGame(IPlayer player)
         {
-            return new Game(player, rooms);
+            return new Game(player);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace CODE_GameLib
                     _game.Player.AddToInventory(wearable);
                     break;
                 case IBoobyTrap boobyTrap:
-                    _game.Player.RecieveDamage(boobyTrap.Damage);
+                    _game.Player.ReceiveDamage(boobyTrap.Damage);
                     break;
                 case IPressurePlate _:
                     foreach (var connection in playerLocation.Room.Connections.Where(conn => conn.Door is IToggleDoor))
@@ -46,7 +46,7 @@ namespace CODE_GameLib
                     break;
             }
 
-            if (roomItem is IWearable || roomItem is IDisapearingTrap)
+            if (roomItem is IWearable || roomItem is IDisappearingTrap)
                 playerLocation.Room.Items.Remove(roomItem);
 
             _game.Update();

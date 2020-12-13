@@ -1,7 +1,5 @@
 ﻿using CODE_GameLib;
-using CODE_GameLib.Doors;
-using CODE_GameLib.Interfaces.Items.Doors;
-using CODE_GameLib.Items.Doors;
+using CODE_GameLib.Interfaces.Doors;
 
 namespace CODE_Frontend.ViewModel
 {
@@ -22,11 +20,11 @@ namespace CODE_Frontend.ViewModel
         {
             switch (door)
             {
-                case ClosingDoor _:
+                case IClosingDoor _:
                     return new ConsoleText("⋂");
-                case ToggleDoor _:
+                case IToggleDoor _:
                     return new ConsoleText("⊥");
-                case ColoredDoor coloredDoor:
+                case IColoredDoor coloredDoor:
                 {
                     var consoleText = new ConsoleText("|", Util.ColorToConsoleColor(coloredDoor.Color));
                     

@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Linq;
-using CODE_GameLib;
-using CODE_GameLib.Doors;
 using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Items;
-using CODE_GameLib.Interfaces.Items.BoobyTraps;
-using CODE_GameLib.Interfaces.Items.Wearable;
-using CODE_GameLib.Items.Doors;
 
 namespace CODE_Frontend.ViewModel
 {
     public class RoomViewModel
     {
-        private IRoom _room;
-        private IPlayer _player;
+        private readonly IRoom _room;
+        private readonly IPlayer _player;
         private readonly ConsoleText[,] _grid;
 
         public RoomViewModel(IRoom room, IPlayer player)
@@ -37,7 +31,7 @@ namespace CODE_Frontend.ViewModel
 
             // Set player
             var playerViewModel = new PlayerViewModel(_player);
-            _grid[playerViewModel.X, playerViewModel.Y] = playerViewModel.View;
+            _grid[playerViewModel.X, playerViewModel.Y] = PlayerViewModel.View;
 
             return _grid;
         }

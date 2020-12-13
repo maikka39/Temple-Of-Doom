@@ -26,7 +26,7 @@ namespace CODE_GameLib
             Location = location;
         }
 
-        public bool RecieveDamage(int damage)
+        public bool ReceiveDamage(int damage)
         {
             if (damage <= 0)
                 return false;
@@ -67,39 +67,38 @@ namespace CODE_GameLib
                         "There are only four directions");
             }
 
-            if (targetX < 1 || targetY < 1 || targetX > targetRoom.Width - 2 || targetY > targetRoom.Height - 2)
+            if (targetX >= 1 && targetY >= 1 && targetX <= targetRoom.Width - 2 && targetY <= targetRoom.Height - 2)
+                return Location.Update(targetRoom, targetX, targetY);
+            
+            var isCenterX = targetX == (targetRoom.Width + 1) / 2 - 1;
+            var isCenterY = targetY == (targetRoom.Height + 1) / 2 - 1;
+
+            if (!isCenterX && !isCenterY)
+                return false;
+
+            var connection = targetRoom.Connections.FirstOrDefault(
+                connections => connections.Direction == direction);
+
+            if (connection == null) return false;
+
+            if (connection.Door != null && !connection.Door.PassThru(this))
+                return false;
+
+            var destination = connection.Destination;
+            targetRoom = destination.Room;
+
+            if (destination.Direction == Direction.Top || destination.Direction == Direction.Bottom)
             {
-                var isCenterX = targetX == (targetRoom.Width + 1) / 2 - 1;
-                var isCenterY = targetY == (targetRoom.Height + 1) / 2 - 1;
-
-                if (!isCenterX && !isCenterY)
-                    return false;
-
-                var connection = targetRoom.Connections.FirstOrDefault(
-                    connections => connections.Direction == direction);
-
-                if (connection == null) return false;
-
-                if (connection.Door != null && !connection.Door.PassThru(this))
-                    return false;
-
-                var destination = connection.Destination;
-                targetRoom = destination.Room;
-
-                if (destination.Direction == Direction.Top || destination.Direction == Direction.Bottom)
-                {
-                    targetX = (targetRoom.Width + 1) / 2 - 1;
-                    targetY = destination.Direction == Direction.Bottom ? 0 : targetRoom.Height - 1;
-                }
-                else
-                {
-                    targetX = destination.Direction == Direction.Left ? 0 : targetRoom.Width - 1;
-                    targetY = (targetRoom.Height + 1) / 2 - 1;
-                }
+                targetX = (targetRoom.Width + 1) / 2 - 1;
+                targetY = destination.Direction == Direction.Bottom ? 0 : targetRoom.Height - 1;
+            }
+            else
+            {
+                targetX = destination.Direction == Direction.Left ? 0 : targetRoom.Width - 1;
+                targetY = (targetRoom.Height + 1) / 2 - 1;
             }
 
-            Location.Update(targetRoom, targetX, targetY);
-            return true;
+            return Location.Update(targetRoom, targetX, targetY);
         }
     }
 }

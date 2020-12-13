@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace CODE_PersistenceLib
 {
@@ -32,13 +33,13 @@ namespace CODE_PersistenceLib
                 throw new JsonException("The provided JSON level file is not valid.", e);
             }
 
-            return GameFactory.CreateGame(player, rooms.Values);
+            return GameFactory.CreateGame(player);
         }
 
         private static void SetRooms(JObject json, IDictionary<int, List<IConnection>> connections,
             IDictionary<int, IRoom> rooms)
         {
-            foreach (JObject roomJObject in json["rooms"])
+            foreach (var roomJObject in json["rooms"].Select(x => x as JObject))
             {
                 var room = RoomFactory.CreateRoom(roomJObject, connections, out var roomId);
                 rooms.Add(roomId, room);
