@@ -59,7 +59,7 @@ namespace CODE_Frontend
                 Console.WriteLine("Stopping...");
         }
 
-        public static void Print(ConsoleText consoleText)
+        private static void Print(ConsoleText consoleText)
         {
             Console.ForegroundColor = consoleText.ForegroundColor;
             Console.BackgroundColor = consoleText.BackgroundColor;

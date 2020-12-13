@@ -12,7 +12,7 @@ namespace CODE_Frontend
                 var game = GameReader.Read(@"./Levels/TempleOfDoom.json");
 
                 var gameView = new GameView();
-                game.Updated += (sender, game) => gameView.Update(game);
+                game.Updated += (uSender, uGame) => gameView.Update(uGame);
 
                 gameView.Update(game);
 
