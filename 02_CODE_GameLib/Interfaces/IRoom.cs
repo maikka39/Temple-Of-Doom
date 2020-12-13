@@ -9,7 +9,7 @@ namespace CODE_GameLib.Interfaces
 
         public int Height { get; }
 
-        public List<IItem> Items { get; set; }
+        public List<IItem> Items { get; }
 
         public IEnumerable<IConnection> Connections { get; }
     }

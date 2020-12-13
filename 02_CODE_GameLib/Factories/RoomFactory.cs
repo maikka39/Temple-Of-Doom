@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CODE_GameLib.Factories
 {
-    public class RoomFactory
+    public static class RoomFactory
     {
         public static IRoom CreateRoom(JObject roomJObject, IDictionary<int, List<IConnection>> connections,
             out int roomId)

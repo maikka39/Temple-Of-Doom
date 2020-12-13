@@ -1,9 +1,8 @@
 ﻿using CODE_GameLib.Doors;
-using CODE_GameLib.Interfaces.Items.Doors;
-using CODE_GameLib.Items.Doors;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Drawing;
+using CODE_GameLib.Interfaces.Doors;
 
 namespace CODE_GameLib.Factories
 {

@@ -1,6 +1,5 @@
 ﻿using CODE_GameLib.Interfaces;
 using System;
-using System.Collections.Generic;
 
 namespace CODE_GameLib
 {
@@ -11,14 +10,15 @@ namespace CODE_GameLib
         public bool Quit { get; private set; }
 
         public IPlayer Player { get; }
-        public IEnumerable<IRoom> Rooms { get; }
 
-        public Game(IPlayer player, IEnumerable<IRoom> rooms)
+        public Game(IPlayer player)
         {
             Player = player;
-            Rooms = rooms;
-            var playerLocationObserver = new PlayerLocationObserver(this, player.Location);
-            var playerObserver = new PlayerObserver(this, player);
+            
+            // ReSharper disable once ObjectCreationAsStatement
+            new PlayerLocationObserver(this, player.Location);
+            // ReSharper disable once ObjectCreationAsStatement
+            new PlayerObserver(this, player);
         }
 
         public void Tick(TickData tickData)

@@ -1,6 +1,4 @@
 using CODE_GameLib.Interfaces;
-using System;
-using System.Collections.Generic;
 
 namespace CODE_GameLib
 {
@@ -11,8 +9,6 @@ namespace CODE_GameLib
         public int X { get; private set; }
 
         public int Y { get; private set; }
-
-        private readonly List<IObserver<IPlayerLocation>> _observers = new List<IObserver<IPlayerLocation>>();
 
         public PlayerLocation(IRoom room, int x, int y)
         {

@@ -15,7 +15,7 @@ namespace CODE_GameLib.Interfaces
 
         public IEnumerable<IWearable> Inventory { get; }
 
-        public bool RecieveDamage(int damage);
+        public bool ReceiveDamage(int damage);
 
         public bool AddToInventory(IWearable wearable);
 
