@@ -65,11 +65,5 @@ namespace CODE_Frontend
             Console.BackgroundColor = consoleText.BackgroundColor;
             Console.Write(consoleText.Text);
         }
-
-        public static void PrintLn(ConsoleText consoleText)
-        {
-            Print(consoleText);
-            Console.WriteLine();
-        }
     }
 }
