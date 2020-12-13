@@ -5,6 +5,14 @@ namespace CODE_GameLib
 {
     public class PlayerLocationObserver : IObserver<IPlayerLocation>
     {
+        private readonly IGame _game;
+
+        public PlayerLocationObserver(IGame game, IPlayerLocation playerLocation)
+        {
+            _game = game;
+            playerLocation.Subscribe(this);
+        }
+        
         public void OnCompleted()
         {
             throw new NotImplementedException();
@@ -17,7 +25,7 @@ namespace CODE_GameLib
 
         public void OnNext(IPlayerLocation value)
         {
-            throw new NotImplementedException();
+            _game.Update();
         }
     }
 }
