@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Items;
+using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib
 {
@@ -10,15 +10,14 @@ namespace CODE_GameLib
     {
         public IPlayerLocation Location { get; }
         public int Lives { get; set; }
-        public IEnumerable<IKey> Keys { get; set; }
-        public IEnumerable<ISankaraStone> SankaraStones { get; set; }
 
-        public Player(int lives, IEnumerable<IKey> keys, IEnumerable<ISankaraStone> sankaraStones,
+        public List<IWearable> Inventory { get; set; }
+
+        public Player(int lives, List<IWearable> inventory,
             IPlayerLocation location)
         {
             Lives = lives;
-            Keys = keys;
-            SankaraStones = sankaraStones;
+            Inventory = inventory;
             Location = location;
         }
 

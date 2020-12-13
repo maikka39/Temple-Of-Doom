@@ -8,6 +8,7 @@ using CODE_GameLib.Doors;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Items.Doors;
+using CODE_GameLib.Interfaces.Items.Wearable;
 using CODE_GameLib.Items;
 using CODE_GameLib.Items.Doors;
 using Newtonsoft.Json.Linq;
@@ -29,7 +30,7 @@ namespace CODE_PersistenceLib
 
                 SetRooms(json, connections, rooms);
                 SetConnections(json, connections, rooms);
-                
+
                 var playerJToken = json["player"];
                 var playerStartLocation = GetPlayerStartLocation(rooms, playerJToken);
                 player = GetPlayer(playerJToken, playerStartLocation);
@@ -46,13 +47,13 @@ namespace CODE_PersistenceLib
         {
             return new Player(
                 playerJToken["lives"].Value<int>(),
-                new List<IKey>(),
-                new List<ISankaraStone>(),
+                new List<IWearable>(),
                 playerLocation
             );
         }
 
-        private static IPlayerLocation GetPlayerStartLocation(IReadOnlyDictionary<int, IRoom> rooms, JToken playerJToken)
+        private static IPlayerLocation GetPlayerStartLocation(IReadOnlyDictionary<int, IRoom> rooms,
+            JToken playerJToken)
         {
             return new PlayerLocation(
                 rooms[playerJToken["startRoomId"].Value<int>()],
@@ -61,7 +62,8 @@ namespace CODE_PersistenceLib
             );
         }
 
-        private static void SetRooms(JObject json, IDictionary<int, List<IConnection>> connections, IDictionary<int, IRoom> rooms)
+        private static void SetRooms(JObject json, IDictionary<int, List<IConnection>> connections,
+            IDictionary<int, IRoom> rooms)
         {
             foreach (JObject roomJObject in json["rooms"])
             {
@@ -79,12 +81,12 @@ namespace CODE_PersistenceLib
             }
         }
 
-        private static IEnumerable<IItem> GetItemsForRoom(JObject roomJObject)
+        private static List<IItem> GetItemsForRoom(JObject roomJObject)
         {
             var items = new List<IItem>();
-            
+
             if (!roomJObject.ContainsKey("items")) return items;
-            
+
             foreach (var itemJToken in roomJObject["items"])
             {
                 var x = itemJToken["x"].Value<int>();
@@ -93,12 +95,11 @@ namespace CODE_PersistenceLib
                 switch (itemJToken["type"].Value<string>())
                 {
                     case "boobietrap":
+                        items.Add(new BoobyTrap(x, y, itemJToken["damage"].Value<int>()));
+                        break;
                     case "disappearing boobietrap":
                     {
-                        items.Add(new BoobyTrap(x, y,
-                            itemJToken["damage"].Value<int>(),
-                            itemJToken["type"].Value<string>().Contains("disappearing")
-                        ));
+                        items.Add(new DisapearingTrap(x, y, itemJToken["damage"].Value<int>()));
                         break;
                     }
                     case "sankara stone":
@@ -124,10 +125,11 @@ namespace CODE_PersistenceLib
             return items;
         }
 
-        private static void SetConnections(JObject json, IReadOnlyDictionary<int, List<IConnection>> connections, IReadOnlyDictionary<int, IRoom> rooms)
+        private static void SetConnections(JObject json, IReadOnlyDictionary<int, List<IConnection>> connections,
+            IReadOnlyDictionary<int, IRoom> rooms)
         {
             if (!json.ContainsKey("connections")) return;
-            
+
             foreach (var jConnection in json["connections"].Children<JObject>())
             {
                 var convertLocation = new Dictionary<string, Direction>

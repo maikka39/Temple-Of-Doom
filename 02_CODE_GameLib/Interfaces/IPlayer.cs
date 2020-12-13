@@ -1,6 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using CODE_GameLib.Interfaces.Items;
+using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib.Interfaces
 {
@@ -10,9 +9,7 @@ namespace CODE_GameLib.Interfaces
         
         public int Lives { get; set; }
         
-        public IEnumerable<IKey> Keys { get; set; }
-        
-        public IEnumerable<ISankaraStone> SankaraStones { get; set; }
+        public List<IWearable> Inventory { get; set; }
 
         public bool Move(Direction direction);
     }
