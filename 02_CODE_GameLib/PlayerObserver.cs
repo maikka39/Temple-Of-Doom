@@ -1,13 +1,11 @@
-using System;
-using System.Linq;
 using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Items.Wearable;
+using System;
 
 namespace CODE_GameLib
 {
     public class PlayerObserver : IObserver<IPlayer>
     {
-        
+
         private readonly IGame _game;
 
         public PlayerObserver(IGame game, IPlayer player)
@@ -15,7 +13,7 @@ namespace CODE_GameLib
             _game = game;
             player.Subscribe(this);
         }
-        
+
         public void OnCompleted()
         {
             throw new NotImplementedException();

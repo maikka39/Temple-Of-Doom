@@ -1,6 +1,6 @@
-﻿using System;
+﻿using CODE_GameLib.Interfaces;
+using System;
 using System.Collections.Generic;
-using CODE_GameLib.Interfaces;
 
 namespace CODE_GameLib
 {
@@ -27,7 +27,7 @@ namespace CODE_GameLib
                 Destroy();
 
             if (tickData.MovePlayer != null)
-                Player.Move((Direction) tickData.MovePlayer);
+                Player.Move((Direction)tickData.MovePlayer);
         }
 
         public void Destroy()

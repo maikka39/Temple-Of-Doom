@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using CODE_GameLib.Interfaces;
+﻿using CODE_GameLib.Interfaces;
+using System.Collections.Generic;
 
 namespace CODE_GameLib.Factories
 {

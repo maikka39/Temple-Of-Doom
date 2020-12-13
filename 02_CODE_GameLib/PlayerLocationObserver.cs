@@ -1,10 +1,10 @@
-using System;
-using System.Linq;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Items.BoobyTraps;
 using CODE_GameLib.Interfaces.Items.Wearable;
+using System;
+using System.Linq;
 
 namespace CODE_GameLib
 {

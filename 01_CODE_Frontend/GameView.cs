@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using CODE_Frontend.Modules;
+﻿using CODE_Frontend.Modules;
 using CODE_GameLib;
 using CODE_GameLib.Doors;
 using CODE_GameLib.Interfaces;
@@ -8,6 +6,8 @@ using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Items.BoobyTraps;
 using CODE_GameLib.Interfaces.Items.Wearable;
 using CODE_GameLib.Items.Doors;
+using System;
+using System.Text;
 
 namespace CODE_Frontend
 {
@@ -33,12 +33,12 @@ namespace CODE_Frontend
             Console.WriteLine(headingStringBuilder.ToString());
 
             PrintGrid(game);
-            
+
             if (game.Player.Died)
                 Console.WriteLine("Oh no Indiana, you have lost!");
             else if (game.Player.Won)
                 Console.WriteLine("Congrats you have escaped the Temple of Doom!");
-            
+
             if (game.Quit)
                 Console.WriteLine("Quitting game, goodbye!");
         }
@@ -138,15 +138,15 @@ namespace CODE_Frontend
                 case ToggleDoor _:
                     return new ConsoleText("⊥");
                 case ColoredDoor _:
-                {
-                    var coloredDoor = (ColoredDoor) connection.Door;
+                    {
+                        var coloredDoor = (ColoredDoor)connection.Door;
 
-                    var consoleText = new ConsoleText("|", Util.ColorToConsoleColor(coloredDoor.Color));
-                    if (connection.Direction == Direction.Top || connection.Direction == Direction.Bottom)
-                        consoleText.Text = "−";
+                        var consoleText = new ConsoleText("|", Util.ColorToConsoleColor(coloredDoor.Color));
+                        if (connection.Direction == Direction.Top || connection.Direction == Direction.Bottom)
+                            consoleText.Text = "−";
 
-                    return consoleText;
-                }
+                        return consoleText;
+                    }
                 default:
                     return new ConsoleText(" ");
             }

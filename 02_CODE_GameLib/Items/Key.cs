@@ -1,7 +1,5 @@
-using System;
-using System.Drawing;
-using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Items.Wearable;
+using System.Drawing;
 
 namespace CODE_GameLib.Items
 {

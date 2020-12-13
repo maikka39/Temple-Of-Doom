@@ -1,8 +1,8 @@
+using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Items.Wearable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib
 {
@@ -11,11 +11,11 @@ namespace CODE_GameLib
         private readonly List<IWearable> _inventory;
         public IPlayerLocation Location { get; }
         public int Lives { get; private set; }
-        
+
         public bool Died => Lives < 1;
 
-        public bool Won => Inventory.Count(wearable => wearable is ISankaraStone) >= 5; 
-        
+        public bool Won => Inventory.Count(wearable => wearable is ISankaraStone) >= 5;
+
         public IEnumerable<IWearable> Inventory => _inventory;
 
         public Player(int lives, List<IWearable> inventory,

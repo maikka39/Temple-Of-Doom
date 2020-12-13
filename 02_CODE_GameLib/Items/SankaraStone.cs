@@ -1,4 +1,3 @@
-using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib.Items

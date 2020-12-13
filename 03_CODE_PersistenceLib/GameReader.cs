@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using CODE_GameLib.Factories;
 using CODE_GameLib.Interfaces;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace CODE_PersistenceLib
 {
@@ -53,7 +53,7 @@ namespace CODE_PersistenceLib
             foreach (var jConnection in json["connections"].Children<JObject>())
             {
                 ConnectionFactory.CreateConnection(jConnection, rooms, out var conn1, out var conn2, out var roomId1, out var roomId2);
-                
+
                 connections[roomId1].Add(conn1);
                 connections[roomId2].Add(conn2);
             }

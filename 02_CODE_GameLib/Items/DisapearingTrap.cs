@@ -7,7 +7,7 @@ namespace CODE_GameLib.Items
         public int X { get; }
         public int Y { get; }
         public int Damage { get; }
-        
+
         public DisapearingTrap(int x, int y, int damage)
         {
             X = x;

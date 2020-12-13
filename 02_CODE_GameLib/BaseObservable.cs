@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CODE_GameLib
 {
-    public abstract class BaseObservable<T> 
+    public abstract class BaseObservable<T>
     {
         private List<IObserver<T>> observers = new List<IObserver<T>>();
 
