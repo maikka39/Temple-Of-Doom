@@ -7,7 +7,6 @@ using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Items.BoobyTraps;
 using CODE_GameLib.Interfaces.Items.Wearable;
-using CODE_GameLib.Items;
 using CODE_GameLib.Items.Doors;
 
 namespace CODE_Frontend
@@ -23,9 +22,6 @@ namespace CODE_Frontend
 
         public void Update(IGame game)
         {
-            if (game.Quit)
-                Console.WriteLine("Quitting game, goodbye!");
-
             var headingStringBuilder = new StringBuilder("");
 
             headingStringBuilder.AppendLine(_headerModule.Render(game));
@@ -37,6 +33,12 @@ namespace CODE_Frontend
             Console.WriteLine(headingStringBuilder.ToString());
 
             PrintGrid(game);
+            
+            if (game.Player.Died)
+                Console.WriteLine("Oh no Indiana, you have lost!");
+            
+            if (game.Quit)
+                Console.WriteLine("Quitting game, goodbye!");
         }
 
         private static void PrintGrid(IGame game)
@@ -153,7 +155,7 @@ namespace CODE_Frontend
             return item switch
             {
                 ISankaraStone _ => new ConsoleText("S", ConsoleColor.DarkYellow),
-                IDisapearingTrap _ => new ConsoleText("Ο", ConsoleColor.White),
+                IDisapearingTrap _ => new ConsoleText("@", ConsoleColor.White),
                 IBoobyTrap _ => new ConsoleText("Ο", ConsoleColor.White),
                 IKey key => new ConsoleText("K", Util.ColorToConsoleColor(key.Color)),
                 IPressurePlate _ => new ConsoleText("T", ConsoleColor.White),

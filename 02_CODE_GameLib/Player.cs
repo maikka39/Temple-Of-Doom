@@ -6,12 +6,14 @@ using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib
 {
-    public class Player : IPlayer
+    public class Player : BaseObservable<IPlayer>, IPlayer
     {
         public IPlayerLocation Location { get; }
-        public int Lives { get; set; }
+        public int Lives { get; private set; }
+        
+        public bool Died => Lives < 1;
 
-        public List<IWearable> Inventory { get; set; }
+        public List<IWearable> Inventory { get; }
 
         public Player(int lives, List<IWearable> inventory,
             IPlayerLocation location)
@@ -19,6 +21,15 @@ namespace CODE_GameLib
             Lives = lives;
             Inventory = inventory;
             Location = location;
+        }
+
+        public bool RecieveDamage(int damage)
+        {
+            if (damage <= 0)
+                return false;
+            Lives -= damage;
+            NotifyObservers(this);
+            return true;
         }
 
         public bool Move(Direction direction)

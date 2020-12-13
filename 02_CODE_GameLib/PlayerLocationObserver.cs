@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Linq;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
@@ -39,7 +38,7 @@ namespace CODE_GameLib
                     _game.Player.Inventory.Add(wearable);
                     break;
                 case IBoobyTrap boobyTrap:
-                    _game.Player.Lives -= boobyTrap.Damage;
+                    _game.Player.RecieveDamage(boobyTrap.Damage);
                     break;
                 case IPressurePlate _:
                     foreach (var connection in playerLocation.Room.Connections.Where(conn => conn.Door is IToggleDoor))
