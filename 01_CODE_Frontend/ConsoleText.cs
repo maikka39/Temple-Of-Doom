@@ -2,6 +2,9 @@
 
 namespace CODE_Frontend
 {
+    /// <summary>  
+    /// A class in which text is saved together with the colors it should be printed in.
+    /// </summary>  
     public class ConsoleText
     {
         public string Text { get; set; }
