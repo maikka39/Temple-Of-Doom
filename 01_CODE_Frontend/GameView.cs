@@ -17,6 +17,9 @@ namespace CODE_Frontend
 
         public GameView()
         {
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.CursorVisible = false;
+            
             _headerModule = new HeaderModule();
         }
 

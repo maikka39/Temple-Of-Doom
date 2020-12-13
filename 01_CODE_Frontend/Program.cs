@@ -1,6 +1,5 @@
 ﻿using CODE_PersistenceLib;
 using System;
-using System.Text;
 
 namespace CODE_Frontend
 {
@@ -8,10 +7,6 @@ namespace CODE_Frontend
     {
         private static void Main()
         {
-            Console.OutputEncoding = Encoding.UTF8;
-
-            Console.CursorVisible = false;
-
             var game = GameReader.Read(@"./Levels/TempleOfDoom.json");
 
             var gameView = new GameView();
