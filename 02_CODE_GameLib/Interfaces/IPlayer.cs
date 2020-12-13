@@ -9,11 +9,15 @@ namespace CODE_GameLib.Interfaces
         
         public int Lives { get; }
         
+        public bool Won { get; }
+        
         public bool Died { get; }
         
-        public List<IWearable> Inventory { get; }
+        public IEnumerable<IWearable> Inventory { get; }
 
         public bool RecieveDamage(int damage);
+        
+        public bool AddToInventory(IWearable wearable);
 
         public bool Move(Direction direction);
     }

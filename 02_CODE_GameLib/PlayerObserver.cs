@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib
 {
@@ -26,7 +28,7 @@ namespace CODE_GameLib
 
         public void OnNext(IPlayer player)
         {
-            if (player.Died)
+            if (player.Died || player.Won)
                 _game.Destroy();
         }
     }

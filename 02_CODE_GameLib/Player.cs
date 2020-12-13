@@ -8,18 +8,21 @@ namespace CODE_GameLib
 {
     public class Player : BaseObservable<IPlayer>, IPlayer
     {
+        private readonly List<IWearable> _inventory;
         public IPlayerLocation Location { get; }
         public int Lives { get; private set; }
         
         public bool Died => Lives < 1;
 
-        public List<IWearable> Inventory { get; }
+        public bool Won => Inventory.Count(wearable => wearable is ISankaraStone) >= 5; 
+        
+        public IEnumerable<IWearable> Inventory => _inventory;
 
         public Player(int lives, List<IWearable> inventory,
             IPlayerLocation location)
         {
             Lives = lives;
-            Inventory = inventory;
+            _inventory = inventory;
             Location = location;
         }
 
@@ -28,6 +31,13 @@ namespace CODE_GameLib
             if (damage <= 0)
                 return false;
             Lives -= damage;
+            NotifyObservers(this);
+            return true;
+        }
+
+        public bool AddToInventory(IWearable wearable)
+        {
+            _inventory.Add(wearable);
             NotifyObservers(this);
             return true;
         }

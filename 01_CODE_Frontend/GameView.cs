@@ -36,6 +36,8 @@ namespace CODE_Frontend
             
             if (game.Player.Died)
                 Console.WriteLine("Oh no Indiana, you have lost!");
+            else if (game.Player.Won)
+                Console.WriteLine("Congrats you have escaped the Temple of Doom!");
             
             if (game.Quit)
                 Console.WriteLine("Quitting game, goodbye!");

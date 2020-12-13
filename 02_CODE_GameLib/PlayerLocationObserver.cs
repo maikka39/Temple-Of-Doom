@@ -35,7 +35,7 @@ namespace CODE_GameLib
             switch (roomItem)
             {
                 case IWearable wearable:
-                    _game.Player.Inventory.Add(wearable);
+                    _game.Player.AddToInventory(wearable);
                     break;
                 case IBoobyTrap boobyTrap:
                     _game.Player.RecieveDamage(boobyTrap.Damage);
