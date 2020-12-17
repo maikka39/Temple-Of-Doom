@@ -18,14 +18,14 @@ namespace CODE_Frontend.ViewModel
 
             switch (connection.Direction)
             {
-                case Direction.Top:
-                case Direction.Bottom:
+                case Direction.North:
+                case Direction.South:
                     X = (room.Width + 1) / 2 - 1;
-                    Y = connection.Direction == Direction.Bottom ? 0 : room.Height - 1;
+                    Y = connection.Direction == Direction.South ? 0 : room.Height - 1;
                     break;
-                case Direction.Right:
-                case Direction.Left:
-                    X = connection.Direction == Direction.Left ? 0 : room.Width - 1;
+                case Direction.East:
+                case Direction.West:
+                    X = connection.Direction == Direction.West ? 0 : room.Width - 1;
                     Y = (room.Height + 1) / 2 - 1;
                     break;
                 default:

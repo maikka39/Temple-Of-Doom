@@ -12,10 +12,10 @@ namespace CODE_GameLib.Factories
         {
             var convertLocation = new Dictionary<string, Direction>
             {
-                {"NORTH", Direction.Top},
-                {"EAST", Direction.Right},
-                {"SOUTH", Direction.Bottom},
-                {"WEST", Direction.Left}
+                {"NORTH", Direction.North},
+                {"EAST", Direction.East},
+                {"SOUTH", Direction.South},
+                {"WEST", Direction.West}
             };
 
             var actualConnections = jConnection.Properties()

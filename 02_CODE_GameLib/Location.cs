@@ -2,9 +2,9 @@ namespace CODE_GameLib
 {
     public enum Direction
     {
-        Top = 0,
-        Right = 1,
-        Bottom = 2,
-        Left = 3
+        North = 0,
+        East = 1,
+        South = 2,
+        West = 3
     }
 }

@@ -50,16 +50,16 @@ namespace CODE_GameLib
 
             switch (direction)
             {
-                case Direction.Top:
+                case Direction.North:
                     targetY++;
                     break;
-                case Direction.Right:
+                case Direction.East:
                     targetX++;
                     break;
-                case Direction.Bottom:
+                case Direction.South:
                     targetY--;
                     break;
-                case Direction.Left:
+                case Direction.West:
                     targetX--;
                     break;
                 default:
@@ -87,14 +87,14 @@ namespace CODE_GameLib
             var destination = connection.Destination;
             targetRoom = destination.Room;
 
-            if (destination.Direction == Direction.Top || destination.Direction == Direction.Bottom)
+            if (destination.Direction == Direction.North || destination.Direction == Direction.South)
             {
                 targetX = (targetRoom.Width + 1) / 2 - 1;
-                targetY = destination.Direction == Direction.Bottom ? 0 : targetRoom.Height - 1;
+                targetY = destination.Direction == Direction.South ? 0 : targetRoom.Height - 1;
             }
             else
             {
-                targetX = destination.Direction == Direction.Left ? 0 : targetRoom.Width - 1;
+                targetX = destination.Direction == Direction.West ? 0 : targetRoom.Width - 1;
                 targetY = (targetRoom.Height + 1) / 2 - 1;
             }
 
