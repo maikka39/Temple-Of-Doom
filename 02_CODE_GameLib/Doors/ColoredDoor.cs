@@ -16,7 +16,7 @@ namespace CODE_GameLib.Doors
             Color = color;
         }
 
-        public bool PassThru(IPlayer player)
+        public bool CanEnter(IPlayer player)
         {
             if (player.Inventory.Where(item => item is IKey).Any(key => ((IKey)key).Color == Color))
                 Opened = true;

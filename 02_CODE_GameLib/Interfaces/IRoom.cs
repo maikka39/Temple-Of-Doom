@@ -1,5 +1,6 @@
 using CODE_GameLib.Interfaces.Items;
 using System.Collections.Generic;
+using CODE_GameLib.Interfaces.Doors;
 
 namespace CODE_GameLib.Interfaces
 {
@@ -12,5 +13,9 @@ namespace CODE_GameLib.Interfaces
         public List<IItem> Items { get; }
 
         public IEnumerable<IConnection> Connections { get; }
+        
+        public IEnumerable<IDoor> Doors { get; }
+
+        public bool IsWithinBoundaries(int x, int y);
     }
 }

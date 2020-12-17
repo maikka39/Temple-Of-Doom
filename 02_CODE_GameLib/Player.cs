@@ -46,7 +46,6 @@ namespace CODE_GameLib
         {
             var targetX = Location.X;
             var targetY = Location.Y;
-            var targetRoom = Location.Room;
 
             switch (direction)
             {
@@ -67,38 +66,14 @@ namespace CODE_GameLib
                         "There are only four directions");
             }
 
-            if (targetX >= 1 && targetY >= 1 && targetX <= targetRoom.Width - 2 && targetY <= targetRoom.Height - 2)
-                return Location.Update(targetRoom, targetX, targetY);
-            
-            var isCenterX = targetX == (targetRoom.Width + 1) / 2 - 1;
-            var isCenterY = targetY == (targetRoom.Height + 1) / 2 - 1;
+            if (Location.Room.IsWithinBoundaries(targetX, targetY))
+                return Location.Update(Location.Room, targetX, targetY);
 
-            if (!isCenterX && !isCenterY)
-                return false;
+            foreach (var connection in Location.Room.Connections)
+                if (connection.TryEnter(this, targetX, targetY))
+                    return true;
 
-            var connection = targetRoom.Connections.FirstOrDefault(
-                connections => connections.Direction == direction);
-
-            if (connection == null) return false;
-
-            if (connection.Door != null && !connection.Door.PassThru(this))
-                return false;
-
-            var destination = connection.Destination;
-            targetRoom = destination.Room;
-
-            if (destination.Direction == Direction.North || destination.Direction == Direction.South)
-            {
-                targetX = (targetRoom.Width + 1) / 2 - 1;
-                targetY = destination.Direction == Direction.South ? 0 : targetRoom.Height - 1;
-            }
-            else
-            {
-                targetX = destination.Direction == Direction.West ? 0 : targetRoom.Width - 1;
-                targetY = (targetRoom.Height + 1) / 2 - 1;
-            }
-
-            return Location.Update(targetRoom, targetX, targetY);
+            return false;
         }
     }
 }

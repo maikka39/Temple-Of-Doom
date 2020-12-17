@@ -8,5 +8,8 @@ namespace CODE_GameLib.Interfaces
         public IConnection Destination { get; set; }
         public Direction Direction { get; }
         public IDoor Door { get; }
+        public int X { get; }
+        public int Y { get; }
+        bool TryEnter(Player player, int playerX, int playerY);
     }
 }

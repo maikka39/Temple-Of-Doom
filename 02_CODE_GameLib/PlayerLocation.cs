@@ -1,3 +1,4 @@
+using System;
 using CODE_GameLib.Interfaces;
 
 namespace CODE_GameLib
@@ -19,7 +20,10 @@ namespace CODE_GameLib
 
         public bool Update(IRoom room, int x, int y)
         {
-            if (room == null || x < 0 || y < 0 || x > room.Width - 1 || y > room.Height - 1)
+            Console.WriteLine(room);
+            Console.WriteLine(x);
+            Console.WriteLine(y);
+            if (!room.IsWithinBoundaries(x, y))
                 return false;
             Room = room;
             X = x;
