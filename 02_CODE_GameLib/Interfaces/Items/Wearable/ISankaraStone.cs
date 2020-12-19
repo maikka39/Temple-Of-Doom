@@ -1,6 +1,6 @@
 namespace CODE_GameLib.Interfaces.Items.Wearable
 {
-    public interface ISankaraStone : IWearable
+    public interface ISankaraStone : IItem
     {
     }
 }

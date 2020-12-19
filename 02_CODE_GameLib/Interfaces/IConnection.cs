@@ -10,6 +10,6 @@ namespace CODE_GameLib.Interfaces
         public IDoor Door { get; }
         public int X { get; }
         public int Y { get; }
-        bool TryEnter(Player player, int playerX, int playerY);
+        bool TryEnter(IPlayer player, int playerX, int playerY);
     }
 }

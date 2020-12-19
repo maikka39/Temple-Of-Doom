@@ -5,6 +5,7 @@ using CODE_GameLib.Interfaces.Items.BoobyTraps;
 using CODE_GameLib.Interfaces.Items.Wearable;
 using System;
 using System.Linq;
+using CODE_GameLib.Items;
 
 namespace CODE_GameLib
 {
@@ -30,25 +31,9 @@ namespace CODE_GameLib
 
         public void OnNext(IPlayerLocation playerLocation)
         {
-            var roomItem = playerLocation.Room.Items.FirstOrDefault(item =>
-                item.X == playerLocation.X && item.Y == playerLocation.Y);
-            switch (roomItem)
-            {
-                case IWearable wearable:
-                    _game.Player.AddToInventory(wearable);
-                    break;
-                case IBoobyTrap boobyTrap:
-                    _game.Player.ReceiveDamage(boobyTrap.Damage);
-                    break;
-                case IPressurePlate _:
-                    foreach (var connection in playerLocation.Room.Connections.Where(conn => conn.Door is IToggleDoor))
-                        connection.Door.Opened = !connection.Door.Opened;
-                    break;
-            }
-
-            if (roomItem is IWearable || roomItem is IDisappearingTrap)
-                playerLocation.Room.Items.Remove(roomItem);
-
+            var roomItem = playerLocation.Room.GetItem(playerLocation.X, playerLocation.Y);
+            roomItem?.OnEnter(_game.Player);
+            
             _game.Update();
         }
     }

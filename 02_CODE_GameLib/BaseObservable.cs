@@ -16,11 +16,8 @@ namespace CODE_GameLib
         protected void NotifyObservers(T subject)
         {
             foreach (var observer in _observers)
-            {
                 observer.OnNext(subject);
-            }
         }
-
     }
 
     public class Subscription : IDisposable

@@ -3,10 +3,8 @@ using System.Drawing;
 
 namespace CODE_GameLib.Items
 {
-    public class Key : IKey
+    public class Key : Wearable, IKey
     {
-        public int X { get; }
-        public int Y { get; }
         public Color Color { get; }
 
         public Key(int x, int y, Color color)

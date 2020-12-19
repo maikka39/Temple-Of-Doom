@@ -2,6 +2,7 @@
 using CODE_GameLib.Interfaces.Items.Wearable;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using CODE_GameLib.Items;
 
 namespace CODE_GameLib.Factories
 {
@@ -11,7 +12,7 @@ namespace CODE_GameLib.Factories
         {
             return new Player(
                 playerJToken["lives"].Value<int>(),
-                new List<IWearable>(),
+                new List<Wearable>(),
                 playerLocation
             );
         }

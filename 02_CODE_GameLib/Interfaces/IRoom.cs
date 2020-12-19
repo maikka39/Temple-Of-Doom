@@ -13,9 +13,13 @@ namespace CODE_GameLib.Interfaces
         public List<IItem> Items { get; }
 
         public IEnumerable<IConnection> Connections { get; }
-        
+
         public IEnumerable<IDoor> Doors { get; }
 
         public bool IsWithinBoundaries(int x, int y);
+        public int CenterX { get; }
+        public int CenterY { get; }
+        public void RemoveItem(IItem item);
+        public IItem GetItem(int x, int y);
     }
 }

@@ -4,5 +4,7 @@ namespace CODE_GameLib.Interfaces.Items
     {
         public int X { get; }
         public int Y { get; }
+
+        public void OnEnter(IPlayer player);
     }
 }

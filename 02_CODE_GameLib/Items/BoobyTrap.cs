@@ -1,3 +1,4 @@
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items.BoobyTraps;
 
 namespace CODE_GameLib.Items
@@ -14,5 +15,7 @@ namespace CODE_GameLib.Items
             Y = y;
             Damage = damage;
         }
+        
+        public void OnEnter(IPlayer player) => player.ReceiveDamage(Damage);
     }
 }

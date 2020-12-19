@@ -1,18 +1,18 @@
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items.BoobyTraps;
 
 namespace CODE_GameLib.Items
 {
-    public class DisappearingTrap : IDisappearingTrap
+    public class DisappearingTrap : BoobyTrap, IDisappearingTrap
     {
-        public int X { get; }
-        public int Y { get; }
-        public int Damage { get; }
-
-        public DisappearingTrap(int x, int y, int damage)
+        public DisappearingTrap(int x, int y, int damage) : base(x, y, damage)
         {
-            X = x;
-            Y = y;
-            Damage = damage;
+        }
+        
+        public new void OnEnter(IPlayer player)
+        {
+            base.OnEnter(player);
+            player.Location.Room.RemoveItem(this);
         }
     }
 }
