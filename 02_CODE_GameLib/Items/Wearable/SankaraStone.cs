@@ -4,10 +4,8 @@ namespace CODE_GameLib.Items.Wearable
 {
     public class SankaraStone : Wearable, ISankaraStone
     {
-        public SankaraStone(int x, int y)
+        public SankaraStone(int x, int y) : base(x, y)
         {
-            X = x;
-            Y = y;
         }
     }
 }

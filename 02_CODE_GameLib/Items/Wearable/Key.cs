@@ -7,10 +7,8 @@ namespace CODE_GameLib.Items.Wearable
     {
         public Color Color { get; }
 
-        public Key(int x, int y, Color color)
+        public Key(int x, int y, Color color) : base(x, y)
         {
-            X = x;
-            Y = y;
             Color = color;
         }
     }

@@ -7,10 +7,8 @@ namespace CODE_GameLib.Items
 {
     public class PressurePlate : Item, IPressurePlate
     {
-        public PressurePlate(int x, int y)
+        public PressurePlate(int x, int y) : base(x, y)
         {
-            X = x;
-            Y = y;
         }
         
         public new void OnEnter(IPlayer player)

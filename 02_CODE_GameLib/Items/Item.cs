@@ -5,8 +5,15 @@ namespace CODE_GameLib.Items
 {
     public abstract class Item: IItem
     {
-        public int X { get; protected set; }
-        public int Y { get; protected set; }
+        public int X { get; }
+        public int Y { get; }
+        
+        public Item(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+        
         public void OnEnter(IPlayer player)
         {
             throw new System.NotImplementedException();

@@ -7,10 +7,8 @@ namespace CODE_GameLib.Items
     {
         public int Damage { get; }
 
-        public BoobyTrap(int x, int y, int damage)
+        public BoobyTrap(int x, int y, int damage) : base(x, y)
         {
-            X = x;
-            Y = y;
             Damage = damage;
         }
 

@@ -5,6 +5,10 @@ namespace CODE_GameLib.Items.Wearable
 {
     public abstract class Wearable : Item, IItem
     {
+        protected Wearable(int x, int y) : base(x, y)
+        {
+        }
+        
         public new void OnEnter(IPlayer player)
         {
             player.AddToInventory(this);
