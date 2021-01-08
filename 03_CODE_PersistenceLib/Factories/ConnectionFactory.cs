@@ -1,13 +1,13 @@
 ﻿using System;
-using CODE_GameLib.Interfaces;
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
+using CODE_GameLib;
 using CODE_GameLib.Enums;
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
-using CODE_PersistenceLib;
+using Newtonsoft.Json.Linq;
 
-namespace CODE_GameLib.Factories
+namespace CODE_PersistenceLib.Factories
 {
     public static class ConnectionFactory
     {

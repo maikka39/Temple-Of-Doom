@@ -1,8 +1,9 @@
-﻿using CODE_GameLib.Interfaces;
+﻿using System.Collections.Generic;
+using CODE_GameLib;
+using CODE_GameLib.Interfaces;
 using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
 
-namespace CODE_GameLib.Factories
+namespace CODE_PersistenceLib.Factories
 {
     public static class PlayerLocationFactory
     {
