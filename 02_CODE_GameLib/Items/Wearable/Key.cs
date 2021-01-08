@@ -1,7 +1,7 @@
-using CODE_GameLib.Interfaces.Items.Wearable;
 using System.Drawing;
+using CODE_GameLib.Interfaces.Items.Wearable;
 
-namespace CODE_GameLib.Items
+namespace CODE_GameLib.Items.Wearable
 {
     public class Key : Wearable, IKey
     {

@@ -2,6 +2,7 @@
 using System.Drawing;
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Items;
+using CODE_GameLib.Items.Wearable;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories

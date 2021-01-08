@@ -3,10 +3,8 @@ using CODE_GameLib.Interfaces.Items.BoobyTraps;
 
 namespace CODE_GameLib.Items
 {
-    public class BoobyTrap : IBoobyTrap
+    public class BoobyTrap : Item, IBoobyTrap
     {
-        public int X { get; }
-        public int Y { get; }
         public int Damage { get; }
 
         public BoobyTrap(int x, int y, int damage)
@@ -15,7 +13,10 @@ namespace CODE_GameLib.Items
             Y = y;
             Damage = damage;
         }
-        
-        public void OnEnter(IPlayer player) => player.ReceiveDamage(Damage);
+
+        public new void OnEnter(IPlayer player)
+        {
+            player.ReceiveDamage(Damage);
+        }
     }
 }

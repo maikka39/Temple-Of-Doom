@@ -1,7 +1,6 @@
-using CODE_GameLib.Interfaces.Items.Wearable;
 using System.Collections.Generic;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Items;
+using CODE_GameLib.Items.Wearable;
 
 namespace CODE_GameLib.Interfaces
 {

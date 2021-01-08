@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Items;
+using CODE_GameLib.Items.Wearable;
 
 namespace CODE_GameLib
 {
