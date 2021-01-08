@@ -25,22 +25,23 @@ namespace CODE_GameLib.Factories
             out IConnection conn1, out IConnection conn2, out int roomId1, out int roomId2)
         {
             var actualConnections = GetConnections(jConnection);
+            
+            var connectionDoor = GetConnectionDoor(jConnection);
 
-            conn1 = CreateConnection(actualConnections[0], jConnection, rooms, out roomId1);
-            conn2 = CreateConnection(actualConnections[1], jConnection, rooms, out roomId2);
+            conn1 = CreateConnection(actualConnections[0], jConnection, rooms, connectionDoor, out roomId1);
+            conn2 = CreateConnection(actualConnections[1], jConnection, rooms, connectionDoor, out roomId2);
 
             conn1.Destination = conn2;
             conn2.Destination = conn1;
         }
 
         private static IConnection CreateConnection(JProperty actualConnection, JObject jConnection,
-            IReadOnlyDictionary<int, IRoom> rooms, out int roomId)
+            IReadOnlyDictionary<int, IRoom> rooms, IDoor connectionDoor, out int roomId)
         {
             roomId = GetRoomId(actualConnection);
             var room1 = GetRoom(rooms, roomId);
             var direction1 = GetDirection(actualConnection);
             GetLocation(jConnection, room1, direction1, out var x1, out var y1);
-            var connectionDoor = GetConnectionDoor(jConnection);
             return new Connection(room1, direction1, x1, y1, connectionDoor);
         }
 
