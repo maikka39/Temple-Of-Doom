@@ -22,7 +22,7 @@ namespace CODE_Frontend.ViewModel
             InitializeGrid();
             
             // Set connections
-            foreach (var connection in _room.Connections.Select(connection => new ConnectionViewModel(connection, _room)))
+            foreach (var connection in _room.Connections.Select(connection => new ConnectionViewModel(connection)))
                 _grid[connection.X, connection.Y] = connection.View;
             
             // Set items
