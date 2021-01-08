@@ -1,4 +1,5 @@
-﻿using CODE_GameLib.Enums;
+﻿using System;
+using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
 
@@ -35,15 +36,23 @@ namespace CODE_GameLib
 
         private void Enter(IPlayer player)
         {
-            var targetX = Destination.X;
-            var targetY = Destination.Y;
+            GetTargetLocation(out var targetX, out var targetY);
+            
+            Console.WriteLine($"Hey: {targetX}, {targetY}, {Direction}");
+
+
+            player.Location.Update(Destination.Room, targetX, targetY);
+        }
+
+        private void GetTargetLocation(out int targetX, out int targetY)
+        {
+            targetX = Destination.X;
+            targetY = Destination.Y;
 
             if (Direction.IsVertical())
                 targetY += Direction == Direction.North ? 1 : -1;
-            else
+            else if (Direction.IsHorizontal())
                 targetX += Direction == Direction.East ? 1 : -1;
-
-            player.Location.Update(Destination.Room, targetX, targetY);
         }
     }
 }

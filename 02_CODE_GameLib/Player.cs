@@ -47,13 +47,12 @@ namespace CODE_GameLib
         public bool Move(Direction direction)
         {
             var (targetX, targetY) = DirectionToXy(direction);
+            
+            if (Location.Room.Connections.Any(connection => connection.TryEnter(this, targetX, targetY)))
+                return true;
 
             if (Location.Room.IsWithinBoundaries(targetX, targetY))
                 return Location.Update(Location.Room, targetX, targetY);
-
-            foreach (var connection in Location.Room.Connections)
-                if (connection.TryEnter(this, targetX, targetY))
-                    return true;
 
             return false;
         }
