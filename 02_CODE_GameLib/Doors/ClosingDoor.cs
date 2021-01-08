@@ -3,16 +3,14 @@ using CODE_GameLib.Interfaces.Doors;
 
 namespace CODE_GameLib.Doors
 {
-    public class ClosingDoor : IClosingDoor
+    public class ClosingDoor : Door, IClosingDoor
     {
-        public bool Opened { get; set; }
-
         public ClosingDoor()
         {
             Opened = true;
         }
 
-        public bool CanEnter(IPlayer player)
+        public new bool CanEnter(IPlayer player)
         {
             if (!Opened) return false;
 

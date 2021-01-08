@@ -34,6 +34,8 @@ namespace CODE_Frontend.ViewModel
 
                     return consoleText;
                 }
+                case ILadder _:
+                    return new ConsoleText("↕");
                 default:
                     return new ConsoleText(" ");
             }

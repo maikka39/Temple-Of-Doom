@@ -18,5 +18,10 @@ namespace CODE_GameLib.Factories
                 _ => throw new ArgumentException("Invalid door type")
             };
         }
+
+        public static IDoor CreateLadder()
+        {
+            return new Ladder();
+        }
     }
 }

@@ -46,7 +46,13 @@ namespace CODE_GameLib.Factories
 
         private static IDoor GetConnectionDoor(JObject jConnection)
         {
-            return jConnection.ContainsKey("door") ? DoorFactory.CreateDoor(jConnection["door"]) : null;
+            if (jConnection.ContainsKey("door"))
+                return DoorFactory.CreateDoor(jConnection["door"]);
+
+            if (jConnection.ContainsKey("ladder"))
+                return DoorFactory.CreateLadder();
+
+            return null;
         }
 
         private static void GetLocation(JObject jConnection, IRoom room, Direction direction, out int x, out int y)

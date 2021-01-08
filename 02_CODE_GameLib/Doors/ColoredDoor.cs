@@ -6,9 +6,8 @@ using CODE_GameLib.Interfaces.Doors;
 
 namespace CODE_GameLib.Doors
 {
-    public class ColoredDoor : IColoredDoor
+    public class ColoredDoor : Door, IColoredDoor
     {
-        public bool Opened { get; set; }
         public Color Color { get; }
 
         public ColoredDoor(Color color)
@@ -16,7 +15,7 @@ namespace CODE_GameLib.Doors
             Color = color;
         }
 
-        public bool CanEnter(IPlayer player)
+        public new bool CanEnter(IPlayer player)
         {
             if (player.Inventory.Where(item => item is IKey).Any(key => ((IKey)key).Color == Color))
                 Opened = true;
