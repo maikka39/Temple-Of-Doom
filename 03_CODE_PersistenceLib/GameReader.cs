@@ -59,13 +59,18 @@ namespace CODE_PersistenceLib
                 connections[roomId2].Add(conn2);
             }
         }
-    }
-
-    public class JsonException : Exception
-    {
-        public JsonException(string message, Exception inner)
-            : base(message, inner)
+        
+        public class JsonException : Exception
         {
+            public JsonException(string message, Exception inner)
+                : base(message, inner)
+            {
+            }
+
+            public JsonException(string message)
+                : base(message)
+            {
+            }
         }
     }
 }
