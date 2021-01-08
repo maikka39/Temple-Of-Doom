@@ -1,4 +1,6 @@
-﻿namespace CODE_GameLib
+﻿using CODE_GameLib.Enums;
+
+namespace CODE_GameLib
 {
     public class TickData
     {

@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
+using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces.Doors;
 
 namespace CODE_GameLib.Factories

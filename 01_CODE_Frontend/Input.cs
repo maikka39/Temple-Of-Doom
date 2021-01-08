@@ -1,5 +1,6 @@
 ﻿using System;
 using CODE_GameLib;
+using CODE_GameLib.Enums;
 
 namespace CODE_Frontend
 {

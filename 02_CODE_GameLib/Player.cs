@@ -3,6 +3,7 @@ using CODE_GameLib.Interfaces.Items.Wearable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CODE_GameLib.Enums;
 using CODE_GameLib.Items;
 
 namespace CODE_GameLib
