@@ -10,19 +10,15 @@ namespace CODE_GameLib
         public IConnection Destination { get; set; }
         public Direction Direction { get; }
         public IDoor Door { get; }
+        public int X { get; }
+        public int Y { get; }
 
-        public int X => Direction.IsVertical()
-            ? Room.CenterX
-            : Direction == Direction.West ? 0 : Room.Width - 1;
-
-        public int Y => Direction.IsHorizontal()
-            ? Room.CenterY
-            : Direction == Direction.South ? 0 : Room.Height - 1;
-
-        public Connection(IRoom room, Direction direction, IDoor door = null)
+        public Connection(IRoom room, Direction direction, int x, int y, IDoor door = null)
         {
             Room = room;
             Direction = direction;
+            X = x;
+            Y = y;
             Door = door;
         }
 

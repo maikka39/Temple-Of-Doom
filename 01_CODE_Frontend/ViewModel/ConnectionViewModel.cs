@@ -1,7 +1,4 @@
-﻿using System;
-using CODE_GameLib;
-using CODE_GameLib.Enums;
-using CODE_GameLib.Interfaces;
+﻿using CODE_GameLib.Interfaces;
 
 namespace CODE_Frontend.ViewModel
 {
@@ -9,31 +6,13 @@ namespace CODE_Frontend.ViewModel
     {
         private readonly IConnection _connection;
 
-        public int X { get; }
-        public int Y { get; }
+        public int X => _connection.X;
+        public int Y => _connection.Y;
         public ConsoleText View => new DoorViewModel(_connection.Door, _connection.Direction).View;
         
         public ConnectionViewModel(IConnection connection, IRoom room)
         {
             _connection = connection;
-
-            switch (connection.Direction)
-            {
-                case Direction.North:
-                case Direction.South:
-                    X = (room.Width + 1) / 2 - 1;
-                    Y = connection.Direction == Direction.South ? 0 : room.Height - 1;
-                    break;
-                case Direction.East:
-                case Direction.West:
-                    X = connection.Direction == Direction.West ? 0 : room.Width - 1;
-                    Y = (room.Height + 1) / 2 - 1;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
         }
-        
-        
     }
 }
