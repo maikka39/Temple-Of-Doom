@@ -1,5 +1,6 @@
 using System;
 using CODE_GameLib.Interfaces;
+using CODE_GameLib.Observers;
 
 namespace CODE_GameLib
 {

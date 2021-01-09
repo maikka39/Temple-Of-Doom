@@ -1,9 +1,9 @@
-using CODE_GameLib.Interfaces;
 using System;
+using CODE_GameLib.Interfaces;
 
-namespace CODE_GameLib
+namespace CODE_GameLib.Observers
 {
-    public class PlayerObserver : IObserver<IPlayer>
+    public class PlayerObserver : BaseObserver, IObserver<IPlayer>
     {
 
         private readonly IGame _game;
@@ -13,17 +13,7 @@ namespace CODE_GameLib
             _game = game;
             player.Subscribe(this);
         }
-
-        public void OnCompleted()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnError(Exception error)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public void OnNext(IPlayer player)
         {
             if (player.Died || player.Won)

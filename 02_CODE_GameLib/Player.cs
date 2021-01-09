@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Enums;
 using CODE_GameLib.Items.Wearable;
+using CODE_GameLib.Observers;
 
 namespace CODE_GameLib
 {
