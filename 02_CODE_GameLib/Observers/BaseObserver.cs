@@ -2,7 +2,7 @@
 
 namespace CODE_GameLib.Observers
 {
-    public class BaseObserver : IObserver<object>
+    public abstract class BaseObserver<T> : IObserver<T>
     {
         public void OnCompleted()
         {
@@ -14,7 +14,7 @@ namespace CODE_GameLib.Observers
             throw new NotImplementedException();
         }
 
-        public void OnNext(object value)
+        public void OnNext(T value)
         {
             throw new NotImplementedException();
         }

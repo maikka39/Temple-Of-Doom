@@ -3,9 +3,8 @@ using CODE_GameLib.Interfaces;
 
 namespace CODE_GameLib.Observers
 {
-    public class PlayerObserver : BaseObserver, IObserver<IPlayer>
+    public class PlayerObserver : BaseObserver<IPlayer>, IObserver<IPlayer>
     {
-
         private readonly IGame _game;
 
         public PlayerObserver(IGame game, IPlayer player)
@@ -14,7 +13,7 @@ namespace CODE_GameLib.Observers
             player.Subscribe(this);
         }
         
-        public void OnNext(IPlayer player)
+        public new void OnNext(IPlayer player)
         {
             if (player.Died || player.Won)
                 _game.Destroy();
