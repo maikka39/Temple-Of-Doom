@@ -9,6 +9,8 @@ namespace CODE_Frontend
         {
             while (true)
             {
+                Console.Clear();
+                
                 var game = GameReader.Read(@"./Levels/TempleOfDoom_Extended_A.json");
 
                 var gameView = new GameView();
@@ -25,10 +27,11 @@ namespace CODE_Frontend
 
                 Console.WriteLine("Please hit any key to restart or escape to quit...");
                 var closeKey = Console.ReadKey().Key;
-                if (closeKey != ConsoleKey.Escape) continue;
-                Console.WriteLine("QQuitting game, goodbye!");
-                break;
+                if (closeKey == ConsoleKey.Escape) break;
             }
+            
+            Console.WriteLine("QQuitting game, goodbye!");
+            Console.Clear();
         }
     }
 }

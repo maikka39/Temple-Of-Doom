@@ -20,13 +20,14 @@ namespace CODE_Frontend
 
         public void Update(IGame game)
         {
-            Console.Clear();
             Console.SetCursorPosition(0, 1);
+
+            foreach (var consoleText in _headerModule.Render(game))
+            {
+                Print(consoleText);
+            }
             
-            foreach (var line in _headerModule.Render(game))
-                Print(line);
-            
-            Console.WriteLine();
+            Console.WriteLine(ConsoleClearLineTillEnd());
 
             var grid = new RoomViewModel(game.Player.Location.Room, game.Player).GetGrid();
            
@@ -40,10 +41,16 @@ namespace CODE_Frontend
                     Print(spacing);
                 }
 
-                Console.WriteLine();
+                Console.WriteLine(ConsoleClearLineTillEnd());
             }
-            Console.WriteLine();
 
+            var originalCursorTop = Console.CursorTop + 1;
+
+            for (var row = originalCursorTop; row < Console.WindowHeight; row++)
+                Console.WriteLine(ConsoleClearLineTillEnd());
+            
+            Console.SetCursorPosition(0, originalCursorTop);
+            
             if (game.Player.Died)
                 Console.WriteLine("Oh no Indiana, you have lost!");
             else if (game.Player.Won)
@@ -58,6 +65,11 @@ namespace CODE_Frontend
             Console.ForegroundColor = consoleText.ForegroundColor;
             Console.BackgroundColor = consoleText.BackgroundColor;
             Console.Write(consoleText.Text);
+        }
+
+        public static string ConsoleClearLineTillEnd()
+        {
+            return new string(' ', Console.WindowWidth-Console.CursorLeft);
         }
     }
 }
