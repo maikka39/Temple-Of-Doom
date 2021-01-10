@@ -3,5 +3,6 @@
     public interface IEnemy : IEntity
     {
         public void Update();
+        public void OnEnter(IPlayer player);
     }
 }

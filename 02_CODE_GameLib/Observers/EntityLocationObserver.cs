@@ -18,6 +18,7 @@ namespace CODE_GameLib.Observers
         {
             TryEnterRoomTile(entityLocation);
             TryEnterRoomItem(entityLocation);
+            TryEnterRoomEnemy(entityLocation);
 
             _game.Update();
         }
@@ -32,6 +33,12 @@ namespace CODE_GameLib.Observers
         {
             var roomTile = entityLocation.Room.GetTile(entityLocation.X, entityLocation.Y);
             roomTile?.OnEnter(_game.Player, entityLocation.LastDirection);
+        }
+        
+        private void TryEnterRoomEnemy(IEntityLocation entityLocation)
+        {
+            var roomEnemy = entityLocation.Room.GetEnemy(entityLocation.X, entityLocation.Y);
+            roomEnemy?.OnEnter(_game.Player);
         }
     }
 }

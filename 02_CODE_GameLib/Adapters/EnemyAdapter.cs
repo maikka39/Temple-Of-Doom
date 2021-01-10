@@ -24,6 +24,10 @@ namespace CODE_GameLib.Adapters
         public new int Lives => _adaptee.NumberOfLives;
         public new void ReceiveDamage(int damage) => _adaptee.GetHurt(damage);
         public void Update() => _adaptee.Move();
+        public void OnEnter(IPlayer player)
+        {
+            player.ReceiveDamage(1);
+        }
 
         private class EnemyObserver : BaseObserver<Enemy>, IObserver<Enemy>
         {

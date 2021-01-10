@@ -34,6 +34,7 @@ namespace CODE_GameLib
         public void RemoveItem(IItem item) => Items.Remove(item);
         public IItem GetItem(int x, int y) => Items.FirstOrDefault(item => item.X == x && item.Y == y);
         public ITile GetTile(int x, int y) => Tiles.FirstOrDefault(tile => tile.X == x && tile.Y == y);
+        public IEnemy GetEnemy(int x, int y) => Enemies.FirstOrDefault(enemy => enemy.Location.X == x && enemy.Location.Y == y);
         public bool Update()
         {
             if (!Enemies.Any()) return false;
