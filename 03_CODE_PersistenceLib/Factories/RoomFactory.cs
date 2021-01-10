@@ -4,6 +4,8 @@ using System.Linq;
 using CODE_GameLib;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items;
+using CODE_GameLib.Interfaces.Tiles;
+using CODE_GameLib.Tiles;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories
@@ -18,6 +20,7 @@ namespace CODE_PersistenceLib.Factories
             connections.Add(roomId, new List<IConnection>());
 
             var items = GetItemsForRoom(roomJObject);
+            var tiles = new List<ITile>();
 
             var width = roomJObject["width"].Value<int>();
             var height = roomJObject["height"].Value<int>();
@@ -32,7 +35,7 @@ namespace CODE_PersistenceLib.Factories
             if (width % 2 == 0)
                 throw new ArgumentException("Width must be even");
 
-            return new Room(width, height, items, connections[roomId]);
+            return new Room(width, height, items, tiles, connections[roomId]);
         }
 
         private static List<IItem> GetItemsForRoom(JObject roomJObject)

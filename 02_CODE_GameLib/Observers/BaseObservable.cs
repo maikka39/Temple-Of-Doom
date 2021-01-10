@@ -5,7 +5,7 @@ namespace CODE_GameLib.Observers
 {
     public abstract class BaseObservable<T>
     {
-        private readonly List<IObserver<T>> _observers = new List<IObserver<T>>();
+        protected readonly List<IObserver<T>> _observers = new List<IObserver<T>>();
 
         public IDisposable Subscribe(IObserver<T> observer)
         {

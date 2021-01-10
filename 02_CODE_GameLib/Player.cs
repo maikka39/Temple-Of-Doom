@@ -53,7 +53,7 @@ namespace CODE_GameLib
                 return true;
 
             if (Location.Room.IsWithinBoundaries(targetX, targetY))
-                return Location.Update(Location.Room, targetX, targetY);
+                return Location.Update(Location.Room, targetX, targetY, direction);
 
             return false;
         }

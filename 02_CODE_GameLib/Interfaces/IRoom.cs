@@ -1,6 +1,7 @@
 using CODE_GameLib.Interfaces.Items;
 using System.Collections.Generic;
 using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Interfaces.Tiles;
 
 namespace CODE_GameLib.Interfaces
 {
@@ -11,6 +12,8 @@ namespace CODE_GameLib.Interfaces
         public int Height { get; }
 
         public List<IItem> Items { get; }
+        
+        public List<ITile> Tiles { get; }
 
         public IEnumerable<IConnection> Connections { get; }
 
@@ -21,5 +24,6 @@ namespace CODE_GameLib.Interfaces
         public int CenterY { get; }
         public void RemoveItem(IItem item);
         public IItem GetItem(int x, int y);
+        public ITile GetTile(int x, int y);
     }
 }

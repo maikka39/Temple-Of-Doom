@@ -41,7 +41,7 @@ namespace CODE_GameLib
             Console.WriteLine($"Hey: {targetX}, {targetY}, {Direction}");
 
 
-            player.Location.Update(Destination.Room, targetX, targetY);
+            player.Location.Update(Destination.Room, targetX, targetY, Direction);
         }
 
         private void GetTargetLocation(out int targetX, out int targetY)

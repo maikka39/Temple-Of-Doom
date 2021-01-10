@@ -3,6 +3,7 @@ using CODE_GameLib.Interfaces.Items;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Interfaces.Tiles;
 
 namespace CODE_GameLib
 {
@@ -11,13 +12,15 @@ namespace CODE_GameLib
         public int Width { get; }
         public int Height { get; }
         public List<IItem> Items { get; }
+        public List<ITile> Tiles { get; }
         public IEnumerable<IConnection> Connections { get; }
 
-        public Room(int width, int height, List<IItem> items, IEnumerable<IConnection> connections)
+        public Room(int width, int height, List<IItem> items, List<ITile> tiles, IEnumerable<IConnection> connections)
         {
             Width = width;
             Height = height;
             Items = items;
+            Tiles = tiles;
             Connections = connections;
         }
 
@@ -30,5 +33,6 @@ namespace CODE_GameLib
 
         public void RemoveItem(IItem item) => Items.Remove(item);
         public IItem GetItem(int x, int y) => Items.FirstOrDefault(item => item.X == x && item.Y == y);
+        public ITile GetTile(int x, int y) => Tiles.FirstOrDefault(tile => tile.X == x && tile.Y == y);
     }
 }
