@@ -20,22 +20,30 @@ namespace CODE_Frontend.ViewModel
         public ConsoleText[,] GetGrid()
         {
             InitializeGrid();
-            
-            // Set connections
-            foreach (var connection in _room.Connections.Select(connection => new ConnectionViewModel(connection)))
-                _grid[connection.X, connection.Y] = connection.View;
-
-            
-            // Set room objects
-            var roomObjects = _room.Items.Union<IRoomObject>(_room.Tiles);
-            foreach (var item in roomObjects.Select(roomObjects => new RoomObjectViewModel(roomObjects)))
-                _grid[item.X, item.Y] = item.View;
-
-            // Set player
-            var playerViewModel = new PlayerViewModel(_player);
-            _grid[playerViewModel.X, playerViewModel.Y] = PlayerViewModel.View;
+            AddConnectionsToGrid();
+            AddRoomObjectsToGrid();
+            AddPlayerToGrid();
 
             return _grid;
+        }
+
+        private void AddPlayerToGrid()
+        {
+            var playerViewModel = new PlayerViewModel(_player);
+            _grid[playerViewModel.X, playerViewModel.Y] = PlayerViewModel.View;
+        }
+
+        private void AddRoomObjectsToGrid()
+        {
+            var roomObjects = _room.Items.Union<IRoomObject>(_room.Tiles);
+            foreach (var item in roomObjects.Select(roomObject => new RoomObjectViewModel(roomObject)))
+                _grid[item.X, item.Y] = item.View;
+        }
+
+        private void AddConnectionsToGrid()
+        {
+            foreach (var connection in _room.Connections.Select(connection => new ConnectionViewModel(connection)))
+                _grid[connection.X, connection.Y] = connection.View;
         }
 
         private void InitializeGrid()
