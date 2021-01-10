@@ -10,6 +10,7 @@ namespace CODE_Frontend.Modules
     public class HeaderModule
     {
         private readonly DateTime _startTime;
+        private IGame _game;
         private IPlayer _player;
 
         public HeaderModule()
@@ -25,6 +26,7 @@ namespace CODE_Frontend.Modules
 
         public IEnumerable<ConsoleText> Render(IGame game)
         {
+            _game = game;
             _player = game.Player;
             
             yield return new ConsoleText(Title);
@@ -43,6 +45,9 @@ namespace CODE_Frontend.Modules
                 yield return new ConsoleText(" ");
             }
             
+            foreach (var item in GetCheats())
+                yield return item;
+            
             yield return new ConsoleText(Environment.NewLine);
             yield return new ConsoleText(GenericModule.HorizontalLine(Console.WindowWidth), ConsoleColor.Gray);
             yield return new ConsoleText(Environment.NewLine);
@@ -54,6 +59,18 @@ namespace CODE_Frontend.Modules
 
             foreach (var item in _player.Inventory.Where(item => !(item is ISankaraStone)))
                 yield return new RoomObjectViewModel(item).View;
+        }
+
+        private IEnumerable<ConsoleText> GetCheats()
+        {
+            if (!_game.EnabledCheats.Any())
+                yield break;
+            
+            yield return new ConsoleText(Environment.NewLine);
+            yield return new ConsoleText("Cheats:", ConsoleColor.Red);
+
+            foreach (var cheat in _game.EnabledCheats)
+                yield return new ConsoleText($" {cheat.ToString()}");
         }
     }
 }
