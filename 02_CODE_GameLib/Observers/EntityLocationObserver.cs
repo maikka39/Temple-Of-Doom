@@ -1,6 +1,5 @@
 using System;
 using CODE_GameLib.Interfaces;
-using CODE_GameLib.Interfaces.Tiles;
 
 namespace CODE_GameLib.Observers
 {
@@ -16,29 +15,8 @@ namespace CODE_GameLib.Observers
 
         public new void OnNext(IEntityLocation entityLocation)
         {
-            TryEnterRoomTile(entityLocation);
-            TryEnterRoomItem(entityLocation);
-            TryEnterRoomEnemy(entityLocation);
-
+            _game.Player.Location.Room.Check(_game.Player);
             _game.Update();
-        }
-
-        private void TryEnterRoomItem(IEntityLocation entityLocation)
-        {
-            var roomItem = entityLocation.Room.GetItem(entityLocation.X, entityLocation.Y);
-            roomItem?.OnEnter(_game.Player);
-        }
-
-        private void TryEnterRoomTile(IEntityLocation entityLocation)
-        {
-            var roomTile = entityLocation.Room.GetTile(entityLocation.X, entityLocation.Y);
-            roomTile?.OnEnter(_game.Player, entityLocation.LastDirection);
-        }
-        
-        private void TryEnterRoomEnemy(IEntityLocation entityLocation)
-        {
-            var roomEnemy = entityLocation.Room.GetEnemy(entityLocation.X, entityLocation.Y);
-            roomEnemy?.OnEnter(_game.Player);
         }
     }
 }

@@ -32,9 +32,10 @@ namespace CODE_GameLib
         public int CenterY => (Height + 1) / 2 - 1;
 
         public void RemoveItem(IItem item) => Items.Remove(item);
-        public IItem GetItem(int x, int y) => Items.FirstOrDefault(item => item.X == x && item.Y == y);
-        public ITile GetTile(int x, int y) => Tiles.FirstOrDefault(tile => tile.X == x && tile.Y == y);
-        public IEnemy GetEnemy(int x, int y) => Enemies.FirstOrDefault(enemy => enemy.Location.X == x && enemy.Location.Y == y);
+        private IItem GetItem(int x, int y) => Items.FirstOrDefault(item => item.X == x && item.Y == y);
+        private ITile GetTile(int x, int y) => Tiles.FirstOrDefault(tile => tile.X == x && tile.Y == y);
+        private IEnemy GetEnemy(int x, int y) => Enemies.FirstOrDefault(enemy => enemy.Location.X == x && enemy.Location.Y == y);
+        
         public bool Update()
         {
             if (!Enemies.Any()) return false;
@@ -42,6 +43,31 @@ namespace CODE_GameLib
             Enemies.ForEach(enemy => enemy.Update());
 
             return true;
+        }
+
+        public void Check(IPlayer player)
+        {
+            TryEnterTile(player);
+            TryEnterItem(player);
+            TryEnterEnemy(player);
+        }
+        
+        private void TryEnterItem(IPlayer player)
+        {
+            var roomItem = GetItem(player.Location.X, player.Location.Y);
+            roomItem?.OnEnter(player);
+        }
+
+        private void TryEnterTile(IPlayer player)
+        {
+            var roomTile = GetTile(player.Location.X, player.Location.Y);
+            roomTile?.OnEnter(player, player.Location.LastDirection);
+        }
+        
+        private void TryEnterEnemy(IPlayer player)
+        {
+            var roomEnemy = GetEnemy(player.Location.X, player.Location.Y);
+            roomEnemy?.OnEnter(player);
         }
     }
 }

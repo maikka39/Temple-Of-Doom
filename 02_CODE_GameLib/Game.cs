@@ -36,7 +36,11 @@ namespace CODE_GameLib
             if (tickData.MovePlayer != null)
             {
                 if (Player.Move((Direction)tickData.MovePlayer))
-                    if (Player.Location.Room.Update()) Update();
+                    if (Player.Location.Room.Update())
+                    {
+                        Player.Location.Room.Check(Player);
+                        Update();
+                    }
             }
 
             if (tickData.ToggleCheats != null)

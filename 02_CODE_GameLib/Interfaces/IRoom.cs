@@ -18,9 +18,7 @@ namespace CODE_GameLib.Interfaces
         public int CenterX { get; }
         public int CenterY { get; }
         public void RemoveItem(IItem item);
-        public IItem GetItem(int x, int y);
-        public ITile GetTile(int x, int y);
-        public IEnemy GetEnemy(int x, int y);
         public bool Update();
+        public void Check(IPlayer player);
     }
 }
