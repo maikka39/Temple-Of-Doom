@@ -23,6 +23,7 @@ namespace CODE_Frontend.ViewModel
             InitializeGrid();
             AddConnectionsToGrid();
             AddRoomObjectsToGrid();
+            AddEnemiesToGrid();
             AddPlayerToGrid();
 
             return _grid;
@@ -30,10 +31,16 @@ namespace CODE_Frontend.ViewModel
 
         private void AddPlayerToGrid()
         {
-            var playerViewModel = new PlayerViewModel(_player);
-            _grid[playerViewModel.X, playerViewModel.Y] = PlayerViewModel.View;
+            var playerViewModel = new EntityViewModel(_player);
+            _grid[playerViewModel.X, playerViewModel.Y] = playerViewModel.View;
         }
 
+        private void AddEnemiesToGrid()
+        {
+            foreach (var enemy in _room.Enemies.Select(enemy => new EntityViewModel(enemy)))
+                _grid[enemy.X, enemy.Y] = enemy.View;
+        }
+        
         private void AddRoomObjectsToGrid()
         {
             var roomObjects = _room.Items.Union<IRoomObject>(_room.Tiles);
