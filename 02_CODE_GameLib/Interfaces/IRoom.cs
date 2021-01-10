@@ -16,9 +16,6 @@ namespace CODE_GameLib.Interfaces
         public List<ITile> Tiles { get; }
 
         public IEnumerable<IConnection> Connections { get; }
-
-        public IEnumerable<IDoor> Doors { get; }
-
         public bool IsWithinBoundaries(int x, int y);
         public int CenterX { get; }
         public int CenterY { get; }

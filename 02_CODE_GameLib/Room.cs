@@ -24,8 +24,6 @@ namespace CODE_GameLib
             Connections = connections;
         }
 
-        public IEnumerable<IDoor> Doors => Connections.Select(conn => conn.Door);
-
         public bool IsWithinBoundaries(int x, int y) => x >= 1 && x <= Width - 2 && y >= 1 && y <= Height - 2;
 
         public int CenterX => (Width + 1) / 2 - 1;
