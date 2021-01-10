@@ -38,10 +38,6 @@ namespace CODE_GameLib
         private void Enter(IEntity entity)
         {
             GetTargetLocation(out var targetX, out var targetY);
-            
-            Console.WriteLine($"Hey: {targetX}, {targetY}, {Direction}");
-
-
             entity.Location.Update(Destination.Room, targetX, targetY, Direction);
         }
 
