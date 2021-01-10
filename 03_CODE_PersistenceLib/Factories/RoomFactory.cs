@@ -20,7 +20,7 @@ namespace CODE_PersistenceLib.Factories
             connections.Add(roomId, new List<IConnection>());
 
             var items = GetItemsForRoom(roomJObject);
-            var tiles = new List<ITile>();
+            var tiles = GetTilesForRoom(roomJObject);;
 
             var width = roomJObject["width"].Value<int>();
             var height = roomJObject["height"].Value<int>();
@@ -44,9 +44,19 @@ namespace CODE_PersistenceLib.Factories
 
             if (!roomJObject.ContainsKey("items")) return items;
 
-            items.AddRange(roomJObject["items"].Select(ItemFactory.CreateItem));
+            items.AddRange(roomJObject["items"]!.Select(RoomObjectFactory.CreateItem));
 
             return items;
+        }
+        private static List<ITile> GetTilesForRoom(JObject roomJObject)
+        {
+            var tiles = new List<ITile>();
+
+            if (!roomJObject.ContainsKey("specialFloorTiles")) return tiles;
+
+            tiles.AddRange(roomJObject["specialFloorTiles"]!.Select(RoomObjectFactory.CreateTile));
+
+            return tiles;
         }
     }
 }
