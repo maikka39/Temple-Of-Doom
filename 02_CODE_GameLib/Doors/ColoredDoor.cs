@@ -3,6 +3,7 @@ using CODE_GameLib.Interfaces.Items.Wearable;
 using System.Drawing;
 using System.Linq;
 using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Doors
 {
@@ -15,8 +16,10 @@ namespace CODE_GameLib.Doors
             Color = color;
         }
 
-        public new bool CanEnter(IPlayer player)
+        public new bool CanEnter(IEntity entity)
         {
+            if (!(entity is IPlayer player)) return false;
+            
             if (player.Inventory.Where(item => item is IKey).Any(key => ((IKey)key).Color == Color))
                 Opened = true;
             

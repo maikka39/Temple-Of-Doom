@@ -1,5 +1,6 @@
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Doors
 {
@@ -10,9 +11,9 @@ namespace CODE_GameLib.Doors
             Opened = true;
         }
 
-        public new bool CanEnter(IPlayer player)
+        public new bool CanEnter(IEntity entity)
         {
-            var canEnter = base.CanEnter(player);
+            var canEnter = base.CanEnter(entity);
             Opened = false;
             return canEnter;
         }

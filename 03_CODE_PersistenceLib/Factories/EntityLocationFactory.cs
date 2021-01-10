@@ -5,11 +5,11 @@ using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories
 {
-    public static class PlayerLocationFactory
+    public static class EntityLocationFactory
     {
-        public static IPlayerLocation CreatePlayerLocation(IReadOnlyDictionary<int, IRoom> rooms, JToken playerJToken)
+        public static IEntityLocation CreateEntityLocation(IReadOnlyDictionary<int, IRoom> rooms, JToken playerJToken)
         {
-            return new PlayerLocation(
+            return new EntityLocation(
                 rooms[playerJToken["startRoomId"].Value<int>()],
                 playerJToken["startX"].Value<int>(),
                 playerJToken["startY"].Value<int>()

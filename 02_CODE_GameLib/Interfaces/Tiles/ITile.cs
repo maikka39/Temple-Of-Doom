@@ -1,4 +1,5 @@
 ﻿using CODE_GameLib.Enums;
+using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Interfaces.Tiles
 {

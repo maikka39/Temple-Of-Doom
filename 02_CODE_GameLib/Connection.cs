@@ -2,6 +2,7 @@
 using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib
 {
@@ -23,25 +24,25 @@ namespace CODE_GameLib
             Door = door;
         }
 
-        public bool TryEnter(IPlayer player, int playerX, int playerY)
+        public bool TryEnter(IEntity entity, int entityX, int entityY)
         {
-            if (playerX != X || playerY != Y) return false;
+            if (entityX != X || entityY != Y) return false;
 
-            if (!Door?.CanEnter(player) ?? false)
+            if (!Door?.CanEnter(entity) ?? false)
                 return false;
 
-            Enter(player);
+            Enter(entity);
             return true;
         }
 
-        private void Enter(IPlayer player)
+        private void Enter(IEntity entity)
         {
             GetTargetLocation(out var targetX, out var targetY);
             
             Console.WriteLine($"Hey: {targetX}, {targetY}, {Direction}");
 
 
-            player.Location.Update(Destination.Room, targetX, targetY, Direction);
+            entity.Location.Update(Destination.Room, targetX, targetY, Direction);
         }
 
         private void GetTargetLocation(out int targetX, out int targetY)

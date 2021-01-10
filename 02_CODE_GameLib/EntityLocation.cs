@@ -5,7 +5,7 @@ using CODE_GameLib.Observers;
 
 namespace CODE_GameLib
 {
-    public class PlayerLocation : BaseObservable<IPlayerLocation>, IPlayerLocation
+    public class EntityLocation : BaseObservable<IEntityLocation>, IEntityLocation
     {
         public IRoom Room { get; private set; }
 
@@ -15,7 +15,7 @@ namespace CODE_GameLib
         
         public Direction? LastDirection { get; private set; }
 
-        public PlayerLocation(IRoom room, int x, int y)
+        public EntityLocation(IRoom room, int x, int y)
         {
             Room = room;
             X = x;

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Enums;
+using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Observers;
 
 namespace CODE_GameLib
@@ -22,9 +23,9 @@ namespace CODE_GameLib
             Player = player;
             
             // ReSharper disable once ObjectCreationAsStatement
-            new PlayerLocationObserver(this, player.Location);
+            new EntityLocationObserver(this, player.Location);
             // ReSharper disable once ObjectCreationAsStatement
-            new PlayerObserver(this, player);
+            new EntityObserver(this, player);
         }
 
         public void Tick(TickData tickData)

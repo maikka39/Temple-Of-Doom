@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CODE_GameLib.Interfaces.Entity;
 using CODE_PersistenceLib.Factories;
 
 namespace CODE_PersistenceLib
@@ -25,7 +26,7 @@ namespace CODE_PersistenceLib
                 SetConnections(json, connections, rooms);
 
                 var playerJToken = json["player"];
-                var playerStartLocation = PlayerLocationFactory.CreatePlayerLocation(rooms, playerJToken);
+                var playerStartLocation = EntityLocationFactory.CreateEntityLocation(rooms, playerJToken);
                 player = PlayerFactory.CreatePlayer(playerJToken, playerStartLocation);
             }
             catch (Exception e)

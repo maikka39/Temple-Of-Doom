@@ -1,6 +1,7 @@
 ﻿using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Doors
 {
@@ -8,14 +9,17 @@ namespace CODE_GameLib.Doors
     {
         public bool Opened { get; set; }
 
-        public bool CanEnter(IPlayer player)
+        public bool CanEnter(IEntity entity)
         {
-            return CanBypass(player) || Opened;
+            return CanBypass(entity) || Opened;
         }
 
-        private static bool CanBypass(IPlayer player)
+        private static bool CanBypass(IEntity entity)
         {
-            return player.IsCheatEnabled(Cheat.IgnoreDoors);
+            if (entity is IPlayer player)
+                return player.IsCheatEnabled(Cheat.IgnoreDoors);
+
+            return false;
         }
     }
 }

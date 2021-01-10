@@ -1,5 +1,6 @@
 using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Interfaces
 {
@@ -11,6 +12,6 @@ namespace CODE_GameLib.Interfaces
         public IDoor Door { get; }
         public int X { get; }
         public int Y { get; }
-        bool TryEnter(IPlayer player, int playerX, int playerY);
+        bool TryEnter(IEntity entity, int entityX, int entityY);
     }
 }
