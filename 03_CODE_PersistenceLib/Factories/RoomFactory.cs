@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib;
 using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Tiles;
-using CODE_GameLib.Tiles;
 using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib.Factories
@@ -20,7 +20,8 @@ namespace CODE_PersistenceLib.Factories
             connections.Add(roomId, new List<IConnection>());
 
             var items = GetItemsForRoom(roomJObject);
-            var tiles = GetTilesForRoom(roomJObject);;
+            var tiles = GetTilesForRoom(roomJObject);
+            var enemies = GetEnemiesFromRoom(roomJObject);
 
             var width = roomJObject["width"].Value<int>();
             var height = roomJObject["height"].Value<int>();
@@ -35,7 +36,7 @@ namespace CODE_PersistenceLib.Factories
             if (width % 2 == 0)
                 throw new ArgumentException("Width must be even");
 
-            return new Room(width, height, items, tiles, connections[roomId]);
+            return new Room(width, height, items, tiles, enemies, connections[roomId]);
         }
 
         private static List<IItem> GetItemsForRoom(JObject roomJObject)
@@ -48,6 +49,7 @@ namespace CODE_PersistenceLib.Factories
 
             return items;
         }
+        
         private static List<ITile> GetTilesForRoom(JObject roomJObject)
         {
             var tiles = new List<ITile>();
@@ -57,6 +59,17 @@ namespace CODE_PersistenceLib.Factories
             tiles.AddRange(roomJObject["specialFloorTiles"]!.Select(RoomObjectFactory.CreateTile));
 
             return tiles;
+        }
+        
+        private static List<IEnemy> GetEnemiesFromRoom(JObject roomJObject)
+        {
+            var enemies = new List<IEnemy>();
+
+            if (!roomJObject.ContainsKey("enemies")) return enemies;
+
+            enemies.AddRange(roomJObject["enemies"]!.Select(EnemyFactory.CreateEnemy));
+
+            return enemies;
         }
     }
 }

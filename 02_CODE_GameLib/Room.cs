@@ -1,8 +1,9 @@
+using System;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items;
 using System.Collections.Generic;
 using System.Linq;
-using CODE_GameLib.Interfaces.Doors;
+using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Tiles;
 
 namespace CODE_GameLib
@@ -13,14 +14,16 @@ namespace CODE_GameLib
         public int Height { get; }
         public List<IItem> Items { get; }
         public List<ITile> Tiles { get; }
+        public List<IEnemy> Enemies { get; }
         public IEnumerable<IConnection> Connections { get; }
 
-        public Room(int width, int height, List<IItem> items, List<ITile> tiles, IEnumerable<IConnection> connections)
+        public Room(int width, int height, List<IItem> items, List<ITile> tiles, List<IEnemy> enemies, IEnumerable<IConnection> connections)
         {
             Width = width;
             Height = height;
             Items = items;
             Tiles = tiles;
+            Enemies = enemies;
             Connections = connections;
         }
 
