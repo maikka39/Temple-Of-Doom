@@ -12,11 +12,9 @@ namespace CODE_GameLib.Doors
 
         public new bool CanEnter(IPlayer player)
         {
-            if (!Opened) return false;
-
+            var canEnter = base.CanEnter(player);
             Opened = false;
-
-            return true;
+            return canEnter;
         }
     }
 }

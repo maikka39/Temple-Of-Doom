@@ -19,7 +19,8 @@ namespace CODE_GameLib.Doors
         {
             if (player.Inventory.Where(item => item is IKey).Any(key => ((IKey)key).Color == Color))
                 Opened = true;
-            return Opened;
+            
+            return base.CanEnter(player);
         }
     }
 }

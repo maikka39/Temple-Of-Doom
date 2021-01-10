@@ -1,4 +1,5 @@
-﻿using CODE_GameLib.Interfaces;
+﻿using CODE_GameLib.Enums;
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
 
 namespace CODE_GameLib.Doors
@@ -9,7 +10,12 @@ namespace CODE_GameLib.Doors
 
         public bool CanEnter(IPlayer player)
         {
-            return Opened;
+            return CanBypass(player) || Opened;
+        }
+
+        private static bool CanBypass(IPlayer player)
+        {
+            return player.IsCheatEnabled(Cheat.IgnoreDoors);
         }
     }
 }
