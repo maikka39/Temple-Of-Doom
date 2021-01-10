@@ -8,5 +8,6 @@ namespace CODE_GameLib
         public Direction? MovePlayer { get; set; }
         public IEnumerable<Cheat> ToggleCheats { get; set; }
         public bool Quit { get; set; }
+        public bool Shoot { get; set; }
     }
 }

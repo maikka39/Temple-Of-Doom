@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Tiles;
+using CODE_TempleOfDoom_DownloadableContent;
 
 namespace CODE_GameLib
 {
@@ -51,7 +52,17 @@ namespace CODE_GameLib
             TryEnterItem(player);
             TryEnterEnemy(player);
         }
-        
+
+        public IEnumerable<IEnemy> GetEnemiesWithinReach(IEntityLocation location)
+        {
+            return Enemies.Where(enemy => 
+                (enemy.Location.X == location.X + 1 && enemy.Location.Y == location.Y) || 
+                (enemy.Location.X == location.X - 1 && enemy.Location.Y == location.Y) ||
+                (enemy.Location.X == location.X && enemy.Location.Y == location.Y + 1) ||
+                (enemy.Location.X == location.X && enemy.Location.Y == location.Y - 1)
+                );
+        }
+
         private void TryEnterItem(IPlayer player)
         {
             var roomItem = GetItem(player.Location.X, player.Location.Y);

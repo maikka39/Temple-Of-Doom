@@ -38,6 +38,10 @@ namespace CODE_Frontend
                 case ConsoleKey.D:
                     toggleCheats.Add(Cheat.IgnoreDoors);
                     break;
+                
+                case ConsoleKey.Spacebar:
+                    tickData.Shoot = true;
+                    break;
 
                 case ConsoleKey.Escape:
                     tickData.Quit = true;

@@ -12,5 +12,6 @@ namespace CODE_GameLib.Interfaces.Entity
         public void AddToInventory(Wearable wearable);
         public void ToggleCheat(Cheat cheat);
         public bool IsCheatEnabled(Cheat cheat);
+        public void Shoot();
     }
 }

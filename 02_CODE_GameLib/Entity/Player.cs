@@ -54,5 +54,13 @@ namespace CODE_GameLib.Entity
         {
             return EnabledCheats.Any(enabledCheat => enabledCheat == cheat);
         }
+
+        public void Shoot()
+        {
+            var enemies = Location.Room.GetEnemiesWithinReach(Location);
+
+            foreach (var enemy in enemies)
+                enemy.ReceiveDamage(1);
+        }
     }
 }

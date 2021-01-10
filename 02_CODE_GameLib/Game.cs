@@ -43,6 +43,9 @@ namespace CODE_GameLib
                     }
             }
 
+            if (tickData.Shoot)
+                Player.Shoot();
+
             if (tickData.ToggleCheats != null)
             {
                 foreach (var cheat in tickData.ToggleCheats)

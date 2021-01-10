@@ -1,3 +1,4 @@
+using System.Collections;
 using CODE_GameLib.Interfaces.Items;
 using System.Collections.Generic;
 using CODE_GameLib.Interfaces.Doors;
@@ -20,5 +21,6 @@ namespace CODE_GameLib.Interfaces
         public void RemoveItem(IItem item);
         public bool Update();
         public void Check(IPlayer player);
+        public IEnumerable<IEnemy> GetEnemiesWithinReach(IEntityLocation location);
     }
 }
