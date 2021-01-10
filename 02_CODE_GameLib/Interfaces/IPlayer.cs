@@ -25,5 +25,6 @@ namespace CODE_GameLib.Interfaces
         public void Move(Direction direction);
         
         public void ToggleCheat(Cheat cheat);
+        public bool IsCheatEnabled(Cheat cheat);
     }
 }

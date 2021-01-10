@@ -34,6 +34,8 @@ namespace CODE_GameLib
 
         public void ReceiveDamage(int damage)
         {
+            if (IsCheatEnabled(Cheat.Invincible))
+                return;
             if (damage <= 0)
                 return;
             Lives -= damage;
@@ -90,6 +92,11 @@ namespace CODE_GameLib
                 _enabledCheats.Remove(cheat);
             else
                 _enabledCheats.Add(cheat);
+        }
+
+        public bool IsCheatEnabled(Cheat cheat)
+        {
+            return EnabledCheats.Any(enabledCheat => enabledCheat == cheat);
         }
     }
 }
