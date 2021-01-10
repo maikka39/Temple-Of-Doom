@@ -38,8 +38,13 @@ namespace CODE_GameLib
                 Player.Move((Direction)tickData.MovePlayer);
 
             if (tickData.ToggleCheats != null)
+            {
                 foreach (var cheat in tickData.ToggleCheats)
                     ToggleCheat(cheat);
+                
+                Update();
+            }
+                
         }
 
         private void ToggleCheat(Cheat cheat)
