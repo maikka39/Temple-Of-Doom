@@ -15,11 +15,14 @@ namespace CODE_GameLib.Interfaces
         public bool Died { get; }
 
         public IEnumerable<Wearable> Inventory { get; }
+        
+        public IEnumerable<Cheat> EnabledCheats { get; }
 
         public bool ReceiveDamage(int damage);
 
         public bool AddToInventory(Wearable wearable);
 
         public bool Move(Direction direction);
+        public void ToggleCheat(Cheat cheat);
     }
 }

@@ -12,6 +12,7 @@ namespace CODE_GameLib
     public class Player : BaseObservable<IPlayer>, IPlayer
     {
         private readonly List<Wearable> _inventory;
+        private readonly List<Cheat> _enabledCheats = new List<Cheat>();
         public IPlayerLocation Location { get; }
         public int Lives { get; private set; }
 
@@ -20,6 +21,8 @@ namespace CODE_GameLib
         public bool Won => Inventory.Count(wearable => wearable is ISankaraStone) >= 5;
 
         public IEnumerable<Wearable> Inventory => _inventory;
+        
+        public IEnumerable<Cheat> EnabledCheats => _enabledCheats;
 
         public Player(int lives, List<Wearable> inventory,
             IPlayerLocation location)
@@ -83,6 +86,14 @@ namespace CODE_GameLib
             }
 
             return (targetX, targetY);
+        }
+        
+        public void ToggleCheat(Cheat cheat)
+        {
+            if (_enabledCheats.Contains(cheat))
+                _enabledCheats.Remove(cheat);
+            else
+                _enabledCheats.Add(cheat);
         }
     }
 }

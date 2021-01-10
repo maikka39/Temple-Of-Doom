@@ -10,14 +10,12 @@ namespace CODE_GameLib
 {
     public class Game : IGame
     {
-        private readonly List<Cheat> _enabledCheats = new List<Cheat>();
         public event EventHandler<Game> Updated;
 
         public bool Quit { get; private set; }
 
         public IPlayer Player { get; }
         
-        public IEnumerable<Cheat> EnabledCheats => _enabledCheats;
 
         public Game(IPlayer player)
         {
@@ -40,19 +38,11 @@ namespace CODE_GameLib
             if (tickData.ToggleCheats != null)
             {
                 foreach (var cheat in tickData.ToggleCheats)
-                    ToggleCheat(cheat);
+                    Player.ToggleCheat(cheat);
                 
                 Update();
             }
                 
-        }
-
-        private void ToggleCheat(Cheat cheat)
-        {
-            if (_enabledCheats.Contains(cheat))
-                _enabledCheats.Remove(cheat);
-            else
-                _enabledCheats.Add(cheat);
         }
 
         public void Destroy()
