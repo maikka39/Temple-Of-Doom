@@ -24,9 +24,11 @@ namespace CODE_Frontend.ViewModel
             // Set connections
             foreach (var connection in _room.Connections.Select(connection => new ConnectionViewModel(connection)))
                 _grid[connection.X, connection.Y] = connection.View;
+
             
-            // Set items
-            foreach (var item in _room.Items.Select(item => new ItemViewModel(item)))
+            // Set room objects
+            var roomObjects = _room.Items.Union<IRoomObject>(_room.Tiles);
+            foreach (var item in roomObjects.Select(roomObjects => new RoomObjectViewModel(roomObjects)))
                 _grid[item.X, item.Y] = item.View;
 
             // Set player

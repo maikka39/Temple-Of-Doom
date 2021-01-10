@@ -53,7 +53,7 @@ namespace CODE_Frontend.Modules
             yield return new ConsoleText("Inventory: ");
 
             foreach (var item in _player.Inventory.Where(item => !(item is ISankaraStone)))
-                yield return new ItemViewModel(item).View;
+                yield return new RoomObjectViewModel(item).View;
         }
     }
 }
