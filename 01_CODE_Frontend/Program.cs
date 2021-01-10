@@ -19,7 +19,7 @@ namespace CODE_Frontend
                 while (!game.Quit)
                 {
                     var key = Console.ReadKey().Key;
-                    Console.Write("\b");
+                    Console.Write("\b"); // Remove the entered character
                     game.Tick(Input.HandleKey(key));
                 }
 
