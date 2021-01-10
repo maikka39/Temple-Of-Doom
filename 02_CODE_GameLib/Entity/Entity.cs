@@ -24,6 +24,10 @@ namespace CODE_GameLib.Entity
                 Location.Update(Location.Room, targetX, targetY, direction);
         }
 
+        public void Tick()
+        {
+        }
+
         public void ReceiveDamage(int damage)
         {
             if (damage <= 0)

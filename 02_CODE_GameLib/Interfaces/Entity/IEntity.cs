@@ -10,5 +10,6 @@ namespace CODE_GameLib.Interfaces.Entity
 
         public void ReceiveDamage(int damage);
         public void Move(Direction direction);
+        public void Tick();
     }
 }
