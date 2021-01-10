@@ -13,26 +13,18 @@ namespace CODE_Frontend
             // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
             switch (key)
             {
-                case ConsoleKey.K:
-                case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
                     tickData.MovePlayer = Direction.North;
                     break;
 
-                case ConsoleKey.J:
-                case ConsoleKey.S:
                 case ConsoleKey.DownArrow:
                     tickData.MovePlayer = Direction.South;
                     break;
 
-                case ConsoleKey.H:
-                case ConsoleKey.A:
                 case ConsoleKey.LeftArrow:
                     tickData.MovePlayer = Direction.West;
                     break;
 
-                case ConsoleKey.L:
-                case ConsoleKey.D:
                 case ConsoleKey.RightArrow:
                     tickData.MovePlayer = Direction.East;
                     break;
