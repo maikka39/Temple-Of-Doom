@@ -13,15 +13,19 @@ namespace CODE_GameLib.Entity
         public int Lives { get; protected set; }
         public bool Died => Lives < 1;
         
-        public void Move(Direction direction)
+        public bool Move(Direction direction)
         {
             var (targetX, targetY) = DirectionToXy(direction);
-            
-            if (Location.Room.Connections.Any(connection => connection.TryEnter(this, targetX, targetY)))
-                return;
 
-            if (Location.Room.IsWithinBoundaries(targetX, targetY))
-                Location.Update(Location.Room, targetX, targetY, direction);
+            if (Location.Room.Connections.Any(connection => connection.TryEnter(this, targetX, targetY)))
+                return true;
+
+            if (!Location.Room.IsWithinBoundaries(targetX, targetY)) return false;
+            
+            Location.Update(Location.Room, targetX, targetY, direction);
+            
+            return true;
+
         }
 
         public void ReceiveDamage(int damage)

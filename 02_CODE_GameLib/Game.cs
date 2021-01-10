@@ -34,7 +34,10 @@ namespace CODE_GameLib
                 Destroy();
 
             if (tickData.MovePlayer != null)
-                Player.Move((Direction)tickData.MovePlayer);
+            {
+                if (Player.Move((Direction)tickData.MovePlayer))
+                    if (Player.Location.Room.Update()) Update();
+            }
 
             if (tickData.ToggleCheats != null)
             {

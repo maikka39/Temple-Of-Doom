@@ -1,4 +1,3 @@
-using System;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items;
 using System.Collections.Generic;
@@ -35,5 +34,13 @@ namespace CODE_GameLib
         public void RemoveItem(IItem item) => Items.Remove(item);
         public IItem GetItem(int x, int y) => Items.FirstOrDefault(item => item.X == x && item.Y == y);
         public ITile GetTile(int x, int y) => Tiles.FirstOrDefault(tile => tile.X == x && tile.Y == y);
+        public bool Update()
+        {
+            if (!Enemies.Any()) return false;
+            
+            Enemies.ForEach(enemy => enemy.Update());
+
+            return true;
+        }
     }
 }

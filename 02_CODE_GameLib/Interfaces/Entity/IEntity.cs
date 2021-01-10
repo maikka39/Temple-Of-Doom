@@ -9,6 +9,6 @@ namespace CODE_GameLib.Interfaces.Entity
         public bool Died { get; }
 
         public void ReceiveDamage(int damage);
-        public void Move(Direction direction);
+        public bool Move(Direction direction);
     }
 }

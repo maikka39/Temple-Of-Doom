@@ -20,5 +20,6 @@ namespace CODE_GameLib.Interfaces
         public void RemoveItem(IItem item);
         public IItem GetItem(int x, int y);
         public ITile GetTile(int x, int y);
+        public bool Update();
     }
 }
