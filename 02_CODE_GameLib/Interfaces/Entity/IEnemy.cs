@@ -2,5 +2,6 @@
 {
     public interface IEnemy : IEntity
     {
+        public void Update();
     }
 }

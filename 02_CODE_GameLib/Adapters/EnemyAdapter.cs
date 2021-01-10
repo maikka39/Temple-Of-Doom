@@ -6,7 +6,7 @@ using CODE_TempleOfDoom_DownloadableContent;
 
 namespace CODE_GameLib.Adapters
 {
-    public class EnemyAdapter : Entity.Entity, IEntity
+    public class EnemyAdapter : Entity.Entity, IEnemy
     {
         private readonly Enemy _adaptee;
         private readonly EnemyLocationAdapter _enemyLocationAdapter;
@@ -23,7 +23,7 @@ namespace CODE_GameLib.Adapters
 
         public new int Lives => _adaptee.NumberOfLives;
         public new void ReceiveDamage(int damage) => _adaptee.GetHurt(damage);
-        public new void Tick() => _adaptee.Move();
+        public void Update() => _adaptee.Move();
 
         private class EnemyObserver : BaseObserver<Enemy>, IObserver<Enemy>
         {
