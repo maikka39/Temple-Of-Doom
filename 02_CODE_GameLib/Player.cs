@@ -32,33 +32,29 @@ namespace CODE_GameLib
             Location = location;
         }
 
-        public bool ReceiveDamage(int damage)
+        public void ReceiveDamage(int damage)
         {
             if (damage <= 0)
-                return false;
+                return;
             Lives -= damage;
             NotifyObservers(this);
-            return true;
         }
 
-        public bool AddToInventory(Wearable wearable)
+        public void AddToInventory(Wearable wearable)
         {
             _inventory.Add(wearable);
             NotifyObservers(this);
-            return true;
         }
 
-        public bool Move(Direction direction)
+        public void Move(Direction direction)
         {
             var (targetX, targetY) = DirectionToXy(direction);
             
             if (Location.Room.Connections.Any(connection => connection.TryEnter(this, targetX, targetY)))
-                return true;
+                return;
 
             if (Location.Room.IsWithinBoundaries(targetX, targetY))
-                return Location.Update(Location.Room, targetX, targetY, direction);
-
-            return false;
+                Location.Update(Location.Room, targetX, targetY, direction);
         }
 
         private (int, int) DirectionToXy(Direction direction)

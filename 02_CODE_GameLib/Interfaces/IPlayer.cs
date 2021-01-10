@@ -18,11 +18,12 @@ namespace CODE_GameLib.Interfaces
         
         public IEnumerable<Cheat> EnabledCheats { get; }
 
-        public bool ReceiveDamage(int damage);
+        public void ReceiveDamage(int damage);
 
-        public bool AddToInventory(Wearable wearable);
+        public void AddToInventory(Wearable wearable);
 
-        public bool Move(Direction direction);
+        public void Move(Direction direction);
+        
         public void ToggleCheat(Cheat cheat);
     }
 }
