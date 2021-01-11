@@ -7,13 +7,13 @@ namespace CODE_GameLib.Observers
     {
         private readonly List<IObserver<T>> _observers = new List<IObserver<T>>();
 
-        public IDisposable Subscribe(IObserver<T> observer)
+        public virtual IDisposable Subscribe(IObserver<T> observer)
         {
             _observers.Add(observer);
             return new Subscription(() => _observers.Remove(observer));
         }
 
-        protected void NotifyObservers(T subject)
+        protected virtual void NotifyObservers(T subject)
         {
             // Loop over a copy of the list as the original one might change
             foreach (var observer in new List<IObserver<T>>(_observers))

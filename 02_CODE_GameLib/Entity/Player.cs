@@ -21,11 +21,9 @@ namespace CODE_GameLib.Entity
         public IEnumerable<Cheat> EnabledCheats => _enabledCheats;
 
         public Player(int lives, List<Wearable> inventory,
-            IEntityLocation location)
+            IEntityLocation location) : base(lives, location)
         {
-            Lives = lives;
             _inventory = inventory;
-            Location = location;
         }
 
         public override void ReceiveDamage(int damage)

@@ -10,7 +10,7 @@ namespace CODE_GameLib.Items
         {
         }
         
-        public void OnEnter(IPlayer player)
+        public virtual void OnEnter(IPlayer player)
         {
             throw new System.NotImplementedException();
         }

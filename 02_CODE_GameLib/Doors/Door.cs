@@ -5,11 +5,26 @@ using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Doors
 {
-    public abstract class Door: IDoor
+    public abstract class Door : IDoor
     {
-        public bool Opened { get; set; }
+        private bool _opened;
 
-        public bool CanEnter(IEntity entity)
+        public virtual bool Opened
+        {
+            get => _opened;
+            set => _opened = value;
+        }
+
+        protected Door()
+        {
+        }
+
+        protected Door(bool opened)
+        {
+            _opened = opened;
+        }
+
+        public virtual bool CanEnter(IEntity entity)
         {
             return CanBypass(entity) || Opened;
         }

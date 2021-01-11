@@ -12,7 +12,7 @@ namespace CODE_GameLib.Items
         {
         }
         
-        public new void OnEnter(IPlayer player)
+        public override void OnEnter(IPlayer player)
         {
             foreach (var connection in player.Location.Room.Connections.Where(conn => conn.Door is IToggleDoor))
                 connection.Door.Opened = !connection.Door.Opened;

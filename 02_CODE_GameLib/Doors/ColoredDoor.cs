@@ -16,7 +16,7 @@ namespace CODE_GameLib.Doors
             Color = color;
         }
 
-        public new bool CanEnter(IEntity entity)
+        public override bool CanEnter(IEntity entity)
         {
             if (!(entity is IPlayer player)) return false;
             

@@ -4,7 +4,7 @@ using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Observers
 {
-    public class EntityDiedObserver : BaseObserver<IEntity>, IObserver<IEntity>
+    public class EntityDiedObserver : BaseObserver<IEntity>
     {
         private readonly IRoom _room;
 
@@ -13,7 +13,7 @@ namespace CODE_GameLib.Observers
             _room = room;
         }
         
-        public new void OnNext(IEntity entity)
+        public override void OnNext(IEntity entity)
         {
             if (!entity.Died) return;
 

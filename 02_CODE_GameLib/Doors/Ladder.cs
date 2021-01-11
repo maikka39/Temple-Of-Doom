@@ -4,9 +4,8 @@ namespace CODE_GameLib.Doors
 {
     public class Ladder: Door, ILadder
     {
-        public Ladder()
+        public Ladder() : base(true)
         {
-            Opened = true;
         }
     }
 }

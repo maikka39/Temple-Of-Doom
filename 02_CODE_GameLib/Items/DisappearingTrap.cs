@@ -10,7 +10,7 @@ namespace CODE_GameLib.Items
         {
         }
         
-        public new void OnEnter(IPlayer player)
+        public override void OnEnter(IPlayer player)
         {
             base.OnEnter(player);
             player.Location.Room.RemoveItem(this);

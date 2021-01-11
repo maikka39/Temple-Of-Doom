@@ -29,7 +29,7 @@ namespace CODE_GameLib.Adapters
             player.ReceiveDamage(1);
         }
 
-        private class EnemyObserver : BaseObserver<Enemy>, IObserver<Enemy>
+        private class EnemyObserver : BaseObserver<Enemy>
         {
             private readonly EnemyAdapter _enemyAdapter;
 
@@ -38,7 +38,7 @@ namespace CODE_GameLib.Adapters
                 _enemyAdapter = enemyAdapter;
             }
 
-            public new void OnNext(Enemy enemy)
+            public override void OnNext(Enemy enemy)
             {
                 _enemyAdapter.NotifyObservers(_enemyAdapter);
                 _enemyAdapter._enemyLocationAdapter.Update();

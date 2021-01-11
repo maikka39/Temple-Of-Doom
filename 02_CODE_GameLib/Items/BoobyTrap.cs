@@ -13,7 +13,7 @@ namespace CODE_GameLib.Items
             Damage = damage;
         }
 
-        public new void OnEnter(IPlayer player)
+        public override void OnEnter(IPlayer player)
         {
             player.ReceiveDamage(Damage);
         }

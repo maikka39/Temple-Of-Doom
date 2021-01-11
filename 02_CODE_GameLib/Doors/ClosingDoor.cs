@@ -6,12 +6,11 @@ namespace CODE_GameLib.Doors
 {
     public class ClosingDoor : Door, IClosingDoor
     {
-        public ClosingDoor()
+        public ClosingDoor() : base(true)
         {
-            Opened = true;
         }
 
-        public new bool CanEnter(IEntity entity)
+        public override bool CanEnter(IEntity entity)
         {
             var canEnter = base.CanEnter(entity);
             Opened = false;
