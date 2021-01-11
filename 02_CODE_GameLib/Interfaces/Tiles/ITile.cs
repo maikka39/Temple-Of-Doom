@@ -5,6 +5,6 @@ namespace CODE_GameLib.Interfaces.Tiles
 {
     public interface ITile : IRoomObject
     {
-        public void OnEnter(IEntity entity, Direction? direction);
+        public void OnEnter(IEntity entity);
     }
 }

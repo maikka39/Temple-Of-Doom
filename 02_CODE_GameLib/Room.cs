@@ -119,7 +119,7 @@ namespace CODE_GameLib
         private void TryEnterTile(IEntity entity)
         {
             var roomTile = GetTile(entity.Location.X, entity.Location.Y);
-            roomTile?.OnEnter(entity, entity.Location.LastDirection);
+            roomTile?.OnEnter(entity);
         }
 
         private void TryEnterEnemy(IPlayer player)

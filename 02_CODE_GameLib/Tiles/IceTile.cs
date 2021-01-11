@@ -10,10 +10,10 @@ namespace CODE_GameLib.Tiles
         {
         }
 
-        public override void OnEnter(IEntity entity, Direction? direction)
+        public override void OnEnter(IEntity entity)
         {
-            if (direction != null)
-                entity.Move((Direction) direction);
+            if (entity.Location.LastDirection != null)
+                entity.Move((Direction) entity.Location.LastDirection);
         }
     }
 }
