@@ -1,4 +1,6 @@
-﻿using CODE_GameLib.Enums;
+﻿using System;
+using System.Reflection;
+using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Observers;
 using CODE_TempleOfDoom_DownloadableContent;
@@ -28,7 +30,28 @@ namespace CODE_GameLib.Adapters
             private set => _adaptee.CurrentYLocation = value;
         }
 
-        public Direction? LastDirection { get; private set; }
+        public Direction? LastDirection
+        {
+            get
+            {
+                // Absolutely horrible method but as CurrentDirectionX is protected, this
+                // is the only way we can get access to it. We need this access in order
+                // to get the current direction for, for example, an ice tile.
+                var currentDirectionX = (int) _adaptee.GetType().GetProperty("CurrentDirectionX", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(_adaptee);
+                var currentDirectionY = (int) _adaptee.GetType().GetProperty("CurrentDirectionY", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(_adaptee);
+                
+                if (currentDirectionX > 0)
+                    return Direction.East;
+                if (currentDirectionX < 0)
+                    return Direction.West;
+                if (currentDirectionY > 0)
+                    return Direction.North;
+                if (currentDirectionY < 0)
+                    return Direction.South;
+
+                return null;
+            }
+        }
 
         public bool Update(IRoom room, int x, int y, Direction? direction = null)
         {
@@ -38,7 +61,6 @@ namespace CODE_GameLib.Adapters
             Room = room;
             X = x;
             Y = y;
-            LastDirection = direction;
 
             NotifyObservers(this);
             return true;

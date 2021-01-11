@@ -10,10 +10,10 @@ namespace CODE_GameLib.Tiles
         {
         }
 
-        public override void OnEnter(IPlayer player, Direction? direction)
+        public override void OnEnter(IEntity entity, Direction? direction)
         {
             if (direction != null)
-                player.Move((Direction) direction);
+                entity.Move((Direction) direction);
         }
     }
 }

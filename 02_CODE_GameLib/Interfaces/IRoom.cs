@@ -18,7 +18,7 @@ namespace CODE_GameLib.Interfaces
         public bool IsWithinBoundaries(int x, int y);
         public void RemoveItem(IItem item);
         public bool Update();
-        public void Check(IPlayer player);
+        public void Check(IEntity entity);
         public IEnumerable<IEnemy> GetEnemiesWithinReach(IEntityLocation location);
         public void RemoveEnemy(IEnemy enemy);
     }

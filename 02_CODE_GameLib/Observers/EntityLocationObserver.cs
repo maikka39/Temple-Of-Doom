@@ -1,20 +1,20 @@
 using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Observers
 {
     public class EntityLocationObserver : BaseObserver<IEntityLocation>
     {
-        private readonly IGame _game;
+        private readonly IEntity _entity;
 
-        public EntityLocationObserver(IGame game)
+        public EntityLocationObserver(IEntity entity)
         {
-            _game = game;
+            _entity = entity;
         }
 
         public override void OnNext(IEntityLocation entityLocation)
         {
-            _game.Player.Location.Room.Check(_game.Player);
-            _game.Update();
+            _entity.Location.Room.Check(_entity);
         }
     }
 }

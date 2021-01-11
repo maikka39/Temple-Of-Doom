@@ -13,7 +13,7 @@ namespace CODE_GameLib
             Player = player;
 
             Player.Subscribe(new PlayerObserver(this));
-            Player.Location.Subscribe(new EntityLocationObserver(this));
+            Player.Location.Subscribe(new EntityLocationObserver(Player));
         }
 
         public event EventHandler<Game> Updated;
@@ -29,11 +29,14 @@ namespace CODE_GameLib
 
             if (tickData.MovePlayer != null)
                 if (Player.Move((Direction) tickData.MovePlayer))
+                {
+                    Update();
                     if (Player.Location.Room.Update())
                     {
                         Player.Location.Room.Check(Player);
                         Update();
                     }
+                }
 
             if (tickData.Shoot)
             {

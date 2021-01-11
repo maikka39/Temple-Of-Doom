@@ -11,7 +11,7 @@ namespace CODE_GameLib
 {
     public class Room : IRoom
     {
-        private readonly Dictionary<IEnemy, IDisposable> _enemySubscriptions = new Dictionary<IEnemy, IDisposable>();
+        private readonly Dictionary<IEnemy, List<IDisposable>> _enemySubscriptions = new Dictionary<IEnemy, List<IDisposable>>();
 
         public Room(int width, int height, List<IItem> items, List<ITile> tiles, List<IEnemy> enemies,
             IEnumerable<IConnection> connections)
@@ -24,7 +24,18 @@ namespace CODE_GameLib
             Connections = connections;
 
             foreach (var enemy in Enemies)
-                _enemySubscriptions.Add(enemy, enemy.Subscribe(new EntityDiedObserver(this)));
+            {
+                enemy.Location.Update(this, enemy.Location.X, enemy.Location.Y);
+                
+                var list = new List<IDisposable>
+                {
+                    enemy.Subscribe(new EntityDiedObserver(this)),
+                    enemy.Location.Subscribe(new EntityLocationObserver(enemy))
+                };
+
+                _enemySubscriptions.Add(enemy, list);
+                
+            }
         }
 
         public int Width { get; }
@@ -56,11 +67,15 @@ namespace CODE_GameLib
             return true;
         }
 
-        public void Check(IPlayer player)
+        public void Check(IEntity entity)
         {
-            TryEnterTile(player);
-            TryEnterItem(player);
-            TryEnterEnemy(player);
+            TryEnterTile(entity);
+
+            if (entity is IPlayer player)
+            {
+                TryEnterItem(player);
+                TryEnterEnemy(player);
+            }
         }
 
         public IEnumerable<IEnemy> GetEnemiesWithinReach(IEntityLocation location)
@@ -75,7 +90,7 @@ namespace CODE_GameLib
 
         public void RemoveEnemy(IEnemy enemy)
         {
-            _enemySubscriptions[enemy].Dispose();
+            _enemySubscriptions[enemy].ForEach(a => a.Dispose());
             _enemySubscriptions.Remove(enemy);
             Enemies.Remove(enemy);
         }
@@ -101,10 +116,10 @@ namespace CODE_GameLib
             roomItem?.OnEnter(player);
         }
 
-        private void TryEnterTile(IPlayer player)
+        private void TryEnterTile(IEntity entity)
         {
-            var roomTile = GetTile(player.Location.X, player.Location.Y);
-            roomTile?.OnEnter(player, player.Location.LastDirection);
+            var roomTile = GetTile(entity.Location.X, entity.Location.Y);
+            roomTile?.OnEnter(entity, entity.Location.LastDirection);
         }
 
         private void TryEnterEnemy(IPlayer player)

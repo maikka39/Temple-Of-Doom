@@ -11,7 +11,7 @@ namespace CODE_GameLib.Tiles
         {
         }
 
-        public virtual void OnEnter(IPlayer player, Direction? direction)
+        public virtual void OnEnter(IEntity entity, Direction? direction)
         {
             throw new NotImplementedException();
         }
