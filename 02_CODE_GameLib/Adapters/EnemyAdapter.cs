@@ -19,10 +19,10 @@ namespace CODE_GameLib.Adapters
             _adaptee.Subscribe(new EnemyObserver(this));
         }
 
-        public new IEntityLocation Location => _enemyLocationAdapter;
+        public override IEntityLocation Location => _enemyLocationAdapter;
 
-        public new int Lives => _adaptee.NumberOfLives;
-        public new void ReceiveDamage(int damage) => _adaptee.GetHurt(damage);
+        public override int Lives => _adaptee.NumberOfLives;
+        public override void ReceiveDamage(int damage) => _adaptee.GetHurt(damage);
         public void Update() => _adaptee.Move();
         public void OnEnter(IPlayer player)
         {
@@ -38,7 +38,7 @@ namespace CODE_GameLib.Adapters
                 _enemyAdapter = enemyAdapter;
             }
 
-            public new void OnNext(Enemy value)
+            public new void OnNext(Enemy enemy)
             {
                 _enemyAdapter.NotifyObservers(_enemyAdapter);
                 _enemyAdapter._enemyLocationAdapter.Update();

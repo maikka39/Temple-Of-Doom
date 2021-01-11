@@ -5,7 +5,7 @@ namespace CODE_GameLib.Observers
 {
     public abstract class BaseObservable<T>
     {
-        protected readonly List<IObserver<T>> _observers = new List<IObserver<T>>();
+        private readonly List<IObserver<T>> _observers = new List<IObserver<T>>();
 
         public IDisposable Subscribe(IObserver<T> observer)
         {
@@ -15,7 +15,8 @@ namespace CODE_GameLib.Observers
 
         protected void NotifyObservers(T subject)
         {
-            foreach (var observer in _observers)
+            // Loop over a copy of the list as the original one might change
+            foreach (var observer in new List<IObserver<T>>(_observers))
                 observer.OnNext(subject);
         }
     }

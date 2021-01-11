@@ -22,10 +22,8 @@ namespace CODE_GameLib
         {
             Player = player;
             
-            // ReSharper disable once ObjectCreationAsStatement
-            new EntityLocationObserver(this, player.Location);
-            // ReSharper disable once ObjectCreationAsStatement
-            new EntityObserver(this, player);
+            Player.Subscribe(new PlayerObserver(this));
+            Player.Location.Subscribe(new EntityLocationObserver(this));
         }
 
         public void Tick(TickData tickData)

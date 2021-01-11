@@ -7,10 +7,9 @@ namespace CODE_GameLib.Observers
     {
         private readonly IGame _game;
 
-        public EntityLocationObserver(IGame game, IEntityLocation entityLocation)
+        public EntityLocationObserver(IGame game)
         {
             _game = game;
-            entityLocation.Subscribe(this);
         }
 
         public new void OnNext(IEntityLocation entityLocation)

@@ -28,7 +28,7 @@ namespace CODE_GameLib.Entity
             Location = location;
         }
 
-        public new void ReceiveDamage(int damage)
+        public override void ReceiveDamage(int damage)
         {
             if (IsCheatEnabled(Cheat.Invincible))
                 return;

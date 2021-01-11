@@ -67,7 +67,7 @@ namespace CODE_PersistenceLib.Factories
 
             if (!roomJObject.ContainsKey("enemies")) return enemies;
 
-            enemies.AddRange(roomJObject["enemies"]!.Select(EnemyFactory.CreateEnemy));
+            enemies.AddRange(roomJObject["enemies"]!.Select(enemy => EnemyFactory.CreateEnemy(enemy)));
 
             return enemies;
         }

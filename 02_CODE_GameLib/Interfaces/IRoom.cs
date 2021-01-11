@@ -22,5 +22,6 @@ namespace CODE_GameLib.Interfaces
         public bool Update();
         public void Check(IPlayer player);
         public IEnumerable<IEnemy> GetEnemiesWithinReach(IEntityLocation location);
+        public void RemoveEnemy(IEnemy enemy);
     }
 }

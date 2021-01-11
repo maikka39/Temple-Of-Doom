@@ -1,15 +1,18 @@
+using System;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Tiles;
-using CODE_TempleOfDoom_DownloadableContent;
+using CODE_GameLib.Observers;
 
 namespace CODE_GameLib
 {
     public class Room : IRoom
     {
+        private readonly Dictionary<IEnemy, IDisposable> _enemySubscriptions = new Dictionary<IEnemy, IDisposable>();
+        
         public int Width { get; }
         public int Height { get; }
         public List<IItem> Items { get; }
@@ -25,6 +28,9 @@ namespace CODE_GameLib
             Tiles = tiles;
             Enemies = enemies;
             Connections = connections;
+            
+            foreach (var enemy in Enemies)
+                _enemySubscriptions.Add(enemy, enemy.Subscribe(new EntityDiedObserver(this)));
         }
 
         public bool IsWithinBoundaries(int x, int y) => x >= 1 && x <= Width - 2 && y >= 1 && y <= Height - 2;
@@ -61,6 +67,13 @@ namespace CODE_GameLib
                 (enemy.Location.X == location.X && enemy.Location.Y == location.Y + 1) ||
                 (enemy.Location.X == location.X && enemy.Location.Y == location.Y - 1)
                 );
+        }
+
+        public void RemoveEnemy(IEnemy enemy)
+        {
+            _enemySubscriptions[enemy].Dispose();
+            _enemySubscriptions.Remove(enemy);
+            Enemies.Remove(enemy);
         }
 
         private void TryEnterItem(IPlayer player)

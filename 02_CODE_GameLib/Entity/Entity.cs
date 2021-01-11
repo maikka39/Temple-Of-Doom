@@ -9,11 +9,11 @@ namespace CODE_GameLib.Entity
 {
     public abstract class Entity : BaseObservable<IEntity>, IEntity
     {
-        public IEntityLocation Location { get; protected set; }
-        public int Lives { get; protected set; }
-        public bool Died => Lives < 1;
+        public virtual IEntityLocation Location { get; protected set; }
+        public virtual int Lives { get; protected set; }
+        public virtual bool Died => Lives < 1;
         
-        public bool Move(Direction direction)
+        public virtual bool Move(Direction direction)
         {
             var (targetX, targetY) = DirectionToXy(direction);
 
@@ -28,7 +28,7 @@ namespace CODE_GameLib.Entity
 
         }
 
-        public void ReceiveDamage(int damage)
+        public virtual void ReceiveDamage(int damage)
         {
             if (damage <= 0)
                 return;
