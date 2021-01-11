@@ -56,9 +56,9 @@ namespace CODE_GameLib.Entity
         public void Shoot()
         {
             var enemies = Location.Room.GetEnemiesWithinReach(Location);
-
-            foreach (var enemy in enemies)
-                enemy.ReceiveDamage(1);
+            
+            // Enemies is converted to a list as the original collection might change when enemies die
+            enemies.ToList().ForEach(enemy => enemy.ReceiveDamage(1));
         }
     }
 }
