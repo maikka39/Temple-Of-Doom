@@ -36,7 +36,10 @@ namespace CODE_GameLib
                     }
 
             if (tickData.Shoot)
+            {
                 Player.Shoot();
+                Update();
+            }
 
             if (tickData.ToggleCheats != null)
             {
