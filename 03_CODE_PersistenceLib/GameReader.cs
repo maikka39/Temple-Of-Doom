@@ -1,11 +1,11 @@
-using CODE_GameLib.Interfaces;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Entity;
 using CODE_PersistenceLib.Factories;
+using Newtonsoft.Json.Linq;
 
 namespace CODE_PersistenceLib
 {
@@ -54,13 +54,14 @@ namespace CODE_PersistenceLib
 
             foreach (var jConnection in json["connections"].Children<JObject>())
             {
-                ConnectionFactory.CreateConnection(jConnection, rooms, out var conn1, out var conn2, out var roomId1, out var roomId2);
+                ConnectionFactory.CreateConnection(jConnection, rooms, out var conn1, out var conn2, out var roomId1,
+                    out var roomId2);
 
                 connections[roomId1].Add(conn1);
                 connections[roomId2].Add(conn2);
             }
         }
-        
+
         public class JsonException : Exception
         {
             public JsonException(string message, Exception inner)

@@ -1,5 +1,4 @@
-﻿using System;
-using CODE_GameLib.Interfaces;
+﻿using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Observers
@@ -12,14 +11,13 @@ namespace CODE_GameLib.Observers
         {
             _room = room;
         }
-        
+
         public override void OnNext(IEntity entity)
         {
             if (!entity.Died) return;
 
             if (entity is IEnemy enemy)
                 _room.RemoveEnemy(enemy);
-            
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using CODE_Frontend.Modules;
-using CODE_GameLib.Interfaces;
-using System;
+﻿using System;
 using System.Text;
+using CODE_Frontend.Modules;
 using CODE_Frontend.ViewModel;
+using CODE_GameLib.Interfaces;
 
 namespace CODE_Frontend
 {
@@ -26,11 +26,11 @@ namespace CODE_Frontend
             {
                 Print(consoleText);
             }
-            
+
             Console.WriteLine(ConsoleClearLineTillEnd());
 
             var grid = new RoomViewModel(game.Player.Location.Room, game.Player).GetGrid();
-           
+
             var spacing = new ConsoleText(" ");
 
             for (var row = grid.GetLength(1) - 1; row >= 0; row--)
@@ -48,9 +48,9 @@ namespace CODE_Frontend
 
             for (var row = originalCursorTop; row < Console.WindowHeight; row++)
                 Console.WriteLine(ConsoleClearLineTillEnd());
-            
+
             Console.SetCursorPosition(0, originalCursorTop);
-            
+
             if (game.Player.Died)
                 Console.WriteLine("Oh no Indiana, you have lost!");
             else if (game.Player.Won)
@@ -69,7 +69,7 @@ namespace CODE_Frontend
 
         public static string ConsoleClearLineTillEnd()
         {
-            return new string(' ', Console.WindowWidth-Console.CursorLeft);
+            return new string(' ', Console.WindowWidth - Console.CursorLeft);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace CODE_PersistenceLib.Factories
             out IConnection conn1, out IConnection conn2, out int roomId1, out int roomId2)
         {
             var actualConnections = GetConnections(jConnection);
-            
+
             var connectionDoor = GetConnectionDoor(jConnection);
 
             conn1 = CreateConnection(actualConnections[0], jConnection, rooms, connectionDoor, out roomId1);

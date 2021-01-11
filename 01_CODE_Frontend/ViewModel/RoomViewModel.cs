@@ -7,9 +7,9 @@ namespace CODE_Frontend.ViewModel
 {
     public class RoomViewModel
     {
-        private readonly IRoom _room;
-        private readonly IPlayer _player;
         private readonly ConsoleText[,] _grid;
+        private readonly IPlayer _player;
+        private readonly IRoom _room;
 
         public RoomViewModel(IRoom room, IPlayer player)
         {
@@ -40,7 +40,7 @@ namespace CODE_Frontend.ViewModel
             foreach (var enemy in _room.Enemies.Select(enemy => new EntityViewModel(enemy)))
                 _grid[enemy.X, enemy.Y] = enemy.View;
         }
-        
+
         private void AddRoomObjectsToGrid()
         {
             var roomObjects = _room.Items.Union<IRoomObject>(_room.Tiles);
@@ -72,6 +72,5 @@ namespace CODE_Frontend.ViewModel
                     _grid[col, row] = consoleText;
             }
         }
-
     }
 }

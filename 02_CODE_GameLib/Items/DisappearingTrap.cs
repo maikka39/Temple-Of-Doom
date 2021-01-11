@@ -1,4 +1,3 @@
-using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Items.BoobyTraps;
 
@@ -9,7 +8,7 @@ namespace CODE_GameLib.Items
         public DisappearingTrap(int x, int y, int damage) : base(x, y, damage)
         {
         }
-        
+
         public override void OnEnter(IPlayer player)
         {
             base.OnEnter(player);

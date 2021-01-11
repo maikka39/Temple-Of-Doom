@@ -1,8 +1,8 @@
-﻿using CODE_GameLib.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_Frontend.ViewModel;
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Items.Wearable;
 
@@ -27,10 +27,10 @@ namespace CODE_Frontend.Modules
         public IEnumerable<ConsoleText> Render(IGame game)
         {
             _player = game.Player;
-            
+
             yield return new ConsoleText(Title);
             yield return new ConsoleText(GameView.ConsoleClearLineTillEnd() + Environment.NewLine);
-            
+
             yield return new ConsoleText(Lives);
             yield return new ConsoleText(" - ");
             yield return new ConsoleText(SankaraStones, ConsoleColor.DarkYellow);
@@ -43,10 +43,10 @@ namespace CODE_Frontend.Modules
                 yield return item;
                 yield return new ConsoleText(" ");
             }
-            
+
             foreach (var item in GetCheats())
                 yield return item;
-            
+
             yield return new ConsoleText(GameView.ConsoleClearLineTillEnd() + Environment.NewLine);
             yield return new ConsoleText(GenericModule.HorizontalLine(Console.WindowWidth), ConsoleColor.Gray);
         }
@@ -63,7 +63,7 @@ namespace CODE_Frontend.Modules
         {
             if (!_player.EnabledCheats.Any())
                 yield break;
-            
+
             yield return new ConsoleText(GameView.ConsoleClearLineTillEnd() + Environment.NewLine);
             yield return new ConsoleText("Cheats:", ConsoleColor.Red);
 

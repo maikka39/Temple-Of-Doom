@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Tiles;
 using CODE_GameLib.Items;
@@ -29,28 +28,28 @@ namespace CODE_PersistenceLib.Factories
         public static ITile CreateTile(JToken tileJToken)
         {
             var (x, y) = GetLocation(tileJToken);
-            
+
             return tileJToken["type"].Value<string>() switch
             {
                 "ice" => new IceTile(x, y),
                 _ => throw new InvalidRoomObjectException.InvalidTileException("Invalid item type")
             };
         }
-        
+
         private static (int x, int y) GetLocation(JToken itemJToken)
         {
             var x = itemJToken["x"].Value<int>();
             var y = itemJToken["y"].Value<int>();
             return (x, y);
         }
-        
+
         public abstract class InvalidRoomObjectException : GameReader.JsonException
         {
             protected InvalidRoomObjectException(string message)
                 : base(message)
             {
             }
-            
+
             public class InvalidItemException : GameReader.JsonException
             {
                 public InvalidItemException(string message)
@@ -58,6 +57,7 @@ namespace CODE_PersistenceLib.Factories
                 {
                 }
             }
+
             public class InvalidTileException : GameReader.JsonException
             {
                 public InvalidTileException(string message)

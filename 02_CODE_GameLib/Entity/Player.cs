@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Enums;
@@ -11,14 +10,8 @@ namespace CODE_GameLib.Entity
 {
     public class Player : Entity, IPlayer
     {
-        private readonly List<Wearable> _inventory;
         private readonly List<Cheat> _enabledCheats = new List<Cheat>();
-        
-        public bool Won => Inventory.Count(wearable => wearable is ISankaraStone) >= 5;
-
-        public IEnumerable<Wearable> Inventory => _inventory;
-        
-        public IEnumerable<Cheat> EnabledCheats => _enabledCheats;
+        private readonly List<Wearable> _inventory;
 
         public Player(int lives, List<Wearable> inventory,
             IEntityLocation location) : base(lives, location)
@@ -26,11 +19,17 @@ namespace CODE_GameLib.Entity
             _inventory = inventory;
         }
 
+        public bool Won => Inventory.Count(wearable => wearable is ISankaraStone) >= 5;
+
+        public IEnumerable<Wearable> Inventory => _inventory;
+
+        public IEnumerable<Cheat> EnabledCheats => _enabledCheats;
+
         public override void ReceiveDamage(int damage)
         {
             if (IsCheatEnabled(Cheat.Invincible))
                 return;
-            
+
             base.ReceiveDamage(damage);
         }
 
@@ -56,7 +55,7 @@ namespace CODE_GameLib.Entity
         public void Shoot()
         {
             var enemies = Location.Room.GetEnemiesWithinReach(Location);
-            
+
             // Enemies is converted to a list as the original collection might change when enemies die
             enemies.ToList().ForEach(enemy => enemy.ReceiveDamage(1));
         }

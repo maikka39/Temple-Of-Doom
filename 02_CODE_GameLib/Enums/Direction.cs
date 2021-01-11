@@ -9,11 +9,22 @@ namespace CODE_GameLib.Enums
         Upper = 4,
         Lower = 5
     }
-    
+
     public static class DirectionExtensions
     {
-        public static bool IsVertical(this Direction direction) => direction == Direction.North || direction == Direction.South;
-        public static bool IsHorizontal(this Direction direction) => direction == Direction.East || direction == Direction.West;
-        public static bool IsLadder(this Direction direction) => direction == Direction.Upper || direction == Direction.Lower;
+        public static bool IsVertical(this Direction direction)
+        {
+            return direction == Direction.North || direction == Direction.South;
+        }
+
+        public static bool IsHorizontal(this Direction direction)
+        {
+            return direction == Direction.East || direction == Direction.West;
+        }
+
+        public static bool IsLadder(this Direction direction)
+        {
+            return direction == Direction.Upper || direction == Direction.Lower;
+        }
     }
 }

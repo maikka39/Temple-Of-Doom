@@ -30,15 +30,15 @@ namespace CODE_Frontend
                 case ConsoleKey.RightArrow:
                     tickData.MovePlayer = Direction.East;
                     break;
-                
+
                 case ConsoleKey.L:
                     toggleCheats.Add(Cheat.Invincible);
                     break;
-                
+
                 case ConsoleKey.D:
                     toggleCheats.Add(Cheat.IgnoreDoors);
                     break;
-                
+
                 case ConsoleKey.Spacebar:
                     tickData.Shoot = true;
                     break;

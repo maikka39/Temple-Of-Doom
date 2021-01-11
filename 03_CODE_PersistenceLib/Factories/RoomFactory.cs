@@ -49,7 +49,7 @@ namespace CODE_PersistenceLib.Factories
 
             return items;
         }
-        
+
         private static List<ITile> GetTilesForRoom(JObject roomJObject)
         {
             var tiles = new List<ITile>();
@@ -60,7 +60,7 @@ namespace CODE_PersistenceLib.Factories
 
             return tiles;
         }
-        
+
         private static List<IEnemy> GetEnemiesFromRoom(JObject roomJObject)
         {
             var enemies = new List<IEnemy>();

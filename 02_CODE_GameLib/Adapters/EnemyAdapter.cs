@@ -1,5 +1,4 @@
-﻿using System;
-using CODE_GameLib.Interfaces;
+﻿using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Observers;
 using CODE_TempleOfDoom_DownloadableContent;
@@ -22,8 +21,17 @@ namespace CODE_GameLib.Adapters
         public override IEntityLocation Location => _enemyLocationAdapter;
 
         public override int Lives => _adaptee.NumberOfLives;
-        public override void ReceiveDamage(int damage) => _adaptee.GetHurt(damage);
-        public void Update() => _adaptee.Move();
+
+        public override void ReceiveDamage(int damage)
+        {
+            _adaptee.GetHurt(damage);
+        }
+
+        public void Update()
+        {
+            _adaptee.Move();
+        }
+
         public void OnEnter(IPlayer player)
         {
             player.ReceiveDamage(1);

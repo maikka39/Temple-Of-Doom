@@ -9,6 +9,11 @@ namespace CODE_GameLib.Adapters
     {
         private readonly Enemy _adaptee;
 
+        public EnemyLocationAdapter(Enemy enemy)
+        {
+            _adaptee = enemy;
+        }
+
         public IRoom Room { get; private set; }
 
         public int X
@@ -22,24 +27,19 @@ namespace CODE_GameLib.Adapters
             get => _adaptee.CurrentYLocation;
             private set => _adaptee.CurrentYLocation = value;
         }
-        
+
         public Direction? LastDirection { get; private set; }
-        
-        public EnemyLocationAdapter(Enemy enemy)
-        {
-            _adaptee = enemy;
-        }
-        
+
         public bool Update(IRoom room, int x, int y, Direction? direction = null)
         {
             if (!room.IsWithinBoundaries(x, y))
                 return false;
-            
+
             Room = room;
             X = x;
             Y = y;
             LastDirection = direction;
-            
+
             NotifyObservers(this);
             return true;
         }

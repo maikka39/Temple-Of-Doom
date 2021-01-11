@@ -11,24 +11,24 @@ namespace CODE_Frontend.ViewModel
     {
         private readonly IRoomObject _item;
 
-        public int X => _item.X;
-        public int Y => _item.Y;
-        public ConsoleText View => GetItemConsoleText(_item);
-
         public RoomObjectViewModel(IRoomObject item)
         {
             _item = item;
         }
+
+        public int X => _item.X;
+        public int Y => _item.Y;
+        public ConsoleText View => GetItemConsoleText(_item);
 
         private static ConsoleText GetItemConsoleText(IRoomObject roomObject)
         {
             return roomObject switch
             {
                 ISankaraStone _ => new ConsoleText("S", ConsoleColor.DarkYellow),
-                IDisappearingTrap _ => new ConsoleText("@", ConsoleColor.White),
-                IBoobyTrap _ => new ConsoleText("Ο", ConsoleColor.White),
+                IDisappearingTrap _ => new ConsoleText("@"),
+                IBoobyTrap _ => new ConsoleText("Ο"),
                 IKey key => new ConsoleText("K", Util.ColorToConsoleColor(key.Color)),
-                IPressurePlate _ => new ConsoleText("T", ConsoleColor.White),
+                IPressurePlate _ => new ConsoleText("T"),
                 IIceTile _ => new ConsoleText("~", ConsoleColor.Blue),
                 _ => new ConsoleText("?")
             };

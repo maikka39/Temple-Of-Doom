@@ -7,7 +7,7 @@ namespace CODE_Frontend
     {
         public static ConsoleColor ColorToConsoleColor(Color color)
         {
-            return (ConsoleColor)Enum.Parse(typeof(ConsoleColor), color.Name, true);
+            return (ConsoleColor) Enum.Parse(typeof(ConsoleColor), color.Name, true);
         }
     }
 }

@@ -13,7 +13,6 @@ namespace CODE_GameLib.Observers
             _game = game;
         }
 
-        public override void OnNext(IPlayer player) => OnNextPlayer(player);
         public void OnNext(IEntity entity)
         {
             if (!(entity is IPlayer player))
@@ -21,6 +20,8 @@ namespace CODE_GameLib.Observers
 
             OnNextPlayer(player);
         }
+
+        public override void OnNext(IPlayer player) => OnNextPlayer(player);
 
         private void OnNextPlayer(IPlayer player)
         {

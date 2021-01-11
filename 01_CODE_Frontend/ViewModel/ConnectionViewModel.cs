@@ -8,15 +8,15 @@ namespace CODE_Frontend.ViewModel
     {
         private readonly IConnection _connection;
 
-        public int X => _connection.X;
-        public int Y => _connection.Y;
-        public ConsoleText View => GetConnectionConsoleText(_connection);
-        
         public ConnectionViewModel(IConnection connection)
         {
             _connection = connection;
         }
-        
+
+        public int X => _connection.X;
+        public int Y => _connection.Y;
+        public ConsoleText View => GetConnectionConsoleText(_connection);
+
         private static ConsoleText GetConnectionConsoleText(IConnection connection)
         {
             switch (connection.Door)
@@ -28,7 +28,7 @@ namespace CODE_Frontend.ViewModel
                 case IColoredDoor coloredDoor:
                 {
                     var consoleText = new ConsoleText("|", Util.ColorToConsoleColor(coloredDoor.Color));
-                    
+
                     if (connection.Direction == Direction.North || connection.Direction == Direction.South)
                         consoleText.Text = "−";
 

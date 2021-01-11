@@ -2,7 +2,7 @@
 
 namespace CODE_GameLib.Doors
 {
-    public class Ladder: Door, ILadder
+    public class Ladder : Door, ILadder
     {
         public Ladder() : base(true)
         {

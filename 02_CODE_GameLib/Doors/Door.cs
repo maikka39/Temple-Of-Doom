@@ -1,5 +1,4 @@
 ﻿using CODE_GameLib.Enums;
-using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
 using CODE_GameLib.Interfaces.Entity;
 
@@ -9,12 +8,6 @@ namespace CODE_GameLib.Doors
     {
         private bool _opened;
 
-        public virtual bool Opened
-        {
-            get => _opened;
-            set => _opened = value;
-        }
-
         protected Door()
         {
         }
@@ -22,6 +15,12 @@ namespace CODE_GameLib.Doors
         protected Door(bool opened)
         {
             _opened = opened;
+        }
+
+        public virtual bool Opened
+        {
+            get => _opened;
+            set => _opened = value;
         }
 
         public virtual bool CanEnter(IEntity entity)

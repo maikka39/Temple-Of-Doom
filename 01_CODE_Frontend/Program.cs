@@ -1,5 +1,5 @@
-﻿using CODE_PersistenceLib;
-using System;
+﻿using System;
+using CODE_PersistenceLib;
 
 namespace CODE_Frontend
 {
@@ -10,7 +10,7 @@ namespace CODE_Frontend
             while (true)
             {
                 Console.Clear();
-                
+
                 var game = GameReader.Read(@"./Levels/TempleOfDoom_Extended_A.json");
 
                 var gameView = new GameView();
@@ -29,7 +29,7 @@ namespace CODE_Frontend
                 var closeKey = Console.ReadKey().Key;
                 if (closeKey == ConsoleKey.Escape) break;
             }
-            
+
             Console.WriteLine("QQuitting game, goodbye!");
             Console.Clear();
         }

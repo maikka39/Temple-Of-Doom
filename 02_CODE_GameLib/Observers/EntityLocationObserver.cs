@@ -1,4 +1,3 @@
-using System;
 using CODE_GameLib.Interfaces;
 
 namespace CODE_GameLib.Observers
