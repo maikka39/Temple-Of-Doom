@@ -8,5 +8,10 @@ namespace CODE_Frontend.Modules
         {
             return new string('-', width) + Environment.NewLine;
         }
+        
+        public static string ConsoleClearLineTillEnd()
+        {
+            return new string(' ', Console.WindowWidth - Console.CursorLeft);
+        }
     }
 }

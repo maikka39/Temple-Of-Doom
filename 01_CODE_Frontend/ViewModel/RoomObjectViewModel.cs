@@ -27,7 +27,7 @@ namespace CODE_Frontend.ViewModel
                 ISankaraStone _ => new ConsoleText("S", ConsoleColor.DarkYellow),
                 IDisappearingTrap _ => new ConsoleText("@"),
                 IBoobyTrap _ => new ConsoleText("Ο"),
-                IKey key => new ConsoleText("K", Util.ColorToConsoleColor(key.Color)),
+                IKey key => new ConsoleText("K", Utils.Color.ColorToConsoleColor(key.Color)),
                 IPressurePlate _ => new ConsoleText("T"),
                 IIceTile _ => new ConsoleText("~", ConsoleColor.Blue),
                 _ => new ConsoleText("?")

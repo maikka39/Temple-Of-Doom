@@ -29,14 +29,14 @@ namespace CODE_Frontend.Modules
             _player = game.Player;
 
             yield return new ConsoleText(Title);
-            yield return new ConsoleText(GameView.ConsoleClearLineTillEnd() + Environment.NewLine);
+            yield return new ConsoleText(GenericModule.ConsoleClearLineTillEnd() + Environment.NewLine);
 
             yield return new ConsoleText(Lives);
             yield return new ConsoleText(" - ");
             yield return new ConsoleText(SankaraStones, ConsoleColor.DarkYellow);
             yield return new ConsoleText(" - ");
             yield return new ConsoleText(PlayTime);
-            yield return new ConsoleText(GameView.ConsoleClearLineTillEnd() + Environment.NewLine);
+            yield return new ConsoleText(GenericModule.ConsoleClearLineTillEnd() + Environment.NewLine);
 
             foreach (var item in GetInventory())
             {
@@ -47,7 +47,7 @@ namespace CODE_Frontend.Modules
             foreach (var item in GetCheats())
                 yield return item;
 
-            yield return new ConsoleText(GameView.ConsoleClearLineTillEnd() + Environment.NewLine);
+            yield return new ConsoleText(GenericModule.ConsoleClearLineTillEnd() + Environment.NewLine);
             yield return new ConsoleText(GenericModule.HorizontalLine(Console.WindowWidth), ConsoleColor.Gray);
         }
 
@@ -64,7 +64,7 @@ namespace CODE_Frontend.Modules
             if (!_player.EnabledCheats.Any())
                 yield break;
 
-            yield return new ConsoleText(GameView.ConsoleClearLineTillEnd() + Environment.NewLine);
+            yield return new ConsoleText(GenericModule.ConsoleClearLineTillEnd() + Environment.NewLine);
             yield return new ConsoleText("Cheats:", ConsoleColor.Red);
 
             foreach (var cheat in _player.EnabledCheats.OrderBy(cheat => cheat.ToString()))

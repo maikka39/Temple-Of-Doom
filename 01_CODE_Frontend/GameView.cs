@@ -27,7 +27,7 @@ namespace CODE_Frontend
                 Print(consoleText);
             }
 
-            Console.WriteLine(ConsoleClearLineTillEnd());
+            Console.WriteLine(GenericModule.ConsoleClearLineTillEnd());
 
             var grid = new RoomViewModel(game.Player.Location.Room, game.Player).GetGrid();
 
@@ -41,13 +41,13 @@ namespace CODE_Frontend
                     Print(spacing);
                 }
 
-                Console.WriteLine(ConsoleClearLineTillEnd());
+                Console.WriteLine(GenericModule.ConsoleClearLineTillEnd());
             }
 
             var originalCursorTop = Console.CursorTop + 1;
 
             for (var row = originalCursorTop; row < Console.WindowHeight; row++)
-                Console.WriteLine(ConsoleClearLineTillEnd());
+                Console.WriteLine(GenericModule.ConsoleClearLineTillEnd());
 
             Console.SetCursorPosition(0, originalCursorTop);
 
@@ -65,11 +65,6 @@ namespace CODE_Frontend
             Console.ForegroundColor = consoleText.ForegroundColor;
             Console.BackgroundColor = consoleText.BackgroundColor;
             Console.Write(consoleText.Text);
-        }
-
-        public static string ConsoleClearLineTillEnd()
-        {
-            return new string(' ', Console.WindowWidth - Console.CursorLeft);
         }
     }
 }
