@@ -39,14 +39,14 @@ namespace CODE_GameLib
         /// <param name="x">The new x coordinate</param>
         /// <param name="y">The new y coordinate</param>
         /// <param name="direction">The direction in which the entity went</param>
-        public void Update(IRoom room, int x, int y, Direction? direction = null)
+        public void Update(IRoom room, ILocation location, Direction? direction = null)
         {
-            if (!room.IsWithinBoundaries(x, y))
+            if (!room.IsWithinBoundaries(location))
                 return;
 
             Room = room;
-            X = x;
-            Y = y;
+            X = location.X;
+            Y = location.Y;
             LastDirection = direction;
 
             NotifyObservers(this);

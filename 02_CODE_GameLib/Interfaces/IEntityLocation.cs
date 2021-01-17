@@ -35,6 +35,6 @@ namespace CODE_GameLib.Interfaces
         /// <param name="x">The new x coordinate</param>
         /// <param name="y">The new y coordinate</param>
         /// <param name="direction">The direction in which the entity goes</param>
-        public void Update(IRoom room, int x, int y, Direction? direction = null);
+        public void Update(IRoom room, ILocation location, Direction? direction = null);
     }
 }

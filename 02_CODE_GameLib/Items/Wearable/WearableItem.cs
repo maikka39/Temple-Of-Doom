@@ -1,4 +1,5 @@
-﻿using CODE_GameLib.Interfaces.Entity;
+﻿using CODE_GameLib.Interfaces;
+using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib.Items.Wearable
@@ -8,7 +9,7 @@ namespace CODE_GameLib.Items.Wearable
     /// </summary>
     public abstract class WearableItem : Item, IWearable
     {
-        protected WearableItem(int x, int y) : base(x, y)
+        protected WearableItem(ILocation location) : base(location)
         {
         }
         

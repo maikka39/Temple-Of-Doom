@@ -41,7 +41,7 @@ namespace CODE_GameLib
             foreach (var enemy in Enemies)
             {
                 // Tell the enemy in what room it is
-                enemy.Location.Update(this, enemy.Location.X, enemy.Location.Y);
+                enemy.Location.Update(this, new Location(enemy.Location.X, enemy.Location.Y));
                 
                 // Create observers which remove the item from the room if it is killed
                 var list = new List<IDisposable>
@@ -75,9 +75,9 @@ namespace CODE_GameLib
         public IEnumerable<IConnection> Connections { get; }
         
         ///<inheritdoc/>
-        public bool IsWithinBoundaries(int x, int y)
+        public bool IsWithinBoundaries(ILocation location)
         {
-            return x >= 1 && x <= Width - 2 && y >= 1 && y <= Height - 2;
+            return location.X >= 1 && location.X <= Width - 2 && location.Y >= 1 && location.Y <= Height - 2;
         }
 
         ///<inheritdoc/>

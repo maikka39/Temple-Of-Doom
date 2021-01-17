@@ -1,3 +1,4 @@
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib.Items.Wearable
@@ -8,7 +9,7 @@ namespace CODE_GameLib.Items.Wearable
     public class SankaraStone : WearableItem, ISankaraStone
     {
         ///<inheritdoc/>
-        public SankaraStone(int x, int y) : base(x, y)
+        public SankaraStone(ILocation location) : base(location)
         {
         }
     }

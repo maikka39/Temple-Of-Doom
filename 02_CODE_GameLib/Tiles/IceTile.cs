@@ -1,4 +1,5 @@
 ﻿using CODE_GameLib.Enums;
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Tiles;
 
@@ -9,7 +10,7 @@ namespace CODE_GameLib.Tiles
     /// </summary>
     public class IceTile : Tile, IIceTile
     {
-        public IceTile(int x, int y) : base(x, y)
+        public IceTile(ILocation location) : base(location)
         {
         }
 

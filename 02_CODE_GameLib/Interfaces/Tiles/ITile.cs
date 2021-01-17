@@ -5,7 +5,7 @@ namespace CODE_GameLib.Interfaces.Tiles
     /// <summary>
     /// A tile on which an entity can stand
     /// </summary>
-    public interface ITile : IRoomObject
+    public interface ITile : ILocation
     {
         /// <summary>
         /// Tells the tile an entity is standing on it

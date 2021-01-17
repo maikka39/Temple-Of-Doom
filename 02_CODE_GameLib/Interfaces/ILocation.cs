@@ -3,7 +3,7 @@
     /// <summary>
     /// A general object within a room
     /// </summary>
-    public interface IRoomObject
+    public interface ILocation
     {
         /// <summary>
         /// Specifies the x coordinate

@@ -3,19 +3,25 @@
 namespace CODE_GameLib
 {
     /// <summary>
-    /// Implements a base class for room objects
+    /// Implements a location
     /// </summary>
-    public abstract class RoomObject : IRoomObject
+    public class Location : ILocation
     {
         /// <summary>
-        /// Creates a new instance at the specified location
+        /// Creates a new instance for the specified location
         /// </summary>
         /// <param name="x">The x coordinate of the object</param>
         /// <param name="y">The y coordinate of the object</param>
-        protected RoomObject(int x, int y)
+        public Location(int x, int y)
         {
             X = x;
             Y = y;
+        }
+
+        protected Location(ILocation location)
+        {
+            X = location.X;
+            Y = location.Y;
         }
 
         ///<inheritdoc/>

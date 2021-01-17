@@ -1,3 +1,4 @@
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Items.BoobyTraps;
 
@@ -16,7 +17,7 @@ namespace CODE_GameLib.Items
         /// <param name="x">The x coordinate of the trap</param>
         /// <param name="y">The y coordinate of the trap</param>
         /// <param name="damage">The amount of damage the trap deals</param>
-        public BoobyTrap(int x, int y, int damage) : base(x, y)
+        public BoobyTrap(ILocation location, int damage) : base(location)
         {
             _damage = damage;
         }

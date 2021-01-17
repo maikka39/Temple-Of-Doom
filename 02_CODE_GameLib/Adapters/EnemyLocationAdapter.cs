@@ -66,14 +66,14 @@ namespace CODE_GameLib.Adapters
         }
 
         ///<inheritdoc/>
-        public void Update(IRoom room, int x, int y, Direction? direction = null)
+        public void Update(IRoom room, ILocation location, Direction? direction = null)
         {
-            if (!room.IsWithinBoundaries(x, y))
+            if (!room.IsWithinBoundaries(location))
                 return;
 
             Room = room;
-            X = x;
-            Y = y;
+            X = location.X;
+            Y = location.Y;
 
             NotifyObservers(this);
         }

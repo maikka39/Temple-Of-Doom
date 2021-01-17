@@ -44,7 +44,7 @@ namespace CODE_Frontend
 
         private void AddRoomObjectsToGrid()
         {
-            var roomObjects = _room.Items.Union<IRoomObject>(_room.Tiles);
+            var roomObjects = _room.Items.Union<ILocation>(_room.Tiles);
             foreach (var item in roomObjects.Select(roomObject => new RoomObjectViewModel(roomObject)))
                 _grid[item.X, item.Y] = item.View;
         }

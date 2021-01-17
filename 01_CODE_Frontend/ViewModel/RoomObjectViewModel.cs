@@ -9,13 +9,13 @@ namespace CODE_Frontend.ViewModel
 {
     public class RoomObjectViewModel : IViewModel
     {
-        private readonly IRoomObject _item;
+        private readonly ILocation _item;
 
         /// <summary>
         /// Creates a new instances from an item
         /// </summary>
         /// <param name="item">The item to create the view model for</param>
-        public RoomObjectViewModel(IRoomObject item)
+        public RoomObjectViewModel(ILocation item)
         {
             _item = item;
         }
@@ -32,11 +32,11 @@ namespace CODE_Frontend.ViewModel
         /// <summary>
         /// Gets the appropriate ConsoleText for a room object 
         /// </summary>
-        /// <param name="roomObject">The room object to get the console text for</param>
+        /// <param name="location">The room object to get the console text for</param>
         /// <returns>The console text for a room object</returns>
-        private static ConsoleText GetItemConsoleText(IRoomObject roomObject)
+        private static ConsoleText GetItemConsoleText(ILocation location)
         {
-            return roomObject switch
+            return location switch
             {
                 ISankaraStone _ => new ConsoleText("S", ConsoleColor.DarkYellow),
                 IDisappearingTrap _ => new ConsoleText("@"),

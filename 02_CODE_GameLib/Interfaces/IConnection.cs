@@ -46,6 +46,6 @@ namespace CODE_GameLib.Interfaces
         /// <param name="targetX">The x coordinate to which the entity wishes to move</param>
         /// <param name="targetY">The y coordinate to which the entity wishes to move</param>
         /// <returns>Whether the user entered the connection or not.</returns>
-        bool TryEnter(IEntity entity, int targetX, int targetY);
+        bool TryEnter(IEntity entity, ILocation location);
     }
 }

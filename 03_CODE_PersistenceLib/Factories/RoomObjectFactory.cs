@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using CODE_GameLib;
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Tiles;
 using CODE_GameLib.Items;
@@ -13,35 +15,35 @@ namespace CODE_PersistenceLib.Factories
     {
         public static IItem CreateItem(JToken itemJToken)
         {
-            var (x, y) = GetLocation(itemJToken);
+            var location = GetLocation(itemJToken);
 
             return itemJToken["type"].Value<string>() switch
             {
-                "boobietrap" => new BoobyTrap(x, y, itemJToken["damage"].Value<int>()),
-                "disappearing boobietrap" => new DisappearingItemDecorator(new BoobyTrap(x, y, itemJToken["damage"].Value<int>())),
-                "sankara stone" => new SankaraStone(x, y),
-                "key" => new Key(x, y, Color.FromName(itemJToken["color"].Value<string>())),
-                "pressure plate" => new PressurePlate(x, y),
+                "boobietrap" => new BoobyTrap(location, itemJToken["damage"].Value<int>()),
+                "disappearing boobietrap" => new DisappearingItemDecorator(new BoobyTrap(location, itemJToken["damage"].Value<int>())),
+                "sankara stone" => new SankaraStone(location),
+                "key" => new Key(location, Color.FromName(itemJToken["color"].Value<string>())),
+                "pressure plate" => new PressurePlate(location),
                 _ => throw new InvalidRoomObjectException.InvalidItemException("Invalid item type")
             };
         }
 
         public static ITile CreateTile(JToken tileJToken)
         {
-            var (x, y) = GetLocation(tileJToken);
+            var location = GetLocation(tileJToken);
 
             return tileJToken["type"].Value<string>() switch
             {
-                "ice" => new IceTile(x, y),
+                "ice" => new IceTile(location),
                 _ => throw new InvalidRoomObjectException.InvalidTileException("Invalid item type")
             };
         }
 
-        private static (int x, int y) GetLocation(JToken itemJToken)
+        private static ILocation GetLocation(JToken itemJToken)
         {
             var x = itemJToken["x"].Value<int>();
             var y = itemJToken["y"].Value<int>();
-            return (x, y);
+            return new Location(x, y);
         }
 
         public abstract class InvalidRoomObjectException : GameReader.JsonException

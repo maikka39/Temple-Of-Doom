@@ -1,4 +1,5 @@
 using System.Linq;
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Doors;
 using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Items;
@@ -11,7 +12,7 @@ namespace CODE_GameLib.Items
     public class PressurePlate : Item, IPressurePlate
     {
         ///<inheritdoc/>
-        public PressurePlate(int x, int y) : base(x, y)
+        public PressurePlate(ILocation location) : base(location)
         {
         }
 

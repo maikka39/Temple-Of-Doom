@@ -5,7 +5,7 @@ namespace CODE_GameLib.Interfaces.Items
     /// <summary>
     /// A general item in a room
     /// </summary>
-    public interface IItem : IRoomObject
+    public interface IItem : ILocation
     {
         /// <summary>
         /// Tells the item a player is standing on it

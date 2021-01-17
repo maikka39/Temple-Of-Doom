@@ -48,15 +48,15 @@ namespace CODE_GameLib.Entity
         ///<inheritdoc/>
         public virtual bool Move(Direction direction)
         {
-            var (targetX, targetY) = DirectionToXy(direction);
+            var location = DirectionToLocation(direction);
 
             // Tries to enter every connection in the room
-            if (Location.Room.Connections.Any(connection => connection.TryEnter(this, targetX, targetY)))
+            if (Location.Room.Connections.Any(connection => connection.TryEnter(this, location)))
                 return true;
 
-            if (!Location.Room.IsWithinBoundaries(targetX, targetY)) return false;
+            if (!Location.Room.IsWithinBoundaries(location)) return false;
 
-            Location.Update(Location.Room, targetX, targetY, direction);
+            Location.Update(Location.Room, location, direction);
 
             return true;
         }
@@ -76,7 +76,7 @@ namespace CODE_GameLib.Entity
         /// <param name="direction">The direction to convert</param>
         /// <returns>The x and y of the resulting location</returns>
         /// <exception cref="ArgumentOutOfRangeException">The the specified location is invalid, this exeption is thrown</exception>
-        private (int x, int y) DirectionToXy(Direction direction)
+        private ILocation DirectionToLocation(Direction direction)
         {
             var x = Location.X;
             var y = Location.Y;
@@ -101,7 +101,7 @@ namespace CODE_GameLib.Entity
                         "There are only four possible directions");
             }
 
-            return (x, y);
+            return new Location(x, y);
         }
     }
 }

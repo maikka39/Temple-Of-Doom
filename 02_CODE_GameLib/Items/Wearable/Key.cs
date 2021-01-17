@@ -1,4 +1,5 @@
 using System.Drawing;
+using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib.Items.Wearable
@@ -14,7 +15,7 @@ namespace CODE_GameLib.Items.Wearable
         /// <param name="x">The x coordinate of the item</param>
         /// <param name="y">The x coordinate of the item</param>
         /// <param name="color">The color of the key</param>
-        public Key(int x, int y, Color color) : base(x, y)
+        public Key(ILocation location, Color color) : base(location)
         {
             Color = color;
         }

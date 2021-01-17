@@ -7,12 +7,12 @@ namespace CODE_GameLib
 {
     public class Connection : IConnection
     {
-        public Connection(IRoom room, Direction direction, int x, int y, IDoor door = null)
+        public Connection(IRoom room, Direction direction, ILocation location, IDoor door = null)
         {
             Room = room;
             Direction = direction;
-            X = x;
-            Y = y;
+            X = location.X;
+            Y = location.Y;
             Door = door;
         }
 
@@ -35,9 +35,9 @@ namespace CODE_GameLib
         public int Y { get; }
 
         ///<inheritdoc/>
-        public bool TryEnter(IEntity entity, int targetX, int targetY)
+        public bool TryEnter(IEntity entity, ILocation location)
         {
-            if (targetX != X || targetY != Y) return false;
+            if (location.X != X || location.Y != Y) return false;
 
             if (!Door?.CanEnter(entity) ?? false)
                 return false;
@@ -52,15 +52,15 @@ namespace CODE_GameLib
         /// <param name="entity">The entity to move</param>
         private void Enter(IEntity entity)
         {
-            var (targetX, targetY) = GetTargetLocation();
-            entity.Location.Update(Destination.Room, targetX, targetY, Direction);
+            var location = GetTargetLocation();
+            entity.Location.Update(Destination.Room, location, Direction);
         }
 
         /// <summary>
         /// Gets the target location of
         /// </summary>
         /// <returns>The x and y location</returns>
-        private (int x, int y) GetTargetLocation()
+        private ILocation GetTargetLocation()
         {
             var targetX = Destination.X;
             var targetY = Destination.Y;
@@ -70,7 +70,7 @@ namespace CODE_GameLib
             else if (Direction.IsHorizontal())
                 targetX += Direction == Direction.East ? 1 : -1;
             
-            return (targetX, targetY);
+            return new Location(targetX, targetY);
         }
     }
 }
