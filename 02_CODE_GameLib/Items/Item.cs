@@ -18,7 +18,6 @@ namespace CODE_GameLib.Items
         ///<inheritdoc/>
         public virtual void OnEnter(IPlayer player)
         {
-            throw new NotImplementedException();
         }
     }
 }

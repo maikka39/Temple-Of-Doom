@@ -3,8 +3,8 @@ using System.Linq;
 using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Entity;
+using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Items.Wearable;
-using CODE_GameLib.Items.Wearable;
 
 namespace CODE_GameLib.Entity
 {
@@ -14,7 +14,7 @@ namespace CODE_GameLib.Entity
     public class Player : Entity, IPlayer
     {
         private readonly List<Cheat> _enabledCheats = new List<Cheat>();
-        private readonly List<Wearable> _inventory;
+        private readonly List<IWearable> _inventory;
 
         /// <summary>
         /// Creates a new instance of a player based on the passed parameters
@@ -22,7 +22,7 @@ namespace CODE_GameLib.Entity
         /// <param name="lives">The amount of lives of the player</param>
         /// <param name="inventory">The initialized inventory of the player</param>
         /// <param name="location">The location of the player</param>
-        public Player(int lives, List<Wearable> inventory,
+        public Player(int lives, List<IWearable> inventory,
             IEntityLocation location) : base(lives, location)
         {
             _inventory = inventory;
@@ -34,7 +34,7 @@ namespace CODE_GameLib.Entity
         public bool Won => Inventory.Count(wearable => wearable is ISankaraStone) >= 5;
 
         ///<inheritdoc/>
-        public IEnumerable<Wearable> Inventory => _inventory;
+        public IEnumerable<IWearable> Inventory => _inventory;
 
         ///<inheritdoc/>
         public IEnumerable<Cheat> EnabledCheats => _enabledCheats;
@@ -49,9 +49,9 @@ namespace CODE_GameLib.Entity
         }
 
         ///<inheritdoc/>
-        public void AddToInventory(Wearable wearable)
+        public void AddToInventory(IWearable item)
         {
-            _inventory.Add(wearable);
+            _inventory.Add(item);
             NotifyObservers(this);
         }
 

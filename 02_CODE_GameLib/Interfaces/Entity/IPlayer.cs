@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using CODE_GameLib.Enums;
+using CODE_GameLib.Interfaces.Items;
+using CODE_GameLib.Interfaces.Items.Wearable;
 using CODE_GameLib.Items.Wearable;
 
 namespace CODE_GameLib.Interfaces.Entity
@@ -17,7 +19,7 @@ namespace CODE_GameLib.Interfaces.Entity
         /// <summary>
         /// Holds the player inventory
         /// </summary>
-        public IEnumerable<Wearable> Inventory { get; }
+        public IEnumerable<IWearable> Inventory { get; }
         
         /// <summary>
         /// Holds all cheats which are enabled
@@ -28,7 +30,7 @@ namespace CODE_GameLib.Interfaces.Entity
         /// Add a wearable item to the player inventory
         /// </summary>
         /// <param name="wearable">The wearable item which to wear</param>
-        public void AddToInventory(Wearable wearable);
+        public void AddToInventory(IWearable wearable);
         
         /// <summary>
         /// Toggle a cheats from the Enabled cheats

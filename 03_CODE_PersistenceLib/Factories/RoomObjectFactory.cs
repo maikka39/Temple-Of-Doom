@@ -2,6 +2,7 @@
 using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Tiles;
 using CODE_GameLib.Items;
+using CODE_GameLib.Items.Decorators;
 using CODE_GameLib.Items.Wearable;
 using CODE_GameLib.Tiles;
 using Newtonsoft.Json.Linq;
@@ -17,7 +18,7 @@ namespace CODE_PersistenceLib.Factories
             return itemJToken["type"].Value<string>() switch
             {
                 "boobietrap" => new BoobyTrap(x, y, itemJToken["damage"].Value<int>()),
-                "disappearing boobietrap" => new DisappearingTrap(x, y, itemJToken["damage"].Value<int>()),
+                "disappearing boobietrap" => new DisappearingItemDecorator(new BoobyTrap(x, y, itemJToken["damage"].Value<int>())),
                 "sankara stone" => new SankaraStone(x, y),
                 "key" => new Key(x, y, Color.FromName(itemJToken["color"].Value<string>())),
                 "pressure plate" => new PressurePlate(x, y),

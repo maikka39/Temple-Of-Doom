@@ -6,7 +6,7 @@ namespace CODE_GameLib.Items.Wearable
     /// <summary>
     /// Implements a key to pass through a door
     /// </summary>
-    public class Key : Wearable, IKey
+    public class Key : WearableItem, IKey
     {
         /// <summary>
         /// Creates a new instance from the passed parameters

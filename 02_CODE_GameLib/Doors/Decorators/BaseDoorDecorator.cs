@@ -8,7 +8,7 @@ namespace CODE_GameLib.Doors.Decorators
     /// </summary>
     public abstract class BaseDoorDecorator : IDoor
     {
-        private IDoor _decoratee { get; }
+        private readonly IDoor _decoratee;
 
         /// <summary>
         /// Create a new instance from a door
