@@ -8,8 +8,6 @@ namespace CODE_GameLib.Doors.Decorators
     /// </summary>
     public class ClosingDoorDecorator : BaseDoorDecorator, IClosingDoor
     {
-        private bool _forcedClosed = false;
-        
         ///<inheritdoc/>
         public ClosingDoorDecorator(IDoor decoratee) : base(decoratee)
         {
@@ -22,9 +20,9 @@ namespace CODE_GameLib.Doors.Decorators
         /// <returns></returns>
         public override bool CanEnter(IEntity entity)
         {
-            var canEnter = !_forcedClosed && base.CanEnter(entity);
+            var canEnter = base.CanEnter(entity);
             if (canEnter)
-                _forcedClosed = true;
+                Opened = false;
             return canEnter;
         }
     }
