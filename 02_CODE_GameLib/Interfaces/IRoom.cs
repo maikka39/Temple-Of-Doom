@@ -43,8 +43,7 @@ namespace CODE_GameLib.Interfaces
         /// <summary>
         /// Checks whether a location is withing the room
         /// </summary>
-        /// <param name="x">The x coordinate to check</param>
-        /// <param name="y">The y coordinate to check</param>
+        /// <param name="location">The location to check</param>
         /// <returns>Whether the location is within the room</returns>
         public bool IsWithinBoundaries(ILocation location);
         

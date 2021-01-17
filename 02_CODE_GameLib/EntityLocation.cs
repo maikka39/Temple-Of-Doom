@@ -36,8 +36,7 @@ namespace CODE_GameLib
         /// Updates the subscribers afterwards
         /// </summary>
         /// <param name="room">The new room</param>
-        /// <param name="x">The new x coordinate</param>
-        /// <param name="y">The new y coordinate</param>
+        /// <param name="location">The location of the item</param>
         /// <param name="direction">The direction in which the entity went</param>
         public void Update(IRoom room, ILocation location, Direction? direction = null)
         {

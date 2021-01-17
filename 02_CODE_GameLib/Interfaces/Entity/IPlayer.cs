@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using CODE_GameLib.Enums;
-using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Items.Wearable;
-using CODE_GameLib.Items.Wearable;
 
 namespace CODE_GameLib.Interfaces.Entity
 {
@@ -35,7 +33,7 @@ namespace CODE_GameLib.Interfaces.Entity
         /// <summary>
         /// Toggle a cheats from the Enabled cheats
         /// </summary>
-        /// <param name="cheat">The cheat to toggke</param>
+        /// <param name="cheat">The cheat to toggle</param>
         public void ToggleCheat(Cheat cheat);
         
         /// <summary>

@@ -43,8 +43,7 @@ namespace CODE_GameLib.Interfaces
         /// Checks if the passed entity can enter the connection, and if so, enters it.
         /// </summary>
         /// <param name="entity">The entity which tries to enter the connection</param>
-        /// <param name="targetX">The x coordinate to which the entity wishes to move</param>
-        /// <param name="targetY">The y coordinate to which the entity wishes to move</param>
+        /// <param name="location">The location to which the entity wishes to move</param>
         /// <returns>Whether the user entered the connection or not.</returns>
         bool TryEnter(IEntity entity, ILocation location);
     }

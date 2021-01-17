@@ -32,8 +32,7 @@ namespace CODE_GameLib.Interfaces
         /// Updates the location
         /// </summary>
         /// <param name="room">The new room</param>
-        /// <param name="x">The new x coordinate</param>
-        /// <param name="y">The new y coordinate</param>
+        /// <param name="location">The new location</param>
         /// <param name="direction">The direction in which the entity goes</param>
         public void Update(IRoom room, ILocation location, Direction? direction = null);
     }

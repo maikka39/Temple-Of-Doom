@@ -14,8 +14,7 @@ namespace CODE_GameLib.Items
         /// <summary>
         /// Creates a new instance based on the passed parameters
         /// </summary>
-        /// <param name="x">The x coordinate of the trap</param>
-        /// <param name="y">The y coordinate of the trap</param>
+        /// <param name="location">The location of the trap</param>
         /// <param name="damage">The amount of damage the trap deals</param>
         public BoobyTrap(ILocation location, int damage) : base(location)
         {

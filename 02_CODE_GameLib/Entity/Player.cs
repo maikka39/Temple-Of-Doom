@@ -3,7 +3,6 @@ using System.Linq;
 using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Entity;
-using CODE_GameLib.Interfaces.Items;
 using CODE_GameLib.Interfaces.Items.Wearable;
 
 namespace CODE_GameLib.Entity

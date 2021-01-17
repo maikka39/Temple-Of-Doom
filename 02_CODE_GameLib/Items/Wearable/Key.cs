@@ -12,8 +12,7 @@ namespace CODE_GameLib.Items.Wearable
         /// <summary>
         /// Creates a new instance from the passed parameters
         /// </summary>
-        /// <param name="x">The x coordinate of the item</param>
-        /// <param name="y">The x coordinate of the item</param>
+        /// <param name="location">The location of the item</param>
         /// <param name="color">The color of the key</param>
         public Key(ILocation location, Color color) : base(location)
         {

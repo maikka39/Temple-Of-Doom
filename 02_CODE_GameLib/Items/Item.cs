@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Items;
@@ -10,8 +10,7 @@ namespace CODE_GameLib.Items
         /// <summary>
         /// Creates a new instance of an item
         /// </summary>
-        /// <param name="x">The x coordinate of the item</param>
-        /// <param name="y">The y coordinate of the item</param>
+        /// <param name="location">The location of the item</param>
         protected Item(ILocation location) : base(location)
         {
         }

@@ -75,7 +75,7 @@ namespace CODE_GameLib.Entity
         /// </summary>
         /// <param name="direction">The direction to convert</param>
         /// <returns>The x and y of the resulting location</returns>
-        /// <exception cref="ArgumentOutOfRangeException">The the specified location is invalid, this exeption is thrown</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The the specified location is invalid, this exception is thrown</exception>
         private ILocation DirectionToLocation(Direction direction)
         {
             var x = Location.X;

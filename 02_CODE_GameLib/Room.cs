@@ -145,7 +145,7 @@ namespace CODE_GameLib
         }
 
         /// <summary>
-        /// Gets the tilr the the specified location
+        /// Gets the tile at the the specified location
         /// </summary>
         /// <param name="x">The x coordinate</param>
         /// <param name="y">The y coordinate</param>
