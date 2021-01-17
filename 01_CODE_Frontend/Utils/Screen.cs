@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace CODE_Frontend.Modules
+namespace CODE_Frontend.Utils
 {
     /// <summary>
     /// Module that contains some basic functionalities for the view
     /// </summary>
-    public static class GenericModule
+    public static class Screen
     {
         /// <summary>
         /// Creates a horizontal line

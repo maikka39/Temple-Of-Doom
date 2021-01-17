@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using CODE_Frontend.Modules;
+using CODE_Frontend.Utils;
 using CODE_GameLib.Interfaces;
 
 namespace CODE_Frontend
@@ -28,7 +29,7 @@ namespace CODE_Frontend
             foreach (var consoleText in _headerModule.Render(game))
                 Print(consoleText);
 
-            Console.WriteLine(GenericModule.ConsoleClearLineTillEnd());
+            Console.WriteLine(Screen.ConsoleClearLineTillEnd());
 
             var grid = new RoomView(game.Player.Location.Room, game.Player).GetGrid();
 
@@ -42,13 +43,13 @@ namespace CODE_Frontend
                     Print(spacing);
                 }
 
-                Console.WriteLine(GenericModule.ConsoleClearLineTillEnd());
+                Console.WriteLine(Screen.ConsoleClearLineTillEnd());
             }
 
             var originalCursorTop = Console.CursorTop + 1;
 
             for (var row = originalCursorTop; row < Console.WindowHeight; row++)
-                Console.WriteLine(GenericModule.ConsoleClearLineTillEnd());
+                Console.WriteLine(Screen.ConsoleClearLineTillEnd());
 
             Console.SetCursorPosition(0, originalCursorTop);
 
