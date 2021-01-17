@@ -1,11 +1,11 @@
 using CODE_GameLib.Interfaces.Doors;
 using CODE_GameLib.Interfaces.Entity;
 
-namespace CODE_GameLib.Doors
+namespace CODE_GameLib.Doors.Decorators
 {
-    public class ClosingDoor : Door, IClosingDoor
+    public class ClosingDoorDecorator : BaseDoorDecorator, IClosingDoor
     {
-        public ClosingDoor() : base(true)
+        public ClosingDoorDecorator(IDoor decoratee) : base(decoratee)
         {
         }
 

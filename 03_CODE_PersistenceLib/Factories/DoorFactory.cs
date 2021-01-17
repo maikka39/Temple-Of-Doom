@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using CODE_GameLib.Doors;
+using CODE_GameLib.Doors.Decorators;
 using CODE_GameLib.Interfaces.Doors;
 using Newtonsoft.Json.Linq;
 
@@ -10,18 +11,21 @@ namespace CODE_PersistenceLib.Factories
     {
         public static IDoor CreateDoor(JToken doorJToken)
         {
+            var door = new Door();
+            
             return doorJToken["type"].Value<string>() switch
             {
-                "colored" => new ColoredDoor(Color.FromName(doorJToken["color"].Value<string>())),
-                "toggle" => new ToggleDoor(),
-                "closing gate" => new ClosingDoor(),
+                "colored" => new ColoredDoorDecorator(door, Color.FromName(doorJToken["color"].Value<string>())),
+                "toggle" => new ToggleDoorDecorator(door),
+                "closing gate" => new ClosingDoorDecorator(new OpenedDoorDecorator(door)),
                 _ => throw new ArgumentException("Invalid door type")
             };
         }
 
-        public static IDoor CreateLadder()
+        public static ILadder CreateLadder()
         {
-            return new Ladder();
+            var door = new Door();
+            return new LadderDecorator(new OpenedDoorDecorator(door));
         }
     }
 }

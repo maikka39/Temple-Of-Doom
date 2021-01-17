@@ -4,11 +4,11 @@ using CODE_GameLib.Interfaces.Doors;
 using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Items.Wearable;
 
-namespace CODE_GameLib.Doors
+namespace CODE_GameLib.Doors.Decorators
 {
-    public class ColoredDoor : Door, IColoredDoor
+    public class ColoredDoorDecorator : BaseDoorDecorator, IColoredDoor
     {
-        public ColoredDoor(Color color)
+        public ColoredDoorDecorator(IDoor decoratee, Color color) : base(decoratee)
         {
             Color = color;
         }
