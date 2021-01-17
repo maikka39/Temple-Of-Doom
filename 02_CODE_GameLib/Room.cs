@@ -50,9 +50,6 @@ namespace CODE_GameLib
             return x >= 1 && x <= Width - 2 && y >= 1 && y <= Height - 2;
         }
 
-        public int CenterX => (Width + 1) / 2 - 1;
-        public int CenterY => (Height + 1) / 2 - 1;
-
         public void RemoveItem(IItem item)
         {
             Items.Remove(item);

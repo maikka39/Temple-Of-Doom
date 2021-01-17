@@ -74,13 +74,13 @@ namespace CODE_PersistenceLib.Factories
         private static (int x, int y) GetRegularLocation(IRoom room, Direction direction)
         {
             var x = direction.IsVertical()
-                ? room.CenterX
+                ? (room.Width + 1) / 2 - 1
                 : direction == Direction.West
                     ? 0
                     : room.Width - 1;
 
             var y = direction.IsHorizontal()
-                ? room.CenterY
+                ? (room.Height + 1) / 2 - 1
                 : direction == Direction.South
                     ? 0
                     : room.Height - 1;
