@@ -12,8 +12,13 @@ namespace CODE_GameLib.Items.Decorators
             _decoratee = decoratee;
         }
 
+        ///<inheritdoc/>
         public virtual int X => _decoratee.X;
+        
+        ///<inheritdoc/>
         public virtual int Y => _decoratee.Y;
+        
+        ///<inheritdoc/>
         public virtual void OnEnter(IPlayer player) => _decoratee.OnEnter(player);
     }
 }
