@@ -32,9 +32,9 @@ namespace CODE_PersistenceLib.Factories
                 throw new ArgumentException("Width must be between 3 and 50");
 
             if (height % 2 == 0)
-                throw new ArgumentException("Height must be even");
+                throw new ArgumentException("Height must be odd");
             if (width % 2 == 0)
-                throw new ArgumentException("Width must be even");
+                throw new ArgumentException("Width must be odd");
 
             return new Room(width, height, items, tiles, enemies, connections[roomId]);
         }
