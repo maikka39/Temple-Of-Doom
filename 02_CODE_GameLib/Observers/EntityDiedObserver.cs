@@ -3,6 +3,9 @@ using CODE_GameLib.Interfaces.Entity;
 
 namespace CODE_GameLib.Observers
 {
+    /// <summary>
+    /// An observer that runs when the specified entity has died
+    /// </summary>
     public class EntityDiedObserver : BaseObserver<IEntity>
     {
         private readonly IRoom _room;

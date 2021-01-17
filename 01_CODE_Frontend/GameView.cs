@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using CODE_Frontend.Modules;
-using CODE_Frontend.ViewModel;
 using CODE_GameLib.Interfaces;
 
 namespace CODE_Frontend
@@ -18,18 +17,20 @@ namespace CODE_Frontend
             _headerModule = new HeaderModule();
         }
 
+        /// <summary>
+        /// Updates the screen with the nem game info
+        /// </summary>
+        /// <param name="game">The newest state of the game</param>
         public void Update(IGame game)
         {
             Console.SetCursorPosition(0, 1);
 
             foreach (var consoleText in _headerModule.Render(game))
-            {
                 Print(consoleText);
-            }
 
             Console.WriteLine(GenericModule.ConsoleClearLineTillEnd());
 
-            var grid = new RoomViewModel(game.Player.Location.Room, game.Player).GetGrid();
+            var grid = new RoomView(game.Player.Location.Room, game.Player).GetGrid();
 
             var spacing = new ConsoleText(" ");
 
@@ -60,6 +61,10 @@ namespace CODE_Frontend
                 Console.WriteLine("Stopping...");
         }
 
+        /// <summary>
+        /// Print a console text to the screen
+        /// </summary>
+        /// <param name="consoleText">The console text to print</param>
         private static void Print(ConsoleText consoleText)
         {
             Console.ForegroundColor = consoleText.ForegroundColor;

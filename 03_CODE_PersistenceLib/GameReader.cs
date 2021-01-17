@@ -11,13 +11,18 @@ namespace CODE_PersistenceLib
 {
     public static class GameReader
     {
+        /// <summary>
+        /// Reads the specified file and parses it to a game
+        /// </summary>
+        /// <param name="filePath">The filepath of the file to read</param>
+        /// <returns>A playable game</returns>
+        /// <exception cref="JsonException">Thrown if the provided level file is invalid</exception>
         public static IGame Read(string filePath)
         {
-            var rooms = new Dictionary<int, IRoom>();
-            IPlayer player;
-
             try
             {
+                var rooms = new Dictionary<int, IRoom>();
+
                 var json = JObject.Parse(File.ReadAllText(filePath));
 
                 var connections = new Dictionary<int, List<IConnection>>();
@@ -27,16 +32,16 @@ namespace CODE_PersistenceLib
 
                 var playerJToken = json["player"];
                 var playerStartLocation = EntityLocationFactory.CreateEntityLocation(rooms, playerJToken);
-                player = PlayerFactory.CreatePlayer(playerJToken, playerStartLocation);
+                var player = PlayerFactory.CreatePlayer(playerJToken, playerStartLocation);
+                
+                return GameFactory.CreateGame(player);
             }
             catch (Exception e)
             {
                 throw new JsonException("The provided JSON level file is not valid.", e);
             }
-
-            return GameFactory.CreateGame(player);
         }
-
+        
         private static void SetRooms(JObject json, IDictionary<int, List<IConnection>> connections,
             IDictionary<int, IRoom> rooms)
         {
@@ -61,6 +66,9 @@ namespace CODE_PersistenceLib
             }
         }
 
+        /// <summary>
+        /// Json exception which is thrown in case of an invalid level file
+        /// </summary>
         public class JsonException : Exception
         {
             public JsonException(string message, Exception inner)

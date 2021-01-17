@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Linq;
+using CODE_Frontend.ViewModel;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Interfaces.Entity;
 
-namespace CODE_Frontend.ViewModel
+namespace CODE_Frontend
 {
-    public class RoomViewModel
+    public class RoomView
     {
         private readonly ConsoleText[,] _grid;
         private readonly IPlayer _player;
         private readonly IRoom _room;
 
-        public RoomViewModel(IRoom room, IPlayer player)
+        public RoomView(IRoom room, IPlayer player)
         {
             _room = room;
             _player = player;

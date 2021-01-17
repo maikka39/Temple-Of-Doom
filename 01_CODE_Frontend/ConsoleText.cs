@@ -15,8 +15,19 @@ namespace CODE_Frontend
             BackgroundColor = backgroundColor;
         }
 
+        /// <summary>
+        /// Specifies the text to display
+        /// </summary>
         public string Text { get; set; }
+        
+        /// <summary>
+        /// Specifies the color of the text
+        /// </summary>
         public ConsoleColor ForegroundColor { get; set; }
+        
+        /// <summary>
+        /// Specifies the background color
+        /// </summary>
         public ConsoleColor BackgroundColor { get; set; }
     }
 }

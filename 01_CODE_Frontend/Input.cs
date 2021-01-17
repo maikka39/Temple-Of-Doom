@@ -5,13 +5,22 @@ using CODE_GameLib.Enums;
 
 namespace CODE_Frontend
 {
+    /// <summary>
+    /// Handles the key input of the user
+    /// </summary>
     public static class Input
     {
+        /// <summary>
+        /// Handles the key input of the user
+        /// </summary>
+        /// <param name="key">The key that has been pressed</param>
+        /// <returns>The tickdata generated from the pressed key</returns>
         public static TickData HandleKey(ConsoleKey key)
         {
             var tickData = new TickData();
             var toggleCheats = new List<Cheat>();
 
+            // Handle the key
             // ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
             switch (key)
             {

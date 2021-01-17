@@ -7,19 +7,33 @@ using CODE_GameLib.Interfaces.Tiles;
 
 namespace CODE_Frontend.ViewModel
 {
-    public class RoomObjectViewModel
+    public class RoomObjectViewModel : IViewModel
     {
         private readonly IRoomObject _item;
 
+        /// <summary>
+        /// Creates a new instances from an item
+        /// </summary>
+        /// <param name="item">The item to create the view model for</param>
         public RoomObjectViewModel(IRoomObject item)
         {
             _item = item;
         }
 
+        ///<inheritdoc/>
         public int X => _item.X;
+        
+        ///<inheritdoc/>
         public int Y => _item.Y;
+        
+        ///<inheritdoc/>
         public ConsoleText View => GetItemConsoleText(_item);
 
+        /// <summary>
+        /// Gets the appropriate ConsoleText for a room object 
+        /// </summary>
+        /// <param name="roomObject">The room object to get the console text for</param>
+        /// <returns>The console text for a room object</returns>
         private static ConsoleText GetItemConsoleText(IRoomObject roomObject)
         {
             return roomObject switch

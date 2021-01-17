@@ -16,13 +16,25 @@ namespace CODE_GameLib
             Door = door;
         }
 
+        ///<inheritdoc/>
         public IRoom Room { get; }
+        
+        ///<inheritdoc/>
         public IConnection Destination { get; set; }
+        
+        ///<inheritdoc/>
         public Direction Direction { get; }
+        
+        ///<inheritdoc/>
         public IDoor Door { get; }
+        
+        ///<inheritdoc/>
         public int X { get; }
+        
+        ///<inheritdoc/>
         public int Y { get; }
 
+        ///<inheritdoc/>
         public bool TryEnter(IEntity entity, int targetX, int targetY)
         {
             if (targetX != X || targetY != Y) return false;
@@ -34,12 +46,20 @@ namespace CODE_GameLib
             return true;
         }
 
+        /// <summary>
+        /// Move an entity to the destination of the connection
+        /// </summary>
+        /// <param name="entity">The entity to move</param>
         private void Enter(IEntity entity)
         {
             var (targetX, targetY) = GetTargetLocation();
             entity.Location.Update(Destination.Room, targetX, targetY, Direction);
         }
 
+        /// <summary>
+        /// Gets the target location of
+        /// </summary>
+        /// <returns>The x and y location</returns>
         private (int x, int y) GetTargetLocation()
         {
             var targetX = Destination.X;
