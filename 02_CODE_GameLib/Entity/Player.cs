@@ -49,7 +49,7 @@ namespace CODE_GameLib.Entity
 
         public bool IsCheatEnabled(Cheat cheat)
         {
-            return EnabledCheats.Any(enabledCheat => enabledCheat == cheat);
+            return EnabledCheats.Contains(cheat);
         }
 
         public void Shoot()
