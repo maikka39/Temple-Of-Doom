@@ -21,10 +21,5 @@ namespace CODE_GameLib.Enums
         {
             return direction == Direction.East || direction == Direction.West;
         }
-
-        public static bool IsLadder(this Direction direction)
-        {
-            return direction == Direction.Upper || direction == Direction.Lower;
-        }
     }
 }

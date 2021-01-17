@@ -13,7 +13,7 @@ namespace CODE_GameLib.Observers
             return new Subscription(() => _observers.Remove(observer));
         }
 
-        protected virtual void NotifyObservers(T subject)
+        protected void NotifyObservers(T subject)
         {
             // Loop over a copy of the list as the original one might change
             foreach (var observer in new List<IObserver<T>>(_observers))

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces;
 using CODE_GameLib.Observers;
@@ -37,8 +36,8 @@ namespace CODE_GameLib.Adapters
                 // Absolutely horrible method but as CurrentDirectionX is protected, this
                 // is the only way we can get access to it. We need this access in order
                 // to get the current direction for, for example, an ice tile.
-                var currentDirectionX = (int) _adaptee.GetType().GetProperty("CurrentDirectionX", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(_adaptee);
-                var currentDirectionY = (int) _adaptee.GetType().GetProperty("CurrentDirectionY", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(_adaptee);
+                var currentDirectionX = (int) (_adaptee.GetType().GetProperty("CurrentDirectionX", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(_adaptee) ?? 0);
+                var currentDirectionY = (int) (_adaptee.GetType().GetProperty("CurrentDirectionY", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(_adaptee) ?? 0);
                 
                 if (currentDirectionX > 0)
                     return Direction.East;
@@ -53,17 +52,16 @@ namespace CODE_GameLib.Adapters
             }
         }
 
-        public bool Update(IRoom room, int x, int y, Direction? direction = null)
+        public void Update(IRoom room, int x, int y, Direction? direction = null)
         {
             if (!room.IsWithinBoundaries(x, y))
-                return false;
+                return;
 
             Room = room;
             X = x;
             Y = y;
 
             NotifyObservers(this);
-            return true;
         }
 
         public void Update()

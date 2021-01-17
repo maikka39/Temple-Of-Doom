@@ -58,6 +58,7 @@ namespace CODE_GameLib.Entity
             var targetX = Location.X;
             var targetY = Location.Y;
 
+            // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
             switch (direction)
             {
                 case Direction.North:

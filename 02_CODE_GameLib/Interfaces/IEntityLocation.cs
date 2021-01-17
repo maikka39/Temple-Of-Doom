@@ -9,6 +9,6 @@ namespace CODE_GameLib.Interfaces
         public int Y { get; }
         public Direction? LastDirection { get; }
 
-        public bool Update(IRoom room, int x, int y, Direction? direction = null);
+        public void Update(IRoom room, int x, int y, Direction? direction = null);
     }
 }

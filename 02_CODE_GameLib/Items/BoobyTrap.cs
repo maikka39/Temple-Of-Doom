@@ -5,16 +5,16 @@ namespace CODE_GameLib.Items
 {
     public class BoobyTrap : Item, IBoobyTrap
     {
+        private readonly int _damage;
+
         public BoobyTrap(int x, int y, int damage) : base(x, y)
         {
-            Damage = damage;
+            _damage = damage;
         }
-
-        public int Damage { get; }
 
         public override void OnEnter(IPlayer player)
         {
-            player.ReceiveDamage(Damage);
+            player.ReceiveDamage(_damage);
         }
     }
 }

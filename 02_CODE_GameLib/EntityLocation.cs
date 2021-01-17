@@ -21,10 +21,10 @@ namespace CODE_GameLib
 
         public Direction? LastDirection { get; private set; }
 
-        public bool Update(IRoom room, int x, int y, Direction? direction = null)
+        public void Update(IRoom room, int x, int y, Direction? direction = null)
         {
             if (!room.IsWithinBoundaries(x, y))
-                return false;
+                return;
 
             Room = room;
             X = x;
@@ -32,7 +32,6 @@ namespace CODE_GameLib
             LastDirection = direction;
 
             NotifyObservers(this);
-            return true;
         }
     }
 }
