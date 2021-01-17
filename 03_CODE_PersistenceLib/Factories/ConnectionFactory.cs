@@ -14,9 +14,9 @@ namespace CODE_PersistenceLib.Factories
         private static readonly Dictionary<string, Direction> ConvertLocation = new Dictionary<string, Direction>
         {
             {"NORTH", Direction.North},
-            {"EAST", Direction.East},
+            {"EAST", Direction.West},
             {"SOUTH", Direction.South},
-            {"WEST", Direction.West},
+            {"WEST", Direction.East},
             {"UPPER", Direction.Upper},
             {"LOWER", Direction.Lower}
         };

@@ -66,20 +66,20 @@ namespace CODE_GameLib.Entity
             switch (direction)
             {
                 case Direction.North:
-                    targetY++;
+                    targetY--;
                     break;
                 case Direction.East:
                     targetX++;
                     break;
                 case Direction.South:
-                    targetY--;
+                    targetY++;
                     break;
                 case Direction.West:
                     targetX--;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(direction), direction,
-                        "There are only four directions");
+                        "There are only four possible directions");
             }
 
             return (targetX, targetY);
