@@ -29,28 +29,21 @@ namespace CODE_GameLib
 
             if (tickData.MovePlayer != null)
                 if (Player.Move((Direction) tickData.MovePlayer))
-                {
-                    Update();
                     if (Player.Location.Room.Update())
-                    {
                         Player.Location.Room.Check(Player);
-                        Update();
-                    }
-                }
 
             if (tickData.Shoot)
             {
                 Player.Shoot();
-                Update();
             }
 
             if (tickData.ToggleCheats != null)
             {
                 foreach (var cheat in tickData.ToggleCheats)
                     Player.ToggleCheat(cheat);
-
-                Update();
             }
+            
+            Update();
         }
 
         public void Destroy()

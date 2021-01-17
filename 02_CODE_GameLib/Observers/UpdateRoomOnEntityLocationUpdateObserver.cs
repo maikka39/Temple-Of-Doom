@@ -5,7 +5,7 @@ namespace CODE_GameLib.Observers
 {
     public class UpdateRoomOnEntityLocationUpdateObserver : EntityLocationObserver
     {
-        private IGame _game;
+        private readonly IGame _game;
 
         public UpdateRoomOnEntityLocationUpdateObserver(IGame game, IEntity entity) : base(entity)
         {
