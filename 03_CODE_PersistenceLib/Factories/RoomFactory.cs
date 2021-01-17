@@ -12,10 +12,9 @@ namespace CODE_PersistenceLib.Factories
 {
     public static class RoomFactory
     {
-        public static IRoom CreateRoom(JObject roomJObject, IDictionary<int, List<IConnection>> connections,
-            out int roomId)
+        public static (Room room, int roomId) CreateRoom(JObject roomJObject, IDictionary<int, List<IConnection>> connections)
         {
-            roomId = roomJObject["id"].Value<int>();
+            var roomId = roomJObject["id"].Value<int>();
 
             connections.Add(roomId, new List<IConnection>());
 
@@ -36,7 +35,9 @@ namespace CODE_PersistenceLib.Factories
             if (width % 2 == 0)
                 throw new ArgumentException("Width must be odd");
 
-            return new Room(width, height, items, tiles, enemies, connections[roomId]);
+            var room = new Room(width, height, items, tiles, enemies, connections[roomId]);
+
+            return (room, roomId);
         }
 
         private static List<IItem> GetItemsForRoom(JObject roomJObject)

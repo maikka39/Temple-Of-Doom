@@ -40,7 +40,7 @@ namespace CODE_GameLib
             entity.Location.Update(Destination.Room, targetX, targetY, Direction);
         }
 
-        private (int, int) GetTargetLocation()
+        private (int x, int y) GetTargetLocation()
         {
             var targetX = Destination.X;
             var targetY = Destination.Y;

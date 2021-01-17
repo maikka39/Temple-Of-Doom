@@ -53,32 +53,32 @@ namespace CODE_GameLib.Entity
             NotifyObservers(this);
         }
 
-        private (int, int) DirectionToXy(Direction direction)
+        private (int x, int y) DirectionToXy(Direction direction)
         {
-            var targetX = Location.X;
-            var targetY = Location.Y;
+            var x = Location.X;
+            var y = Location.Y;
 
             // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
             switch (direction)
             {
                 case Direction.North:
-                    targetY--;
+                    y--;
                     break;
                 case Direction.East:
-                    targetX++;
+                    x++;
                     break;
                 case Direction.South:
-                    targetY++;
+                    y++;
                     break;
                 case Direction.West:
-                    targetX--;
+                    x--;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(direction), direction,
                         "There are only four possible directions");
             }
 
-            return (targetX, targetY);
+            return (x, y);
         }
     }
 }

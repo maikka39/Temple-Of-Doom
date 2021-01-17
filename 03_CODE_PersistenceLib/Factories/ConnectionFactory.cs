@@ -21,28 +21,35 @@ namespace CODE_PersistenceLib.Factories
             {"LOWER", Direction.Lower}
         };
 
-        public static void CreateConnection(JObject jConnection, IReadOnlyDictionary<int, IRoom> rooms,
-            out IConnection conn1, out IConnection conn2, out int roomId1, out int roomId2)
+        public static ((int roomId1, IConnection conn1), (int roomId2, IConnection conn2)) CreateConnection(JObject jConnection, IReadOnlyDictionary<int, IRoom> rooms)
         {
             var actualConnections = GetConnections(jConnection);
 
             var connectionDoor = GetConnectionDoor(jConnection);
 
-            conn1 = CreateConnection(actualConnections[0], jConnection, rooms, connectionDoor, out roomId1);
-            conn2 = CreateConnection(actualConnections[1], jConnection, rooms, connectionDoor, out roomId2);
+            var (roomId1, conn1) = CreateConnection(actualConnections[0], jConnection, rooms, connectionDoor);
+            var (roomId2, conn2) = CreateConnection(actualConnections[1], jConnection, rooms, connectionDoor);
 
             conn1.Destination = conn2;
             conn2.Destination = conn1;
+
+            return ((roomId1, conn1), (roomId2, conn2));
         }
 
-        private static IConnection CreateConnection(JProperty actualConnection, JObject jConnection,
-            IReadOnlyDictionary<int, IRoom> rooms, IDoor connectionDoor, out int roomId)
+        private static (int roomId, Connection connection) CreateConnection(JProperty actualConnection, JObject jConnection,
+            IReadOnlyDictionary<int, IRoom> rooms, IDoor connectionDoor)
         {
-            roomId = GetRoomId(actualConnection);
+            var roomId = GetRoomId(actualConnection);
+            
             var room1 = GetRoom(rooms, roomId);
+            
             var direction1 = GetDirection(actualConnection);
-            GetLocation(jConnection, room1, direction1, out var x1, out var y1);
-            return new Connection(room1, direction1, x1, y1, connectionDoor);
+            
+            var (x1, y1) = GetLocation(jConnection, room1, direction1);
+
+            var connection = new Connection(room1, direction1, x1, y1, connectionDoor);
+            
+            return (roomId, connection);
         }
 
         private static IDoor GetConnectionDoor(JObject jConnection)
@@ -56,41 +63,44 @@ namespace CODE_PersistenceLib.Factories
             return null;
         }
 
-        private static void GetLocation(JObject jConnection, IRoom room, Direction direction, out int x, out int y)
+        private static (int x, int y) GetLocation(JObject jConnection, IRoom room, Direction direction)
         {
             if (jConnection.ContainsKey("ladder"))
-                GetLadderLocation(jConnection, room, direction, out x, out y);
-            else
-                GetRegularLocation(room, direction, out x, out y);
+                return GetLadderLocation(jConnection, room, direction);
+            
+            return GetRegularLocation(room, direction);
         }
 
-        private static void GetRegularLocation(IRoom room, Direction direction, out int x, out int y)
+        private static (int x, int y) GetRegularLocation(IRoom room, Direction direction)
         {
-            x = direction.IsVertical()
+            var x = direction.IsVertical()
                 ? room.CenterX
                 : direction == Direction.West
                     ? 0
                     : room.Width - 1;
 
-            y = direction.IsHorizontal()
+            var y = direction.IsHorizontal()
                 ? room.CenterY
                 : direction == Direction.South
                     ? 0
                     : room.Height - 1;
+
+            return (x, y);
         }
 
-        private static void GetLadderLocation(JObject jConnection, IRoom room, Direction direction, out int x,
-            out int y)
+        private static (int x, int y) GetLadderLocation(JObject jConnection, IRoom room, Direction direction)
         {
             var prefix = "upper";
             if (direction == Direction.Lower)
                 prefix = "lower";
 
-            x = jConnection["ladder"][$"{prefix}X"].Value<int>();
-            y = jConnection["ladder"][$"{prefix}X"].Value<int>();
+            var x = jConnection["ladder"][$"{prefix}X"].Value<int>();
+            var y = jConnection["ladder"][$"{prefix}X"].Value<int>();
 
             if (!room.IsWithinBoundaries(x, y))
                 throw new InvalidConnectionException($"Invalid ladder location: {x}, {y}");
+
+            return (x, y);
         }
 
         private static int GetRoomId(JProperty actualConnection)

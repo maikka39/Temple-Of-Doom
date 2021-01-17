@@ -42,7 +42,7 @@ namespace CODE_PersistenceLib
         {
             foreach (var roomJObject in json["rooms"].Select(x => x as JObject))
             {
-                var room = RoomFactory.CreateRoom(roomJObject, connections, out var roomId);
+                var (room, roomId) = RoomFactory.CreateRoom(roomJObject, connections);
                 rooms.Add(roomId, room);
             }
         }
@@ -54,8 +54,7 @@ namespace CODE_PersistenceLib
 
             foreach (var jConnection in json["connections"].Children<JObject>())
             {
-                ConnectionFactory.CreateConnection(jConnection, rooms, out var conn1, out var conn2, out var roomId1,
-                    out var roomId2);
+                var ((roomId1, conn1), (roomId2, conn2)) =  ConnectionFactory.CreateConnection(jConnection, rooms);
 
                 connections[roomId1].Add(conn1);
                 connections[roomId2].Add(conn2);
