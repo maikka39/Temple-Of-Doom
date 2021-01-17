@@ -105,8 +105,13 @@ namespace CODE_GameLib
             if (entity is IPlayer player)
             {
                 TryEnterItem(player);
-                TryEnterEnemy(player);
+                CheckEnemies(player);
             }
+        }
+
+        public void CheckEnemies(IPlayer player)
+        {
+            TryEnterEnemy(player);
         }
 
         ///<inheritdoc/>

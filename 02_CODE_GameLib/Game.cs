@@ -45,7 +45,7 @@ namespace CODE_GameLib
             if (tickData.MovePlayer != null)
                 if (Player.Move((Direction) tickData.MovePlayer))
                     if (Player.Location.Room.Update())
-                        Player.Location.Room.Check(Player);
+                        Player.Location.Room.CheckEnemies(Player);
 
             if (tickData.Shoot)
                 Player.Shoot();

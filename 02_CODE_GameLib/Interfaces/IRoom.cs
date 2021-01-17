@@ -65,6 +65,12 @@ namespace CODE_GameLib.Interfaces
         /// </summary>
         /// <param name="entity">The entity to check for</param>
         public void Check(IEntity entity);
+
+        /// <summary>
+        /// Checks whether the passed player hits an enemy, if so, deals damage
+        /// </summary>
+        /// <param name="player">The player to check for</param>
+        public void CheckEnemies(IPlayer player);
         
         /// <summary>
         /// Retrieves all enemies withing reach of a location
