@@ -10,23 +10,18 @@ namespace CODE_GameLib.Entity
     public abstract class Entity : BaseObservable<IEntity>, IEntity
     {
         private int _lives;
-        private IEntityLocation _location;
 
         protected Entity(int lives, IEntityLocation location)
         {
             _lives = lives;
-            _location = location;
+            Location = location;
         }
 
         protected Entity()
         {
         }
 
-        public virtual IEntityLocation Location
-        {
-            get => _location;
-            protected set => _location = value;
-        }
+        public virtual IEntityLocation Location { get; }
 
         public virtual int Lives
         {
