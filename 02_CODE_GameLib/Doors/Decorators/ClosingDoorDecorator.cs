@@ -21,7 +21,8 @@ namespace CODE_GameLib.Doors.Decorators
         public override bool CanEnter(IEntity entity)
         {
             var canEnter = base.CanEnter(entity);
-            Opened = false;
+            if (canEnter)
+                Opened = false;
             return canEnter;
         }
     }
