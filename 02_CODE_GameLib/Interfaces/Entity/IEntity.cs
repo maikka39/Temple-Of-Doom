@@ -1,8 +1,9 @@
-﻿using CODE_GameLib.Enums;
+﻿using System;
+using CODE_GameLib.Enums;
 
 namespace CODE_GameLib.Interfaces.Entity
 {
-    public interface IEntity : IBaseObservable<IEntity>
+    public interface IEntity : IObservable<IEntity>
     {
         public IEntityLocation Location { get; }
         public int Lives { get; }

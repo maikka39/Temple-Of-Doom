@@ -23,9 +23,9 @@ namespace CODE_GameLib
         public int X { get; }
         public int Y { get; }
 
-        public bool TryEnter(IEntity entity, int entityX, int entityY)
+        public bool TryEnter(IEntity entity, int targetX, int targetY)
         {
-            if (entityX != X || entityY != Y) return false;
+            if (targetX != X || targetY != Y) return false;
 
             if (!Door?.CanEnter(entity) ?? false)
                 return false;
