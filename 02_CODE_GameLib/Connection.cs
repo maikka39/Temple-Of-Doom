@@ -36,19 +36,21 @@ namespace CODE_GameLib
 
         private void Enter(IEntity entity)
         {
-            GetTargetLocation(out var targetX, out var targetY);
+            var (targetX, targetY) = GetTargetLocation();
             entity.Location.Update(Destination.Room, targetX, targetY, Direction);
         }
 
-        private void GetTargetLocation(out int targetX, out int targetY)
+        private (int, int) GetTargetLocation()
         {
-            targetX = Destination.X;
-            targetY = Destination.Y;
+            var targetX = Destination.X;
+            var targetY = Destination.Y;
 
             if (Direction.IsVertical())
                 targetY += Direction == Direction.North ? 1 : -1;
             else if (Direction.IsHorizontal())
                 targetX += Direction == Direction.East ? 1 : -1;
+            
+            return (targetX, targetY);
         }
     }
 }
