@@ -69,7 +69,8 @@ namespace CODE_GameLib
 
         public void Check(IEntity entity)
         {
-            TryEnterTile(entity);
+            if (TryEnterTile(entity))
+                return;
 
             if (entity is IPlayer player)
             {
@@ -116,10 +117,10 @@ namespace CODE_GameLib
             roomItem?.OnEnter(player);
         }
 
-        private void TryEnterTile(IEntity entity)
+        private bool TryEnterTile(IEntity entity)
         {
             var roomTile = GetTile(entity.Location.X, entity.Location.Y);
-            roomTile?.OnEnter(entity);
+            return roomTile?.OnEnter(entity) ?? false;
         }
 
         private void TryEnterEnemy(IPlayer player)

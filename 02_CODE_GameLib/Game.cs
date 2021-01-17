@@ -13,7 +13,7 @@ namespace CODE_GameLib
             Player = player;
 
             Player.Subscribe(new PlayerObserver(this));
-            Player.Location.Subscribe(new EntityLocationObserver(Player));
+            Player.Location.Subscribe(new UpdateRoomOnEntityLocationUpdateObserver(this, Player));
         }
 
         public event EventHandler<Game> Updated;

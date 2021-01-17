@@ -1,5 +1,4 @@
 ﻿using System;
-using CODE_GameLib.Enums;
 using CODE_GameLib.Interfaces.Entity;
 using CODE_GameLib.Interfaces.Tiles;
 
@@ -11,7 +10,7 @@ namespace CODE_GameLib.Tiles
         {
         }
 
-        public virtual void OnEnter(IEntity entity)
+        public virtual bool OnEnter(IEntity entity)
         {
             throw new NotImplementedException();
         }
