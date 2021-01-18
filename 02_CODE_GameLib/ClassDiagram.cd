@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CODE_GameLib.Adapters.EnemyAdapter">
+    <Position X="21" Y="26.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="CODE_GameLib.Adapters.EnemyAdapter.EnemyObserver" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Adapters\EnemyAdapter.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAgAAAgAAAIAAAAAAAIAAAACAIAAAAAAAAA=</HashCode>
+      <FileName>Adapters\EnemyAdapter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Adapters.EnemyLocationAdapter">
+    <Position X="18.75" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAgAAJAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Adapters\EnemyLocationAdapter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Doors.Decorators.BaseDoorDecorator">
+    <Position X="11.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAEEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Doors\Decorators\BaseDoorDecorator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Doors.Decorators.ClosingDoorDecorator">
+    <Position X="6.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Doors\Decorators\ClosingDoorDecorator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Doors.Decorators.ColoredDoorDecorator">
+    <Position X="9" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Doors\Decorators\ColoredDoorDecorator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Doors.Decorators.LadderDecorator">
+    <Position X="11.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Doors\Decorators\LadderDecorator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Doors.Decorators.OpenedDoorDecorator">
+    <Position X="13.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Doors\Decorators\OpenedDoorDecorator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CODE_GameLib.Doors.Decorators.ToggleDoorDecorator">
+    <Position X="15.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Doors\Decorators\ToggleDoorDecorator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Doors.Door" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="31.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAEEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Doors\Door.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CODE_GameLib.Entity.Entity">
+    <Position X="22" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIgAAAAAAAIAAQAAAAAAAAAKAAAAAAIAAAA=</HashCode>
+      <FileName>Entity\Entity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Entity.Player">
+    <Position X="23.25" Y="26.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgABAAAAAQAAABCIBAQAACAAAAAAgAAAAA=</HashCode>
+      <FileName>Entity\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Enums.DirectionExtensions" Collapsed="true">
+    <Position X="29.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Enums\Direction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CODE_GameLib.Items.Decorators.BaseItemDecorator">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAIAAAAAAYAA=</HashCode>
+      <FileName>Items\Decorators\BaseItemDecorator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Items.Decorators.DisappearingItemDecorator">
+    <Position X="0.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Items\Decorators\DisappearingItemDecorator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Items.Wearable.Key">
+    <Position X="12.75" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Items\Wearable\Key.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Items.Wearable.SankaraStone">
+    <Position X="15" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Wearable\SankaraStone.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Items.Wearable.WearableItem">
+    <Position X="14" Y="18.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Items\Wearable\WearableItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Items.BoobyTrap">
+    <Position X="17.25" Y="18.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Items\BoobyTrap.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Items.Item">
+    <Position X="16.25" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Items\Item.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Items.PressurePlate">
+    <Position X="19.5" Y="18.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Items\PressurePlate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Observers.BaseObservable&lt;T&gt;">
+    <Position X="22" Y="20.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAQgAAA=</HashCode>
+      <FileName>Observers\BaseObservable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CODE_GameLib.Observers.Subscription" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="31.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observers\BaseObservable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CODE_GameLib.Observers.BaseObserver&lt;T&gt;">
+    <Position X="3" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAACAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observers\BaseObserver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Observers.EntityDiedObserver">
+    <Position X="5.25" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observers\EntityDiedObserver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CODE_GameLib.Observers.PlayerObserver">
+    <Position X="0.75" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAQ=</HashCode>
+      <FileName>Observers\PlayerObserver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Observers.UpdateGameEntityLocationObserver">
+    <Position X="3" Y="18.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Observers\UpdateGameEntityLocationObserver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CODE_GameLib.Observers.UpdateRoomEntityLocationObserver">
+    <Position X="3" Y="15.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Observers\UpdateRoomEntityLocationObserver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CODE_GameLib.Tiles.IceTile">
+    <Position X="21.75" Y="18.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Tiles\IceTile.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Tiles.Tile">
+    <Position X="21.75" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Tiles\Tile.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Connection" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAEAAAAAADAAAQAAAAAEAAAEAAAAAAAAYAA=</HashCode>
+      <FileName>Connection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CODE_GameLib.EntityLocation">
+    <Position X="25.5" Y="23" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>EntityLocation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Game" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAQAAQQA=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CODE_GameLib.Location">
+    <Position X="17.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Location.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Room" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="29.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAoABCAACGAAAAAAAEAAAAEAAAIEAQgCACAQAAg=</HashCode>
+      <FileName>Room.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CODE_GameLib.TickData" Collapsed="true">
+    <Position X="28" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAJAAAAAQAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>TickData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CODE_GameLib.Interfaces.Doors.IClosingDoor">
+    <Position X="16.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Doors\IClosingDoor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Doors.IColoredDoor">
+    <Position X="18.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Interfaces\Doors\IColoredDoor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Doors.IDoor">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Doors\IDoor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Doors.ILadder">
+    <Position X="11.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Doors\ILadder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Doors.IToggleDoor">
+    <Position X="14" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Doors\IToggleDoor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Entity.IEnemy">
+    <Position X="18.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Entity\IEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Entity.IEntity">
+    <Position X="19.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIgAAAAAAAIAAAAAAAAAAAACAAAAAAIAAAA=</HashCode>
+      <FileName>Interfaces\Entity\IEntity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Entity.IPlayer">
+    <Position X="20.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAQAAAACIBAQAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Interfaces\Entity\IPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Items.BoobyTraps.IBoobyTrap">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Items\BoobyTraps\IBoobyTrap.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Items.BoobyTraps.IDisappearingTrap">
+    <Position X="6.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Items\BoobyTraps\IDisappearingTrap.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Items.Wearable.IKey">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Interfaces\Items\Wearable\IKey.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Items.Wearable.ISankaraStone">
+    <Position X="3.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Items\Wearable\ISankaraStone.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Items.Wearable.IWearable">
+    <Position X="2" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Items\Wearable\IWearable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Items.IItem">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Items\IItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Items.IPressurePlate">
+    <Position X="4.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Items\IPressurePlate.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Tiles.IIceTile">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Tiles\IIceTile.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.Tiles.ITile">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Tiles\ITile.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.IConnection" Collapsed="true">
+    <Position X="28" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAADAAAQAAAAAAAAAEAAAAAAAAYAA=</HashCode>
+      <FileName>Interfaces\IConnection.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.IEntityLocation" Collapsed="true">
+    <Position X="29.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Interfaces\IEntityLocation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.IGame" Collapsed="true">
+    <Position X="31.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAQAAQQA=</HashCode>
+      <FileName>Interfaces\IGame.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.ILocation">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Interfaces\ILocation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Interfaces.IRoom" Collapsed="true">
+    <Position X="28" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAoABAAACAAAAAAAAEAAAAEAAAIEAQgCACAAAAA=</HashCode>
+      <FileName>Interfaces\IRoom.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="CODE_GameLib.Enums.Cheat" Collapsed="true">
+    <Position X="28" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\Cheat.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CODE_GameLib.Enums.Direction" Collapsed="true">
+    <Position X="29.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAABAAAAAAAAAAAAAAEAAAAQAAAAAAAAABAAQ=</HashCode>
+      <FileName>Enums\Direction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
